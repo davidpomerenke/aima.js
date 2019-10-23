@@ -1,8 +1,5 @@
-import { Agent } from './agent.mjs'
-
-export class TableDrivenAgent extends Agent {
+export class TableDrivenAgent {
   constructor (table = {}) {
-    super()
     this.percepts = []
     this.table = table
   }

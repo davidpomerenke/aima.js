@@ -1,8 +1,5 @@
-import { Agent } from './agent.mjs'
-
-export class SimpleReflexAgent extends Agent {
+export class SimpleReflexAgent {
   constructor (rules) {
-    super()
     this.rules = rules
   }
 

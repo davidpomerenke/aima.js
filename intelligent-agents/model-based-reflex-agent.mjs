@@ -1,8 +1,5 @@
-import { Agent } from './agent.mjs'
-
-export class ModelBasedReflexAgent extends Agent {
+export class ModelBasedReflexAgent {
   constructor (model = {}, rules = {}) {
-    super()
     this.state = null
     this.model = model
     this.rules = rules
