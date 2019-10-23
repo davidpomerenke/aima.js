@@ -4,7 +4,7 @@
   "description": "Node.js implementation of Russell & Norvig's Modern Approach to Artificial Intelligence. ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --experimental-modules test.mjs"
   },
   "author": "David Pomerenke",
   "license": "ISC"
