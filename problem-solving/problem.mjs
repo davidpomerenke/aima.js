@@ -1,4 +1,5 @@
 import deepEqual from 'deep-equal'
+import { cities } from './cities.mjs'
 
 export class Problem {
   constructor (initialState, actions, model, goalTest) {
@@ -6,10 +7,12 @@ export class Problem {
     this.actions = actions
     this.model = model
     this.goalTest = goalTest
+    this.pathCost = 0
   }
 
   action (action) {
     const step = this.model(this.state, action)
+    this.pathCost += step.stepCost
     this.state = step.state
   }
 
@@ -167,4 +170,24 @@ export const knuthConjecture = new Problem(
     })
     return result === 5
   }
+)
+
+export const routeFinding = new Problem(
+  'Arad',
+  Object.keys(cities),
+  (state, action) => {
+    const reachableCities = Object.keys(cities[state])
+    if (reachableCities.includes(action)) {
+      return {
+        state: action,
+        stepCost: cities[state][action]
+      }
+    } else { // invalid action
+      return {
+        state: state,
+        stepCost: Infinity
+      }
+    }
+  },
+  state => (state === 'Bucharest')
 )

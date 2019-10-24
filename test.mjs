@@ -2,7 +2,8 @@ import { strict as assert } from 'assert'
 
 import { tableVacuumAgent } from './intelligent-agents/table-driven-agent.mjs'
 import { reflexVacuumAgent } from './intelligent-agents/simple-reflex-agent.mjs'
-import { vacuumWorld, eightPuzzle, eightQueens, knuthConjecture } from './problem-solving/problem.mjs'
+import { vacuumWorld, eightPuzzle, eightQueens, knuthConjecture, routeFinding } 
+  from './problem-solving/problem.mjs'
 
 // intelligent agents
 // -- table-driven agent
@@ -16,7 +17,7 @@ assert.equal(reflexVacuumAgent.action([['B', 'dirty']]), 'suck')
 assert.equal(reflexVacuumAgent.action([['C', 'dirty']]), 'suck')
 assert.equal(reflexVacuumAgent.action([['C', 'clean']]), undefined)
 // problem solving
-// -- problem
+// -- toy problems
 // -- -- vacuum world
 assert.deepEqual(vacuumWorld.state, { location: 'A', A: 'dirty', B: 'dirty' })
 vacuumWorld.action('suck')
@@ -106,3 +107,15 @@ knuthConjecture.action('squareRoot')
 knuthConjecture.action('squareRoot')
 knuthConjecture.action('floor')
 assert(knuthConjecture.isSolved)
+// -- real world problems
+// -- -- route finding
+assert.equal(routeFinding.state, 'Arad')
+routeFinding.action('Sibiu')
+assert.equal(routeFinding.state, 'Sibiu')
+assert.equal(routeFinding.pathCost, 140)
+routeFinding.action('RimnicuVilcea')
+assert.equal(routeFinding.state, 'RimnicuVilcea')
+assert.equal(routeFinding.pathCost, 220)
+routeFinding.action('Arad')
+assert.equal(routeFinding.state, 'RimnicuVilcea')
+assert.equal(routeFinding.pathCost, Infinity)
