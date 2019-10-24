@@ -2,7 +2,7 @@ import { strict as assert } from 'assert'
 
 import { tableVacuumAgent } from './intelligent-agents/table-driven-agent.mjs'
 import { reflexVacuumAgent } from './intelligent-agents/simple-reflex-agent.mjs'
-import { vacuumWorld, eightPuzzle, eightQueens } from './problem-solving/problem.mjs'
+import { vacuumWorld, eightPuzzle, eightQueens, knuthConjecture } from './problem-solving/problem.mjs'
 
 // intelligent agents
 // -- table-driven agent
@@ -96,3 +96,13 @@ assert.deepEqual(eightQueens.state, [
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0]
 ])
+// -- -- knuth conjecture
+knuthConjecture.action('factorial')
+knuthConjecture.action('factorial')
+knuthConjecture.action('squareRoot')
+knuthConjecture.action('squareRoot')
+knuthConjecture.action('squareRoot')
+knuthConjecture.action('squareRoot')
+knuthConjecture.action('squareRoot')
+knuthConjecture.action('floor')
+assert(knuthConjecture.isSolved)

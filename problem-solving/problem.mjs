@@ -141,3 +141,30 @@ export const eightQueens = new Problem(
   },
   state => state.every(row => row.includes(1))
 )
+
+export const knuthConjecture = new Problem(
+  [4],
+  ['factorial', 'squareRoot', 'floor'],
+  (state, action) => ({
+    state: [...state, action],
+    stepCost: 1
+  }),
+  state => {
+    const result = state.reduce((prevResult, action) => {
+      if (action === 4) return 4
+      if (action === 'factorial') {
+        if (Number.isInteger(prevResult)) {
+          const factorial = (x) => x > 1 ? x * factorial(x - 1) : 1
+          return factorial(prevResult)
+        } else {
+          // factorial is undefined on nonnatural numbers
+          // thus the operation is ignored
+          return prevResult
+        }
+      }
+      if (action === 'squareRoot') return Math.sqrt(prevResult)
+      if (action === 'floor') return Math.floor(prevResult)
+    })
+    return result === 5
+  }
+)
