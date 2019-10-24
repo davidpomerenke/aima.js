@@ -2,8 +2,10 @@ import { strict as assert } from 'assert'
 
 import { tableVacuumAgent } from './intelligent-agents/table-driven-agent.mjs'
 import { reflexVacuumAgent } from './intelligent-agents/simple-reflex-agent.mjs'
-import { vacuumWorld, eightPuzzle, eightQueens, knuthConjecture, routeFinding, touring }
-  from './problem-solving/problem.mjs'
+import {
+  vacuumWorld, eightPuzzle, eightQueens, knuthConjecture,
+  routeFinding, touring, travelingSalesPerson
+} from './problem-solving/problem.mjs'
 
 // intelligent agents
 // -- table-driven agent
@@ -130,3 +132,11 @@ assert.equal(touring.pathCost, 220)
 touring.action('Sibiu')
 assert.deepEqual(touring.state, ['RimnicuVilcea', 'Sibiu', 'Arad'])
 assert.equal(touring.pathCost, Infinity)
+// -- -- traveling salesperson
+assert.deepEqual(travelingSalesPerson.state, ['Arad'])
+travelingSalesPerson.action('Sibiu')
+assert.deepEqual(travelingSalesPerson.state, ['Sibiu', 'Arad'])
+assert.equal(travelingSalesPerson.pathCost, 140)
+travelingSalesPerson.action('Arad')
+assert.deepEqual(travelingSalesPerson.state, ['Sibiu', 'Arad'])
+assert.equal(travelingSalesPerson.pathCost, Infinity)
