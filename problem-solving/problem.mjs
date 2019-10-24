@@ -1,8 +1,9 @@
 import deepEqual from 'deep-equal'
 
 export class Problem {
-  constructor (initialState, model, goalTest) {
+  constructor (initialState, actions, model, goalTest) {
     this.state = initialState
+    this.actions = actions
     this.model = model
     this.goalTest = goalTest
   }
@@ -19,20 +20,21 @@ export class Problem {
 
 export const vacuumWorld = new Problem(
   { location: 'A', A: 'dirty', B: 'dirty' },
+  ['left', 'right', 'suck'],
   (state, action) => {
-    if (state.location === 'A' && action === 'right') {
+    if (state.location === 'B' && action === 'left') {
       return {
         state: {
-          location: 'B',
+          location: 'A',
           A: state.A,
           B: state.B
         },
         stepCost: 1
       }
-    } else if (state.location === 'B' && action === 'left') {
+    } else if (state.location === 'A' && action === 'right') {
       return {
         state: {
-          location: 'A',
+          location: 'B',
           A: state.A,
           B: state.B
         },
@@ -63,6 +65,7 @@ export const eightPuzzle = new Problem(
     [3, 0, 5],
     [6, 7, 8]
   ],
+  ['left', 'right', 'up', 'down'],
   (state, action) => {
     const getZeroPosition = state => {
       const zeroPosition = {}
@@ -75,18 +78,18 @@ export const eightPuzzle = new Problem(
       return zeroPosition
     }
     const zeroPosition = getZeroPosition(state)
-    if (action === 'right' && zeroPosition.x < 2) {
-      state[zeroPosition.y][zeroPosition.x] = state[zeroPosition.y][zeroPosition.x + 1]
-      state[zeroPosition.y][zeroPosition.x + 1] = 0
-    } else if (action === 'left' && zeroPosition.x > 0) {
+    if (action === 'left' && zeroPosition.x > 0) {
       state[zeroPosition.y][zeroPosition.x] = state[zeroPosition.y][zeroPosition.x - 1]
       state[zeroPosition.y][zeroPosition.x - 1] = 0
-    } else if (action === 'down' && zeroPosition.y < 2) {
-      state[zeroPosition.y][zeroPosition.x] = state[zeroPosition.y + 1][zeroPosition.x]
-      state[zeroPosition.y + 1][zeroPosition.x] = 0
+    } else if (action === 'right' && zeroPosition.x < 2) {
+      state[zeroPosition.y][zeroPosition.x] = state[zeroPosition.y][zeroPosition.x + 1]
+      state[zeroPosition.y][zeroPosition.x + 1] = 0
     } else if (action === 'up' && zeroPosition.y > 0) {
       state[zeroPosition.y][zeroPosition.x] = state[zeroPosition.y - 1][zeroPosition.x]
       state[zeroPosition.y - 1][zeroPosition.x] = 0
+    } else if (action === 'down' && zeroPosition.y < 2) {
+      state[zeroPosition.y][zeroPosition.x] = state[zeroPosition.y + 1][zeroPosition.x]
+      state[zeroPosition.y + 1][zeroPosition.x] = 0
     }
     return { state: state, stepCost: 1 }
   },
