@@ -99,3 +99,45 @@ export const eightPuzzle = new Problem(
     [6, 7, 8]
   ])
 )
+
+export const eightQueens = new Problem(
+  [
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0]
+  ],
+  [0, 1, 2, 3, 4, 5, 6, 7, 8],
+  (state, action) => {
+    const y = state.findIndex(row => row.includes(1)) + 1
+    const x = action
+    const row = state[y]
+    const col = state.map(row => row[x])
+    const diag1 = state.map((row, rowIndex) => {
+      const pos = x + (rowIndex - y)
+      if (pos >= 0 && pos <= 7) return row[pos]
+    })
+    const diag2 = state.map((row, rowIndex) => {
+      const pos = x - (rowIndex - y)
+      if (pos >= 0 && pos <= 7) return row[pos]
+    })
+    const isAttacked = [row, col, diag1, diag2].some(line => line.includes(1))
+    if (state[y][x] !== 1 && !isAttacked) {
+      state[y][x] = 1
+      return {
+        state: state,
+        stepCost: 0
+      }
+    } else { // invalid action
+      return {
+        state: state,
+        stepCost: Infinity
+      }
+    }
+  },
+  state => state.every(row => row.includes(1))
+)
