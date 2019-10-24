@@ -16,6 +16,10 @@ export class Problem {
     this.state = step.state
   }
 
+  result (state, action) {
+    return this.model(state, action)
+  }
+
   get isSolved () {
     return this.goalTest(this.state)
   }
