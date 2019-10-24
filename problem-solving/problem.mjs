@@ -191,3 +191,23 @@ export const routeFinding = new Problem(
   },
   state => (state === 'Bucharest')
 )
+
+export const touring = new Problem(
+  ['Arad'],
+  Object.keys(cities),
+  (state, action) => {
+    const reachableCities = Object.keys(cities[state[0]])
+    if (reachableCities.includes(action) && !state.includes(action)) {
+      return {
+        state: [action, ...state],
+        stepCost: cities[state[0]][action]
+      }
+    } else { // invalid action
+      return {
+        state: state,
+        stepCost: Infinity
+      }
+    }
+  },
+  state => (state === 'Bucharest')
+)
