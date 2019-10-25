@@ -2,10 +2,11 @@ import { strict as assert } from 'assert'
 
 import { tableVacuumAgent } from './intelligent-agents/table-driven-agent.mjs'
 import { reflexVacuumAgent } from './intelligent-agents/simple-reflex-agent.mjs'
-import {
-  vacuumWorld, eightPuzzle, eightQueens, knuthConjecture,
-  routeFinding, touring, travelingSalesPerson
-} from './problem-solving/problem.mjs'
+import { vacuumWorld } from './problems/vacuum-world.mjs'
+import { eightPuzzle } from './problems/eight-puzzle.mjs'
+import { eightQueens } from './problems/eight-queens.mjs'
+import { knuthConjecture } from './problems/knuth-conjecture.mjs'
+import { routeFindingProblem, touringProblem, travelingSalespersonProblem } from './problems/route-finding.mjs'
 
 // intelligent agents
 // -- table-driven agent
@@ -19,44 +20,48 @@ assert.equal(reflexVacuumAgent.action([['B', 'dirty']]), 'suck')
 assert.equal(reflexVacuumAgent.action([['C', 'dirty']]), 'suck')
 assert.equal(reflexVacuumAgent.action([['C', 'clean']]), undefined)
 // problem solving
+let state
 // -- toy problems
 // -- -- vacuum world
-assert.deepEqual(vacuumWorld.state, { location: 'A', A: 'dirty', B: 'dirty' })
-vacuumWorld.action('suck')
-assert.deepEqual(vacuumWorld.state, { location: 'A', A: 'clean', B: 'dirty' })
-vacuumWorld.action('suck')
-assert.deepEqual(vacuumWorld.state, { location: 'A', A: 'clean', B: 'dirty' })
-vacuumWorld.action('left')
-assert.deepEqual(vacuumWorld.state, { location: 'A', A: 'clean', B: 'dirty' })
-vacuumWorld.action('right')
-assert.deepEqual(vacuumWorld.state, { location: 'B', A: 'clean', B: 'dirty' })
-assert(!vacuumWorld.isSolved)
-vacuumWorld.action('suck')
-assert.deepEqual(vacuumWorld.state, { location: 'B', A: 'clean', B: 'clean' })
-assert(vacuumWorld.isSolved)
+state = vacuumWorld.initialState
+assert.deepEqual(state, { location: 'A', A: 'dirty', B: 'dirty' })
+state = vacuumWorld.result(state, 'suck')
+assert.deepEqual(state, { location: 'A', A: 'clean', B: 'dirty' })
+state = vacuumWorld.result(state, 'suck')
+assert.deepEqual(state, { location: 'A', A: 'clean', B: 'dirty' })
+state = vacuumWorld.result(state, 'left')
+assert.deepEqual(state, { location: 'A', A: 'clean', B: 'dirty' })
+state = vacuumWorld.result(state, 'right')
+assert.deepEqual(state, { location: 'B', A: 'clean', B: 'dirty' })
+assert(!vacuumWorld.goalTest(state))
+state = vacuumWorld.result(state, 'suck')
+assert.deepEqual(state, { location: 'B', A: 'clean', B: 'clean' })
+assert(vacuumWorld.goalTest(state))
 // -- -- eight puzzle
-assert.deepEqual(eightPuzzle.state, [
+state = eightPuzzle.initialState
+assert.deepEqual(state, [
   [1, 4, 2],
   [3, 0, 5],
   [6, 7, 8]
 ])
-eightPuzzle.action('up')
-assert.deepEqual(eightPuzzle.state, [
+state = eightPuzzle.result(state, 'up')
+assert.deepEqual(state, [
   [1, 0, 2],
   [3, 4, 5],
   [6, 7, 8]
 ])
-assert(!eightPuzzle.isSolved)
-eightPuzzle.action('left')
-assert.deepEqual(eightPuzzle.state, [
+assert(!eightPuzzle.goalTest(state))
+state = eightPuzzle.result(state, 'left')
+assert.deepEqual(state, [
   [0, 1, 2],
   [3, 4, 5],
   [6, 7, 8]
 ])
-assert(eightPuzzle.isSolved)
+assert(eightPuzzle.goalTest(state))
 // -- -- eight queens
-eightQueens.action(3)
-assert.deepEqual(eightQueens.state, [
+state = eightQueens.initialState
+state = eightQueens.result(state, 3)
+assert.deepEqual(state, [
   [0, 0, 0, 1, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
@@ -66,19 +71,9 @@ assert.deepEqual(eightQueens.state, [
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0]
 ])
-eightQueens.action(3)
-assert.deepEqual(eightQueens.state, [
-  [0, 0, 0, 1, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0]
-])
-eightQueens.action(5)
-assert.deepEqual(eightQueens.state, [
+assert.deepEqual(eightQueens.result(state, 3), undefined)
+state = eightQueens.result(state, 5)
+assert.deepEqual(state, [
   [0, 0, 0, 1, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 1, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
@@ -88,55 +83,51 @@ assert.deepEqual(eightQueens.state, [
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0]
 ])
-eightQueens.action(1)
-assert.deepEqual(eightQueens.state, [
-  [0, 0, 0, 1, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0]
-])
+assert.deepEqual(eightQueens.result(state, 1), undefined)
 // -- -- knuth conjecture
-knuthConjecture.action('factorial')
-knuthConjecture.action('factorial')
-knuthConjecture.action('squareRoot')
-knuthConjecture.action('squareRoot')
-knuthConjecture.action('squareRoot')
-knuthConjecture.action('squareRoot')
-knuthConjecture.action('squareRoot')
-knuthConjecture.action('floor')
-assert(knuthConjecture.isSolved)
+state = knuthConjecture.initialState
+assert.deepEqual(state, [4])
+state = knuthConjecture.result(state, 'factorial')
+state = knuthConjecture.result(state, 'factorial')
+state = knuthConjecture.result(state, 'square_root')
+state = knuthConjecture.result(state, 'square_root')
+state = knuthConjecture.result(state, 'square_root')
+state = knuthConjecture.result(state, 'square_root')
+state = knuthConjecture.result(state, 'square_root')
+assert(!knuthConjecture.goalTest(state))
+state = knuthConjecture.result(state, 'floor')
+assert(knuthConjecture.goalTest(state))
 // -- real world problems
 // -- -- route finding
-assert.equal(routeFinding.state, 'Arad')
-routeFinding.action('Sibiu')
-assert.equal(routeFinding.state, 'Sibiu')
-assert.equal(routeFinding.pathCost, 140)
-routeFinding.action('RimnicuVilcea')
-assert.equal(routeFinding.state, 'RimnicuVilcea')
-assert.equal(routeFinding.pathCost, 220)
-routeFinding.action('Arad')
-assert.equal(routeFinding.state, 'RimnicuVilcea')
-assert.equal(routeFinding.pathCost, Infinity)
-// -- -- touring
-assert.deepEqual(touring.state, ['Arad'])
-touring.action('Sibiu')
-assert.deepEqual(touring.state, ['Sibiu', 'Arad'])
-assert.equal(touring.pathCost, 140)
-touring.action('RimnicuVilcea')
-assert.deepEqual(touring.state, ['RimnicuVilcea', 'Sibiu', 'Arad'])
-assert.equal(touring.pathCost, 220)
-touring.action('Sibiu')
-assert.deepEqual(touring.state, ['RimnicuVilcea', 'Sibiu', 'Arad'])
-assert.equal(touring.pathCost, Infinity)
-// -- -- traveling salesperson
-assert.deepEqual(travelingSalesPerson.state, ['Arad'])
-travelingSalesPerson.action('Sibiu')
-assert.deepEqual(travelingSalesPerson.state, ['Sibiu', 'Arad'])
-assert.equal(travelingSalesPerson.pathCost, 140)
-travelingSalesPerson.action('Arad')
-assert.deepEqual(travelingSalesPerson.state, ['Sibiu', 'Arad'])
-assert.equal(travelingSalesPerson.pathCost, Infinity)
+state = routeFindingProblem.initialState
+assert.equal(state, 'Arad')
+assert.equal(routeFindingProblem.pathCost(state, 'Sibiu'), 140)
+state = routeFindingProblem.result(state, 'Sibiu')
+assert.equal(state, 'Sibiu')
+assert.equal(routeFindingProblem.pathCost(state, 'Rimnicu_Vilcea'), 80)
+state = routeFindingProblem.result(state, 'Rimnicu_Vilcea')
+assert.equal(state, 'Rimnicu_Vilcea')
+assert.equal(routeFindingProblem.pathCost(state, 'Arad'), undefined)
+state = routeFindingProblem.result(state, 'Arad')
+assert.equal(state, undefined)
+// -- -- touring problem
+state = touringProblem.initialState
+assert.deepEqual(state, ['Arad'])
+assert.equal(touringProblem.pathCost(state, 'Sibiu'), 140)
+state = touringProblem.result(state, 'Sibiu')
+assert.deepEqual(state, ['Sibiu', 'Arad'])
+assert.equal(touringProblem.pathCost(state, 'Rimnicu_Vilcea'), 80)
+state = touringProblem.result(state, 'Rimnicu_Vilcea')
+assert.deepEqual(state, ['Rimnicu_Vilcea', 'Sibiu', 'Arad'])
+assert.equal(touringProblem.pathCost(state, 'Sibiu'), undefined)
+state = touringProblem.result(state, 'Sibiu')
+assert.deepEqual(state, undefined)
+// -- -- traveling salesperson problem
+state = travelingSalespersonProblem.initialState
+assert.deepEqual(state, ['Arad'])
+assert.equal(travelingSalespersonProblem.pathCost(state, 'Sibiu'), 140)
+state = travelingSalespersonProblem.result(state, 'Sibiu')
+assert.deepEqual(state, ['Sibiu', 'Arad'])
+assert.equal(travelingSalespersonProblem.pathCost(state, 'Arad'), undefined)
+state = travelingSalespersonProblem.result(state, 'Arad')
+assert.deepEqual(state, undefined)

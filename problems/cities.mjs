@@ -16,7 +16,7 @@ export const cities = {
     Arad: 140,
     Oradea: 151,
     Fagaras: 99,
-    RimnicuVilcea: 80
+    Rimnicu_Vilcea: 80
   },
   Fagaras: {
     Sibiu: 99,
@@ -57,12 +57,12 @@ export const cities = {
   Pitesti: {
     Bucharest: 101,
     Craiova: 138,
-    RimnicuVilcea: 97
+    Rimnicu_Vilcea: 97
   },
   Craiova: {
     Pitesti: 138,
     Drobeta: 120,
-    RimnicuVilcea: 146
+    Rimnicu_Vilcea: 146
   },
   Drobeta: {
     Craiova: 120,
@@ -80,7 +80,7 @@ export const cities = {
     Lugoj: 111,
     Arad: 118
   },
-  RimnicuVilcea: {
+  Rimnicu_Vilcea: {
     Sibiu: 80,
     Pitesti: 97,
     Craiova: 146
