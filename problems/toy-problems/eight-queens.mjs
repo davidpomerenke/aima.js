@@ -1,4 +1,4 @@
-import { Problem } from './problem.mjs'
+import { Problem } from '../problem.mjs'
 import cloneDeep from 'lodash.clonedeep'
 
 const getNextY = state => state.indexOf(state.filter(row => !row.includes(1))[0])

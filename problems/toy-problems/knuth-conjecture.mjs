@@ -1,4 +1,4 @@
-import { Problem } from './problem.mjs'
+import { Problem } from '../problem.mjs'
 import factorial from 'factorial'
 
 export const knuthConjecture = new Problem({

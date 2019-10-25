@@ -1,4 +1,4 @@
-import { Problem } from './problem.mjs'
+import { Problem } from '../problem.mjs'
 import deepEqual from 'deep-equal'
 import cloneDeep from 'lodash.clonedeep'
 

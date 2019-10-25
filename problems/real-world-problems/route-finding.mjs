@@ -1,4 +1,4 @@
-import { Problem } from './problem.mjs'
+import { Problem } from '../problem.mjs'
 import { cities } from './cities.mjs'
 
 export const generateRouteFindingProblem = (start, end) => new Problem({

@@ -1,4 +1,4 @@
-import { Problem } from './problem.mjs'
+import { Problem } from '../problem.mjs'
 import cloneDeep from 'lodash.clonedeep'
 
 export const vacuumWorld = new Problem({
