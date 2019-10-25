@@ -1,9 +1,10 @@
 export class Node {
-  constructor ({ state, parent, action, pathCost }) {
+  constructor ({ state, parent, action, pathCost, depth = 0 }) {
     this.state = state
     this.parent = parent
     this.action = action
     this.pathCost = pathCost
+    this.depth = depth
   }
 }
 
@@ -13,7 +14,8 @@ export const childNode = (problem, node, action) => {
     state: result,
     parent: node,
     action: action,
-    pathCost: node.pathCost + problem.pathCost(node.state, action)
+    pathCost: node.pathCost + problem.pathCost(node.state, action),
+    depth: node.depth + 1
   })
 }
 
