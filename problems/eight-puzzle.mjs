@@ -1,5 +1,6 @@
 import { Problem } from './problem.mjs'
 import deepEqual from 'deep-equal'
+import cloneDeep from 'lodash.clonedeep'
 
 const move = {
   up: { y: -1, x: 0 },
@@ -15,11 +16,12 @@ const getZeroPosition = (state) => ({
 
 export const generateEightPuzzle = (initialState) => new Problem({
   initialState: initialState,
-  action: state => Object.keys(move).filter(key => {
+  actions: state => Object.keys(move).filter(key => {
     const zeroPosition = getZeroPosition(state)
     return [0, 1, 2].includes(zeroPosition.x + move[key].x) && [0, 1, 2].includes(zeroPosition.y + move[key].y)
   }),
   result: (state, action) => {
+    state = cloneDeep(state)
     const zeroPosition = getZeroPosition(state)
     const newZeroPosition = {
       y: zeroPosition.y + move[action].y,
@@ -31,7 +33,7 @@ export const generateEightPuzzle = (initialState) => new Problem({
       return state
     }
   },
-  stepCost: (state, action) => 1,
+  pathCost: (state, action) => 1,
   goalTest: state => deepEqual(state, [
     [0, 1, 2],
     [3, 4, 5],

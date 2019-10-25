@@ -1,4 +1,5 @@
 import { Problem } from './problem.mjs'
+import cloneDeep from 'lodash.clonedeep'
 
 const getNextY = state => state.indexOf(state.filter(row => !row.includes(1))[0])
 
@@ -27,8 +28,9 @@ export const eightQueens = new Problem({
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0]
   ],
-  actions: state => [0, 1, 2, 3, 4, 5, 6, 7].filter(action => !isAttacked(getNextY(state), action)),
+  actions: state => [0, 1, 2, 3, 4, 5, 6, 7].filter(action => !isAttacked(state, getNextY(state), action)),
   result: (state, action) => {
+    state = cloneDeep(state)
     const pos = {
       y: getNextY(state),
       x: action
@@ -38,6 +40,6 @@ export const eightQueens = new Problem({
       return state
     }
   },
-  stepCost: (state, action) => 0,
+  pathCost: (state, action) => 0,
   goalTest: state => state.every(row => row.includes(1))
 })

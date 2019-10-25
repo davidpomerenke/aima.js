@@ -42,7 +42,7 @@ export const cities = {
     Neamt: 87
   },
   Neamt: {
-    Isasi: 87
+    Iasi: 87
   },
   Hirsova: {
     Urziceni: 98,
@@ -73,7 +73,7 @@ export const cities = {
     Lugoj: 70
   },
   Lugoj: {
-    Mehadina: 70,
+    Mehadia: 70,
     Timisoara: 111
   },
   Timisoara: {
