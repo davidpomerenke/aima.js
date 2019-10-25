@@ -22,6 +22,7 @@ export const breadthFirstSearch = (problem, verbose = false) => {
         !frontier.some(node => node.state === child.state) &&
         !explored.has(child.state)
       ) {
+        if (verbose) console.log('-- '.repeat(child.depth) + '- ' + child.action + ' (' + child.pathCost + ')')
         if (problem.goalTest(child.state)) return solution(child)
         frontier.push(child)
       }
