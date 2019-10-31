@@ -2,7 +2,7 @@ import { makeTouringProblem } from './touring.mjs'
 import { cities } from './cities.mjs'
 import { strict as assert } from 'assert'
 
-const touringProblem = makeTouringProblem(cities, 'Arad', 'Bucharest')
+export const touringProblem = makeTouringProblem(cities, 'Arad', 'Bucharest')
 
 const state = []
 state[0] = touringProblem.initialState
