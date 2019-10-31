@@ -7,7 +7,7 @@ export class PriorityQueue {
   }
 
   add (item) {
-    this.queue.unshift(item)
+    this.queue.push(item)
   }
 
   poll () {
@@ -23,6 +23,10 @@ export class PriorityQueue {
 
   find (func) {
     return this.queue.find(func)
+  }
+
+  sort () {
+    this.queue = sortBy(this.queue, this.mapFunc)
   }
 
   get length () {
