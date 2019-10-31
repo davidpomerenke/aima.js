@@ -4,13 +4,15 @@
   "description": "Node.js implementation of Russell & Norvig's Modern Approach to Artificial Intelligence. ",
   "main": "index.mjs",
   "scripts": {
-    "test": "node --experimental-modules test.mjs"
+    "test": "node --experimental-modules test.mjs",
+    "debug": "node --inspect --experimental-modules test.mjs"
   },
   "author": "David Pomerenke",
   "license": "ISC",
   "dependencies": {
     "deep-equal": "^1.1.0",
     "factorial": "^1.0.0",
-    "lodash.clonedeep": "^4.5.0"
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.sortby": "^4.7.0"
   }
 }

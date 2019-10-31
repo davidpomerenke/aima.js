@@ -1,4 +1,4 @@
-import { breadthFirstSearch } from './breadth-first.mjs'
+import { uniformCostSearch } from './uniform-cost.mjs'
 import { vacuumWorld } from '../problems/toy-problems/vacuum-world.mjs'
 import { simpleEightPuzzle } from '../problems/toy-problems/eight-puzzle.test.mjs'
 import { eightQueens } from '../problems/toy-problems/eight-queens.mjs'
@@ -9,17 +9,17 @@ import { travelingSalespersonProblem } from '../problems/real-world-problems/tra
 import { strict as assert } from 'assert'
 
 // vacuum world
-assert.deepEqual(breadthFirstSearch(vacuumWorld, true).pop(), {
+assert.deepEqual(uniformCostSearch(vacuumWorld, true).pop(), {
   location: 'B',
   A: 'clean',
   B: 'clean'
 })
 
 // eight puzzle
-assert(simpleEightPuzzle.goalTest(breadthFirstSearch(simpleEightPuzzle).pop()))
+assert(simpleEightPuzzle.goalTest(uniformCostSearch(simpleEightPuzzle).pop()))
 
 // eight queens
-assert.deepEqual(breadthFirstSearch(eightQueens).pop(), [
+assert.deepEqual(uniformCostSearch(eightQueens).pop(), [
   [1, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 1, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 1],
@@ -31,13 +31,13 @@ assert.deepEqual(breadthFirstSearch(eightQueens).pop(), [
 ])
 
 // knuth conjecture - does not terminate
-assert(breadthFirstSearch(simpleKnuthConjecture).pop(), 1)
+assert(uniformCostSearch(simpleKnuthConjecture).pop(), 1)
 
 // route finding
-assert.deepEqual(breadthFirstSearch(routeFindingProblem), ['Arad', 'Sibiu', 'Fagaras', 'Bucharest'])
+assert.deepEqual(uniformCostSearch(routeFindingProblem), ['Arad', 'Sibiu', 'Fagaras', 'Bucharest'])
 
 // touring
-assert.deepEqual(breadthFirstSearch(touringProblem).pop(), ['Bucharest', 'Fagaras', 'Sibiu', 'Arad'])
+assert.deepEqual(uniformCostSearch(touringProblem).pop(), ['Bucharest', 'Fagaras', 'Sibiu', 'Arad'])
 
 // traveling salesperson
-assert(!breadthFirstSearch(travelingSalespersonProblem))
+assert(!uniformCostSearch(travelingSalespersonProblem))
