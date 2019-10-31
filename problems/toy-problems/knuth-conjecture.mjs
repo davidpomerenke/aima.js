@@ -7,10 +7,10 @@ export const knuthConjecture = new Problem({
     ? ['square_root', 'floor', 'factorial']
     : ['square_root', 'floor'],
   result: (state, action) => {
-    if (action === 'factorial' && Number.isInteger(state)) return factorial(state)
+    if (action === 'factorial') return factorial(state)
     if (action === 'square_root') return Math.sqrt(state)
     if (action === 'floor') return Math.floor(state)
   },
   pathCost: (state, action) => 1,
-  goalTest: state => state === 5
+  goalTest: state => (state === 5)
 })

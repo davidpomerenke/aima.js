@@ -3,13 +3,18 @@ import cloneDeep from 'lodash.clonedeep'
 
 export const vacuumWorld = new Problem({
   initialState: { location: 'A', A: 'dirty', B: 'dirty' },
-  actions: (state) => [state.location === 'B' ? 'left' : 'right', 'suck'],
+  actions: (state) => ['left', 'right', 'suck'],
   result: (state, action) => {
     state = cloneDeep(state)
-    if (action === 'suck') state[state.location] = 'clean'
-    else if (action === 'left') state.location = 'A'
-    else if (action === 'right') state.location = 'B'
-    else state = undefined
+    switch (action) {
+      case 'suck': state[state.location] = 'clean'
+        break
+      case 'left': state.location = 'A'
+        break
+      case 'right': state.location = 'B'
+        break
+      default: state = undefined
+    }
     return state
   },
   pathCost: (state, action) => 1,

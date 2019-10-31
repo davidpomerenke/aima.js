@@ -1,14 +1,29 @@
 import { Problem } from '../problem.mjs'
-import { cities } from './cities.mjs'
+import deepEqual from 'deep-equal'
 
-export const generateRouteFindingProblem = (start, end) => new Problem({
+export const makeRouteFindingProblem = (graph, start, end) => new Problem({
   initialState: start,
-  actions: state => Object.keys(cities[state]),
-  result: (state, action) => Object.keys(cities[state]).includes(action)
+  actions: state => Object.keys(graph[state]),
+  result: (state, action) => action in graph[state]
     ? action
     : undefined,
-  pathCost: (state, action) => cities[state][action],
-  goalTest: state => (state === end)
+  pathCost: (state, action) => graph[state][action],
+  goalTest: state => deepEqual(state, end)
 })
 
-export const routeFindingProblem = generateRouteFindingProblem('Arad', 'Bucharest')
+/*
+
+graph format example:
+
+graph_ = {
+  node_1: {
+    node_2: path_cost(node_1, node_2),
+    node_3: path_cost(node_1, node_3)
+  },
+  node_2: {
+    node_1: path_cost(node_2, node_1)
+  },
+  ...
+}
+
+*/
