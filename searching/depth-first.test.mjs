@@ -17,18 +17,6 @@ assert.deepEqual(depthFirstSearch(eightQueens).pop(), [
   [0, 0, 0, 0, 1, 0, 0, 0]
 ])
 
-// route finding
-assert.deepEqual(depthFirstSearch(routeFindingProblem), [
-  'Arad',
-  'Timisoara',
-  'Lugoj',
-  'Mehadia',
-  'Drobeta',
-  'Craiova',
-  'Pitesti',
-  'Bucharest'
-]) // depends on the arbitrary order of attributes in the cities graph
-
 // touring
 assert.deepEqual(depthFirstSearch(touringProblem).pop(), [
   'Arad',

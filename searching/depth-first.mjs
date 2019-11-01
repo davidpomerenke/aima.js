@@ -1,6 +1,8 @@
-import { Node } from '../problems/node.mjs'
+import { makeGraphSearch } from './graph-search.mjs'
+import { LifoQueue } from './queues/lifo-queue.mjs'
 
-export const depthFirstSearch = (problem) => {
+export const depthFirstSearch = makeGraphSearch(LifoQueue)
+/* export const depthFirstSearch = (problem) => {
   let node = new Node({ state: problem.initialState })
   if (problem.goalTest(node.state)) return node.solution()
   const frontier = [node]
@@ -19,4 +21,4 @@ export const depthFirstSearch = (problem) => {
     }
   }
   return false
-}
+}*/
