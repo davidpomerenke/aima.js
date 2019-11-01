@@ -15,7 +15,7 @@ export const eightQueens = new Problem({
   actions: (state) => [0, 1, 2, 3, 4, 5, 6, 7].filter(action => {
     const y = state.findIndex(row => !row.includes(1))
     const x = action
-    return !isAttacked(state, y, x)
+    return y < 9 && !isAttacked(state, y, x)
   }),
   result: (state, action) => {
     state = cloneDeep(state)
