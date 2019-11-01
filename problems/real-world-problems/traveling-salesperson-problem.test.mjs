@@ -1,4 +1,4 @@
-import { makeTravelingSalespersonProblem } from './traveling-salesperson.mjs'
+import { makeTravelingSalespersonProblem } from './traveling-salesperson-problem.mjs'
 import { cities } from './cities.mjs'
 import { strict as assert } from 'assert'
 

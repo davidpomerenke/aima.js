@@ -1,4 +1,4 @@
-import { makeTouringProblem } from './touring.mjs'
+import { makeTouringProblem } from './touring-problem.mjs'
 import { cities } from './cities.mjs'
 import { strict as assert } from 'assert'
 

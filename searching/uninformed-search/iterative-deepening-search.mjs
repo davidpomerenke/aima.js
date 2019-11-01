@@ -1,4 +1,4 @@
-import { depthLimitedSearch } from './depth-limited.mjs'
+import { depthLimitedSearch } from './depth-limited-search.mjs'
 
 export const iterativeDeepeningSearch = (problem) => {
   let depth = 0

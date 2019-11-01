@@ -1,4 +1,4 @@
-import { makeRouteFindingProblem } from './route-finding.mjs'
+import { makeRouteFindingProblem } from './route-finding-problem.mjs'
 import { cities } from './cities.mjs'
 import { strict as assert } from 'assert'
 

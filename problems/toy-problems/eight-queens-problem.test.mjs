@@ -1,4 +1,4 @@
-import { eightQueens } from './eight-queens.mjs'
+import { eightQueens } from './eight-queens-problem.mjs'
 import { strict as assert } from 'assert'
 
 const state = []

@@ -1,7 +1,7 @@
-import { depthFirstSearch } from './depth-first.mjs'
-import { eightQueens } from '../../problems/toy-problems/eight-queens.mjs'
-import { makeTouringProblem } from '../../problems/real-world-problems/touring.mjs'
-import { makeTravelingSalespersonProblem } from '../../problems/real-world-problems/traveling-salesperson.mjs'
+import { depthFirstSearch } from './depth-first-search.mjs'
+import { eightQueens } from '../../problems/toy-problems/eight-queens-problem.mjs'
+import { makeTouringProblem } from '../../problems/real-world-problems/touring-problem.mjs'
+import { makeTravelingSalespersonProblem } from '../../problems/real-world-problems/traveling-salesperson-problem.mjs'
 import { cities } from '../../problems/real-world-problems/cities.mjs'
 import { strict as assert } from 'assert'
 
