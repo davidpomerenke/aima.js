@@ -1,4 +1,5 @@
 import sortBy from 'lodash.sortby'
+import deepEqual from 'deep-equal'
 
 export class PriorityQueue {
   constructor (mapFunc) {
@@ -14,7 +15,7 @@ export class PriorityQueue {
     // sortBy from lodash.sortby is stable
     // unlike Array.prototype.sort()
     this.queue = sortBy(this.queue, this.mapFunc)
-    return this.queue.pop()
+    return this.queue.shift()
   }
 
   some (func) {
@@ -23,6 +24,10 @@ export class PriorityQueue {
 
   find (func) {
     return this.queue.find(func)
+  }
+
+  replace (a, b) {
+    this.queue[this.queue.indexOf(a)] = b
   }
 
   sort () {
