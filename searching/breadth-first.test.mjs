@@ -30,7 +30,7 @@ assert.deepEqual(breadthFirstSearch(eightQueens).pop(), [
   [0, 0, 0, 1, 0, 0, 0, 0]
 ])
 
-// knuth conjecture - does not terminate
+// knuth conjecture
 assert(breadthFirstSearch(simpleKnuthConjecture).pop(), 1)
 
 // route finding

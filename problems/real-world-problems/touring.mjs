@@ -1,12 +1,15 @@
 import { Problem } from '../problem.mjs'
+import deepEqual from 'deep-equal'
 
 export const makeTouringProblem = (graph, start, end) => new Problem({
   initialState: [start],
   actions: state => Object.keys(graph[state[state.length - 1]])
     .filter(city => !state.includes(city)),
-  result: (state, action) => [...state, action],
+  result: (state, action) => action in graph[state[state.length - 1]]
+    ? [...state, action]
+    : undefined,
   pathCost: (state, action) => graph[state[state.length - 1]][action],
-  goalTest: state => (state[state.length - 1] === end)
+  goalTest: state => deepEqual(state[state.length - 1], end)
 })
 
 /*
