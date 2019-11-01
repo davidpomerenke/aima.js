@@ -1,19 +1,16 @@
-import { Node, childNode, solution } from '../problems/node.mjs'
+import { Node } from '../problems/node.mjs'
 import { PriorityQueue } from './priority-queue.mjs'
 
-export const uniformCostSearch = (problem, t=false) => {
+export const uniformCostSearch = (problem) => {
   let node = new Node({ state: problem.initialState })
   const frontier = new PriorityQueue(node => node.pathCost)
   frontier.add(node)
   const explored = new Set()
   while (frontier.length > 0) {
-    if (t) console.log(explored)
-    if (t) console.log(frontier.queue)
     node = frontier.poll()
-    if (problem.goalTest(node.state)) return solution(node)
+    if (problem.goalTest(node.state)) return node.solution()
     explored.add(node.state)
-    for (const action of problem.actions(node.state)) {
-      const child = childNode(problem, node, action)
+    for (const child of node.expand(problem)) {
       if (
         !frontier.some(node => node.state === child.state) &&
         !explored.has(child.state)
