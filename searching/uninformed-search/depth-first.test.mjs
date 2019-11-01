@@ -1,8 +1,8 @@
 import { depthFirstSearch } from './depth-first.mjs'
-import { eightQueens } from '../problems/toy-problems/eight-queens.mjs'
-import { routeFindingProblem } from '../problems/real-world-problems/route-finding.test.mjs'
-import { touringProblem } from '../problems/real-world-problems/touring.test.mjs'
-import { travelingSalespersonProblem } from '../problems/real-world-problems/traveling-salesperson.test.mjs'
+import { eightQueens } from '../../problems/toy-problems/eight-queens.mjs'
+import { makeTouringProblem } from '../../problems/real-world-problems/touring.mjs'
+import { makeTravelingSalespersonProblem } from '../../problems/real-world-problems/traveling-salesperson.mjs'
+import { cities } from '../../problems/real-world-problems/cities.mjs'
 import { strict as assert } from 'assert'
 
 // eight queens
@@ -18,6 +18,7 @@ assert.deepEqual(depthFirstSearch(eightQueens).pop(), [
 ])
 
 // touring
+const touringProblem = makeTouringProblem(cities, 'Arad', 'Bucharest')
 assert.deepEqual(depthFirstSearch(touringProblem).pop(), [
   'Arad',
   'Timisoara',
@@ -31,4 +32,5 @@ assert.deepEqual(depthFirstSearch(touringProblem).pop(), [
 ]) // depends on the arbitrary order of attributes in the cities graph
 
 // traveling salesperson
+const travelingSalespersonProblem = makeTravelingSalespersonProblem(cities, 'Arad', 'Bucharest')
 assert(!depthFirstSearch(travelingSalespersonProblem))

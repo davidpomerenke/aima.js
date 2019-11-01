@@ -2,7 +2,7 @@ import { makeRouteFindingProblem } from './route-finding.mjs'
 import { cities } from './cities.mjs'
 import { strict as assert } from 'assert'
 
-export const routeFindingProblem = makeRouteFindingProblem(cities, 'Arad', 'Bucharest')
+const routeFindingProblem = makeRouteFindingProblem(cities, 'Arad', 'Bucharest')
 
 const state = []
 state[0] = routeFindingProblem.initialState

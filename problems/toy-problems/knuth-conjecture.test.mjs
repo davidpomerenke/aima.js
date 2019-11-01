@@ -1,7 +1,7 @@
 import { makeKnuthConjecture } from './knuth-conjecture.mjs'
 import { strict as assert } from 'assert'
 
-export const complexKnuthConjecture = makeKnuthConjecture(5)
+const complexKnuthConjecture = makeKnuthConjecture(5)
 const state = []
 
 state[0] = complexKnuthConjecture.initialState
@@ -19,5 +19,3 @@ assert(!complexKnuthConjecture.goalTest(state[7]))
 
 state[8] = complexKnuthConjecture.result(state[7], 'floor')
 assert(complexKnuthConjecture.goalTest(state[8]))
-
-export const simpleKnuthConjecture = makeKnuthConjecture(1, true)

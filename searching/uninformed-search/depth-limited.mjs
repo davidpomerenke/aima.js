@@ -1,4 +1,4 @@
-import { Node } from '../problems/node.mjs'
+import { Node } from '../../problems/node.mjs'
 
 export const depthLimitedSearch = (problem, limit) => {
   return recursiveDepthLimitedSearch(new Node({ state: problem.initialState }), problem, limit)

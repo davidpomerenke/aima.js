@@ -1,7 +1,7 @@
 import { makeEightPuzzle } from './eight-puzzle.mjs'
 import { strict as assert } from 'assert'
 
-export const simpleEightPuzzle = makeEightPuzzle([
+const simpleEightPuzzle = makeEightPuzzle([
   [1, 4, 2],
   [3, 0, 5],
   [6, 7, 8]
@@ -31,8 +31,10 @@ assert.deepEqual(state[2], [
 ])
 assert(simpleEightPuzzle.goalTest(state[2]))
 
-export const complexEightPuzzle = makeEightPuzzle([
+/*
+const complexEightPuzzle = makeEightPuzzle([
   [7, 2, 4],
   [5, 0, 6],
   [8, 3, 1]
 ])
+*/
