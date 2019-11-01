@@ -1,10 +1,11 @@
 export class Problem {
-  constructor ({ initialState, actions, result, pathCost, goalTest }) {
+  constructor ({ initialState, actions, result, pathCost, goalTest, heuristic }) {
     this.initialState = initialState
     this.actions = actions
     this._result = result
     this._pathCost = pathCost
     this.goalTest = goalTest
+    this.heuristic = heuristic || (node => 0)
   }
 
   result (state, action) {

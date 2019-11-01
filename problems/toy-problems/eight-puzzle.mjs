@@ -25,11 +25,13 @@ export const makeEightPuzzle = (initialState) => new Problem({
     return state
   },
   pathCost: (state, action) => 1,
-  goalTest: state => deepEqual(state, [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8]
-  ])
+  heuristic: (state) =>
+    state.reduce((prev, row, y) =>
+      prev + row.reduce((prev, nr, x) =>
+        prev + manhattanDist([y, x], goalPosition(nr)),
+      0),
+    0),
+  goalTest: state => deepEqual(state, goalState)
 })
 
 const moveIsValid = (zero) => {
@@ -41,9 +43,22 @@ const getPositionOfZero = (state) => ({
   x: state.filter(row => row.includes(0))[0].indexOf(0)
 })
 
+const goalPosition = (nr) => [
+  /* y */ goalState.findIndex(row => row.includes(nr)),
+  /* x */ goalState.find(row => row.includes(nr)).indexOf(nr)
+]
+
+const manhattanDist = ([y1, x1], [y2, x2]) => (Math.abs(y1 - y2) + Math.abs(x1 - x2))
+
 const moves = {
   up: { y: -1, x: 0 },
   down: { y: 1, x: 0 },
   left: { y: 0, x: -1 },
   right: { y: 0, x: 1 }
 }
+
+const goalState = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8]
+]
