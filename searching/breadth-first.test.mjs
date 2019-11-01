@@ -9,7 +9,7 @@ import { travelingSalespersonProblem } from '../problems/real-world-problems/tra
 import { strict as assert } from 'assert'
 
 // vacuum world
-assert.deepEqual(breadthFirstSearch(vacuumWorld, true).pop(), {
+assert.deepEqual(breadthFirstSearch(vacuumWorld).pop(), {
   location: 'B',
   A: 'clean',
   B: 'clean'
@@ -37,7 +37,7 @@ assert(breadthFirstSearch(simpleKnuthConjecture).pop(), 1)
 assert.deepEqual(breadthFirstSearch(routeFindingProblem), ['Arad', 'Sibiu', 'Fagaras', 'Bucharest'])
 
 // touring
-assert.deepEqual(breadthFirstSearch(touringProblem).pop(), ['Bucharest', 'Fagaras', 'Sibiu', 'Arad'])
+assert.deepEqual(breadthFirstSearch(touringProblem).pop(), ['Arad', 'Sibiu', 'Fagaras', 'Bucharest'])
 
 // traveling salesperson
 assert(!breadthFirstSearch(travelingSalespersonProblem))

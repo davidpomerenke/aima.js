@@ -5,7 +5,7 @@ export const complexKnuthConjecture = makeKnuthConjecture(5)
 const state = []
 
 state[0] = complexKnuthConjecture.initialState
-assert.deepEqual(state[0], 4)
+assert.deepEqual(state[0], [4])
 
 state[1] = complexKnuthConjecture.result(state[0], 'factorial')
 state[2] = complexKnuthConjecture.result(state[1], 'factorial')
@@ -20,4 +20,4 @@ assert(!complexKnuthConjecture.goalTest(state[7]))
 state[8] = complexKnuthConjecture.result(state[7], 'floor')
 assert(complexKnuthConjecture.goalTest(state[8]))
 
-export const simpleKnuthConjecture = makeKnuthConjecture(1)
+export const simpleKnuthConjecture = makeKnuthConjecture(1, true)
