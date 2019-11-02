@@ -24,7 +24,7 @@ export const eightQueens = new Problem({
     state[y][x] = 1
     return state
   },
-  pathCost: (state, action) => 0,
+  stepCost: (state, action) => 0,
   goalTest: state => state.every(row => row.includes(1))
 })
 

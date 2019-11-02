@@ -3,12 +3,14 @@ export class Node {
     state,
     parent = null,
     action = null,
-    pathCost = 0
+    pathCost = 0,
+    heuristic = 0
   }) {
     this.state = state
     this.parent = parent
     this.action = action
     this.pathCost = pathCost
+    this.heuristic = heuristic
   }
 
   expand (problem) {
@@ -20,7 +22,8 @@ export class Node {
       state: problem.result(this.state, action),
       parent: this,
       action: action,
-      pathCost: this.pathCost + problem.pathCost(this.state, action)
+      pathCost: this.pathCost + problem.stepCost(this.state, action),
+      heuristic: problem.heuristic(this.state)
     })
   }
 

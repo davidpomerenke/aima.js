@@ -6,7 +6,7 @@ export const makeKnuthConjecture = (goal) => new Problem({
     ? ['square_root', 'factorial']
     : ['square_root', 'floor'],
   result: (state, action) => [...state, action],
-  pathCost: (state, action) => 1,
+  stepCost: (state, action) => 1,
   goalTest: (state) => (calc(state) === goal)
 })
 

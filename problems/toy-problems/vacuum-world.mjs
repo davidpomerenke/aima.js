@@ -17,6 +17,6 @@ export const vacuumWorld = new Problem({
     }
     return state
   },
-  pathCost: (state, action) => 1,
+  stepCost: (state, action) => 1,
   goalTest: state => (state.A === 'clean' && state.B === 'clean')
 })

@@ -8,8 +8,8 @@ export const makeTouringProblem = (graph, start, end) => new Problem({
   result: (state, action) => action in graph.dist[state[state.length - 1]]
     ? [...state, action]
     : undefined,
-  pathCost: (state, action) => graph.dist[state[state.length - 1]][action],
-  heuristic: state => graph.straightLineDist[state][end],
+  stepCost: (state, action) => graph.dist[state[state.length - 1]][action],
+  heuristic: state => graph.straightLineDist[state[state.length - 1]][end],
   goalTest: state => deepEqual(state[state.length - 1], end)
 })
 

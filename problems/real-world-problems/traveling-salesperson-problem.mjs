@@ -5,7 +5,7 @@ export const makeTravelingSalespersonProblem = (graph, start, end) => new Proble
   actions: state => Object.keys(graph.dist[state[state.length - 1]])
     .filter(city => !state.includes(city)),
   result: (state, action) => [...state, action],
-  pathCost: (state, action) => graph.dist[state[state.length - 1]][action],
+  stepCost: (state, action) => graph.dist[state[state.length - 1]][action],
   goalTest: state => (
     state.length === Object.keys(graph.dist).length &&
     state[state.length - 1] === end

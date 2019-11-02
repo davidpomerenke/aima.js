@@ -7,7 +7,7 @@ export const makeRouteFindingProblem = (graph, start, end) => new Problem({
   result: (state, action) => action in graph.dist[state]
     ? action
     : undefined,
-  pathCost: (state, action) => graph.dist[state][action],
+  stepCost: (state, action) => graph.dist[state][action],
   heuristic: state => graph.straightLineDist[state][end],
   goalTest: state => deepEqual(state, end)
 })

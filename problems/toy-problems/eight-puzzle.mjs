@@ -24,7 +24,7 @@ export const makeEightPuzzle = (initialState) => new Problem({
     state[newZero.y][newZero.x] = 0
     return state
   },
-  pathCost: (state, action) => 1,
+  stepCost: (state, action) => 1,
   heuristic: (state) =>
     state.reduce((prev, row, y) =>
       prev + row.reduce((prev, nr, x) =>
