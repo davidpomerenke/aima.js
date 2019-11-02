@@ -11,10 +11,10 @@ assert.equal(routeFindingProblem.pathCost(state[0], 'Sibiu'), 140)
 
 state[1] = routeFindingProblem.result(state[0], 'Sibiu')
 assert.equal(state[1], 'Sibiu')
-assert.equal(routeFindingProblem.pathCost(state[1], 'Rimnicu_Vilcea'), 80)
+assert.equal(routeFindingProblem.pathCost(state[1], 'RimnicuVilcea'), 80)
 
-state[2] = routeFindingProblem.result(state[1], 'Rimnicu_Vilcea')
-assert.equal(state[2], 'Rimnicu_Vilcea')
+state[2] = routeFindingProblem.result(state[1], 'RimnicuVilcea')
+assert.equal(state[2], 'RimnicuVilcea')
 assert.equal(routeFindingProblem.pathCost(state[2], 'Arad'), undefined)
 
 state[3] = routeFindingProblem.result(state[2], 'Arad')

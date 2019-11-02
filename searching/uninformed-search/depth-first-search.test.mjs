@@ -26,7 +26,7 @@ assert.deepEqual(depthFirstSearch(touringProblem).pop(), [
   'Mehadia',
   'Drobeta',
   'Craiova',
-  'Rimnicu_Vilcea',
+  'RimnicuVilcea',
   'Pitesti',
   'Bucharest'
 ]) // depends on the arbitrary order of attributes in the cities graph

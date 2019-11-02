@@ -2,12 +2,12 @@ import { Problem } from '../problem.mjs'
 
 export const makeTravelingSalespersonProblem = (graph, start, end) => new Problem({
   initialState: [start],
-  actions: state => Object.keys(graph[state[state.length - 1]])
+  actions: state => Object.keys(graph.dist[state[state.length - 1]])
     .filter(city => !state.includes(city)),
   result: (state, action) => [...state, action],
-  pathCost: (state, action) => graph[state[state.length - 1]][action],
+  pathCost: (state, action) => graph.dist[state[state.length - 1]][action],
   goalTest: state => (
-    state.length === Object.keys(graph).length &&
+    state.length === Object.keys(graph.dist).length &&
     state[state.length - 1] === end
   )
 })

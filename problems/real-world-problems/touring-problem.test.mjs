@@ -11,10 +11,10 @@ assert.equal(touringProblem.pathCost(state[0], 'Sibiu'), 140)
 
 state[1] = touringProblem.result(state[0], 'Sibiu')
 assert.deepEqual(state[1], ['Arad', 'Sibiu'])
-assert.equal(touringProblem.pathCost(state[1], 'Rimnicu_Vilcea'), 80)
+assert.equal(touringProblem.pathCost(state[1], 'RimnicuVilcea'), 80)
 
-state[2] = touringProblem.result(state[1], 'Rimnicu_Vilcea')
-assert.deepEqual(state[2], ['Arad', 'Sibiu', 'Rimnicu_Vilcea'])
+state[2] = touringProblem.result(state[1], 'RimnicuVilcea')
+assert.deepEqual(state[2], ['Arad', 'Sibiu', 'RimnicuVilcea'])
 assert.equal(touringProblem.pathCost(state[2], 'Sibiu'), undefined)
 
 state[3] = touringProblem.result(state[2], 'Sibiu')

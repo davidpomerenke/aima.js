@@ -3,12 +3,13 @@ import deepEqual from 'deep-equal'
 
 export const makeTouringProblem = (graph, start, end) => new Problem({
   initialState: [start],
-  actions: state => Object.keys(graph[state[state.length - 1]])
+  actions: state => Object.keys(graph.dist[state[state.length - 1]])
     .filter(city => !state.includes(city)),
-  result: (state, action) => action in graph[state[state.length - 1]]
+  result: (state, action) => action in graph.dist[state[state.length - 1]]
     ? [...state, action]
     : undefined,
-  pathCost: (state, action) => graph[state[state.length - 1]][action],
+  pathCost: (state, action) => graph.dist[state[state.length - 1]][action],
+  heuristic: state => graph.straightLineDist[state][end],
   goalTest: state => deepEqual(state[state.length - 1], end)
 })
 
