@@ -1,6 +1,6 @@
 export class Queue {
-  constructor (firstElement = []) {
-    this.queue = [firstElement]
+  constructor () {
+    this.queue = []
   }
 
   add (item) {

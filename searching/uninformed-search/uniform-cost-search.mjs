@@ -1,4 +1,4 @@
 import { makeGraphSearch } from '../graph-search.mjs'
-import { PriorityQueue } from '../queues/priority-queue.mjs'
+import { makePriorityQueue } from '../queues/priority-queue.mjs'
 
-export const uniformCostSearch = makeGraphSearch(PriorityQueue)
+export const uniformCostSearch = makeGraphSearch(makePriorityQueue(node => node.pathCost))

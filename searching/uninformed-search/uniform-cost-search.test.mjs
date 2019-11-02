@@ -43,11 +43,11 @@ assert(uniformCostSearch(simpleKnuthConjecture).pop(), 1)
 
 // route finding
 const routeFindingProblem = makeRouteFindingProblem(cities, 'Arad', 'Bucharest')
-assert.deepEqual(uniformCostSearch(routeFindingProblem), ['Arad', 'Sibiu', 'Rimnicu_Vilcea', 'Pitesti', 'Bucharest'])
+assert.deepEqual(uniformCostSearch(routeFindingProblem), ['Arad', 'Sibiu', 'RimnicuVilcea', 'Pitesti', 'Bucharest'])
 
 // touring
 const touringProblem = makeTouringProblem(cities, 'Arad', 'Bucharest')
-assert.deepEqual(uniformCostSearch(touringProblem).pop(), ['Arad', 'Sibiu', 'Rimnicu_Vilcea', 'Pitesti', 'Bucharest'])
+assert.deepEqual(uniformCostSearch(touringProblem).pop(), ['Arad', 'Sibiu', 'RimnicuVilcea', 'Pitesti', 'Bucharest'])
 
 // traveling salesperson
 const travelingSalespersonProblem = makeTravelingSalespersonProblem(cities, 'Arad', 'Bucharest')

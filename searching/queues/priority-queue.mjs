@@ -1,9 +1,9 @@
 import { Queue } from './queue.mjs'
 import sortBy from 'lodash.sortby'
 
-export class PriorityQueue extends Queue {
-  constructor (firstElement, mapFunc = (el) => el.pathCost) {
-    super(firstElement)
+export const makePriorityQueue = (mapFunc) => class PriorityQueue extends Queue {
+  constructor () {
+    super()
     this.mapFunc = mapFunc
   }
 

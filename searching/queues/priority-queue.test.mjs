@@ -1,7 +1,9 @@
-import { PriorityQueue } from './priority-queue.mjs'
+import { makePriorityQueue } from './priority-queue.mjs'
 import { strict as assert } from 'assert'
 
-const queue = new PriorityQueue([1, 2], x => x[1])
+const PriorityQueue = makePriorityQueue(x => x[1])
+const queue = new PriorityQueue()
+queue.add([1, 2])
 queue.add([2, 3])
 queue.add([3, 4])
 queue.add([4, 1])
