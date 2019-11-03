@@ -5,7 +5,7 @@
   "main": "index.mjs",
   "scripts": {
     "test": "node --experimental-modules test.mjs",
-    "debug": "node --inspect --experimental-modules test.mjs"
+    "debug": "node inspect --experimental-modules test.mjs"
   },
   "author": "David Pomerenke",
   "license": "ISC",

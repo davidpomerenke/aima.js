@@ -1,7 +1,7 @@
 import { depthLimitedSearch } from './depth-limited-search.mjs'
 import { vacuumWorld } from '../../problems/toy-problems/vacuum-world.mjs'
 import { makeEightPuzzle } from '../../problems/toy-problems/eight-puzzle.mjs'
-import { eightQueens } from '../../problems/toy-problems/eight-queens-problem.mjs'
+import { eightQueensProblem } from '../../problems/toy-problems/eight-queens-problem.mjs'
 import { makeKnuthConjecture } from '../../problems/toy-problems/knuth-conjecture.mjs'
 import { makeRouteFindingProblem } from '../../problems/real-world-problems/route-finding-problem.mjs'
 import { makeTouringProblem } from '../../problems/real-world-problems/touring-problem.mjs'
@@ -27,7 +27,7 @@ assert.equal(depthLimitedSearch(simpleEightPuzzle, 1), 'cutoff')
 assert(simpleEightPuzzle.goalTest(depthLimitedSearch(simpleEightPuzzle, 2).pop()))
 
 // eight queens
-assert.deepEqual(depthLimitedSearch(eightQueens, 8).pop(), [
+assert.deepEqual(depthLimitedSearch(eightQueensProblem.incremental, 8).pop(), [
   [1, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 1, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 1],

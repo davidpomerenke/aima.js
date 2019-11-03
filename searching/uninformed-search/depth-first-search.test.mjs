@@ -1,12 +1,12 @@
 import { depthFirstSearch } from './depth-first-search.mjs'
-import { eightQueens } from '../../problems/toy-problems/eight-queens-problem.mjs'
+import { eightQueensProblem } from '../../problems/toy-problems/eight-queens-problem.mjs'
 import { makeTouringProblem } from '../../problems/real-world-problems/touring-problem.mjs'
 import { makeTravelingSalespersonProblem } from '../../problems/real-world-problems/traveling-salesperson-problem.mjs'
 import { cities } from '../../problems/real-world-problems/cities.mjs'
 import { strict as assert } from 'assert'
 
 // eight queens
-assert.deepEqual(depthFirstSearch(eightQueens).pop(), [
+assert.deepEqual(depthFirstSearch(eightQueensProblem.incremental).pop(), [
   [0, 0, 0, 0, 0, 0, 0, 1],
   [0, 0, 0, 1, 0, 0, 0, 0],
   [1, 0, 0, 0, 0, 0, 0, 0],

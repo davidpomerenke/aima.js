@@ -1,7 +1,7 @@
 import { aStarSearch } from './a-star-search.mjs'
 import { vacuumWorld } from '../../problems/toy-problems/vacuum-world.mjs'
 import { makeEightPuzzle } from '../../problems/toy-problems/eight-puzzle.mjs'
-import { eightQueens } from '../../problems/toy-problems/eight-queens-problem.mjs'
+import { eightQueensProblem } from '../../problems/toy-problems/eight-queens-problem.mjs'
 import { makeKnuthConjecture } from '../../problems/toy-problems/knuth-conjecture.mjs'
 import { makeRouteFindingProblem } from '../../problems/real-world-problems/route-finding-problem.mjs'
 import { makeTouringProblem } from '../../problems/real-world-problems/touring-problem.mjs'
@@ -25,7 +25,7 @@ const simpleEightPuzzle = makeEightPuzzle([
 assert(simpleEightPuzzle.goalTest(aStarSearch(simpleEightPuzzle).pop()))
 
 // eight queens
-assert.deepEqual(aStarSearch(eightQueens).pop(), [
+assert.deepEqual(aStarSearch(eightQueensProblem.incremental).pop(), [
   [1, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 1, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 1],
