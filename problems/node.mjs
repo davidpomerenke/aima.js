@@ -1,16 +1,10 @@
 export class Node {
-  constructor ({
-    state,
-    parent = null,
-    action = null,
-    pathCost = 0,
-    heuristic = 0
-  }) {
+  constructor (state) {
     this.state = state
-    this.parent = parent
-    this.action = action
-    this.pathCost = pathCost
-    this.heuristic = heuristic
+    this.parent = null
+    this.action = null
+    this.pathCost = 0
+    this.heuristic = 0
   }
 
   expand (problem) {
@@ -18,16 +12,16 @@ export class Node {
   }
 
   childNode (problem, action) {
-    return new Node({
-      state: problem.result(this.state, action),
-      parent: this,
-      action: action,
-      pathCost: this.pathCost + problem.stepCost(this.state, action),
-      heuristic: problem.heuristic(this.state)
-    })
+    const childNode = new Node(problem.result(this.state, action))
+    childNode.parent = this
+    childNode.action = action
+    childNode.pathCost = this.pathCost + problem.stepCost(this.state, action)
+    childNode.heuristic = problem.heuristic(this.state)
+    return childNode
   }
 
   solution () {
+    // return path leading to the solution
     if (this.parent === null) return [this.state]
     else return [...this.parent.solution(), this.state]
   }

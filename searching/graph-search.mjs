@@ -3,7 +3,7 @@ import deepEqual from 'deep-equal'
 
 export const makeGraphSearch = (Queue) => (problem) => {
   const frontier = new Queue()
-  frontier.add(new Node({ state: problem.initialState }))
+  frontier.add(new Node(problem.initialState))
   const explored = new Set()
   let node
   while (frontier.length > 0) {
