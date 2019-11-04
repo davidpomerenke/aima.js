@@ -5,6 +5,7 @@ export class Node {
     this.action = null
     this.pathCost = 0
     this.heuristic = 0
+    this.value = -Infinity
   }
 
   expand (problem) {
@@ -12,11 +13,13 @@ export class Node {
   }
 
   childNode (problem, action) {
-    const childNode = new Node(problem.result(this.state, action))
+    const childState = problem.result(this.state, action)
+    const childNode = new Node(childState)
     childNode.parent = this
     childNode.action = action
     childNode.pathCost = this.pathCost + problem.stepCost(this.state, action)
-    childNode.heuristic = problem.heuristic(this.state)
+    childNode.heuristic = problem.heuristic(childState)
+    childNode.value = problem.value(childState)
     return childNode
   }
 

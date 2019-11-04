@@ -41,7 +41,7 @@ export const eightQueensProblem = {
     ],
     actions: (state) => state.reduce((total, row, y) => [
       ...total,
-      ...[0, 1, 2, 3, 4, 5, 6, 7, 8]
+      ...[0, 1, 2, 3, 4, 5, 6, 7]
         .filter(x => row[x] === 0)
         .map(x => [y, x])
     ], []),
@@ -54,12 +54,8 @@ export const eightQueensProblem = {
       return state
     },
     stepCost: (state, action) => 0,
-    heuristic: (state) => {
-      const queenPositions = state.map((row, y) => [y, /* x */ row.indexOf(1)])
-      const nrAttackedQueens = combinations(queenPositions)
-        .reduce((total, [q1, q2]) => total + attacks(q1, q2) * 1, 0)
-      return nrAttackedQueens
-    },
+    heuristic: (state) => nrAttackedQueens(state),
+    value: (state) => -nrAttackedQueens(state),
     goalTest: (state) => this.completeState.heuristic === 0
   })
 }
@@ -69,6 +65,12 @@ const attacks = ([y1, x1], [y2, x2]) => (y1 === y2 || x1 === x2 || y2 - y1 === x
 const isAttacked = (state, y, x) => {
   return [row, col, diag1, diag2]
     .some(line => line(state, y, x).includes(1))
+}
+
+const nrAttackedQueens = (state) => {
+  const queenPositions = state.map((row, y) => [y, /* x */ row.indexOf(1)])
+  return combinations(queenPositions)
+    .reduce((total, [q1, q2]) => total + attacks(q1, q2) * 1, 0)
 }
 
 const combinations = (array) => {
