@@ -1,3 +1,5 @@
+import deepEqual from 'deep-equal'
+
 export class Problem {
   constructor ({ initialState, actions, result, stepCost, goalTest, heuristic }) {
     this.initialState = initialState
@@ -9,13 +11,13 @@ export class Problem {
   }
 
   result (state, action) {
-    return this.actions(state).includes(action)
+    return this.actions(state).some(a => deepEqual(a, action))
       ? this._result(state, action)
       : undefined
   }
 
   stepCost (state, action) {
-    return this.actions(state).includes(action)
+    return this.actions(state).some(a => deepEqual(a, action))
       ? this._stepCost(state, action)
       : undefined
   }
