@@ -1,13 +1,26 @@
 {
-  "name": "modernapproach",
+  "name": "aima",
   "version": "0.1.0",
-  "description": "Node.js implementation of Russell & Norvig's Modern Approach to Artificial Intelligence. ",
+  "description": "Implementation of Russell & Norvig's Modern Approach to Artificial Intelligence. ",
   "main": "index.mjs",
   "scripts": {
     "test": "node --experimental-modules test.mjs",
     "debug": "node inspect --experimental-modules test.mjs"
   },
   "author": "David Pomerenke",
+  "keywords": [
+    "Artificial Intelligence",
+    "Stuart Russell",
+    "Peter Norvig",
+    "Intelligent Agents",
+    "Problem-Solving",
+    "Search",
+    "Optimization",
+    "Games"
+  ],
+  "repository": {
+    "url": "https://github.com/davidpomerenke/aima.js"
+  },
   "license": "ISC",
   "dependencies": {
     "deep-equal": "^1.1.0",
