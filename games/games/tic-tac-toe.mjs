@@ -1,5 +1,4 @@
 import { Game } from '../game.mjs'
-import cloneDeep from 'lodash.clonedeep'
 
 export const ticTacToe = new Game({
   initialState: [
@@ -7,16 +6,15 @@ export const ticTacToe = new Game({
     [0, 0, 0],
     [0, 0, 0]
   ],
-  player: (state) => count(state, 1) > count(state, 2) ? 2 : 1, // player names: 1 and 2
-  actions: (state) => possibleActions.filter(([y, x]) => state[y][x] === 0),
-  result: (state, action) => {
-    state = cloneDeep(state)
-    const [y, x] = action
-    state[y][x] = ticTacToe.player(state) // 1 or 2
-    return state
-  },
-  terminalTest: (state) => (three(state, /* player */ 1) || three(state, /* player */ 2)),
-  utility: (state) => 1 * three(state, /* player */ 1) // 1 iff player 1 wins
+  player: state => count(state, 1) > count(state, 2) ? 2 : 1, // player names: 1 and 2
+  actions: state => possibleActions.filter(([y, x]) => state[y][x] === 0),
+  result: (state, [yMove, xMove]) => state.map((row, y) => row.map((tile, x) =>
+    y === yMove && x === xMove
+      ? ticTacToe.player(state) // 1 or 2, depending on whose turn it is
+      : tile // keep existing tiles
+  )),
+  terminalTest: state => (three(state, /* player */ 1) || three(state, /* player */ 2)),
+  utility: state => 1 * three(state, /* player */ 1) // 1 iff player 1 wins
 })
 
 // are there three in a row?
@@ -29,7 +27,7 @@ const three = (state, p) =>
 
 const count = (state, x) => flatten(state).filter(square => square === x).length
 
-const flatten = (state) => [...state[0], ...state[1], ...state[2]]
+const flatten = state => [...state[0], ...state[1], ...state[2]]
 
 const rows = [ // possible rows for three in a row
   [[0, 0], [0, 1], [0, 2]], // horizontal
