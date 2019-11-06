@@ -1,11 +1,9 @@
-export const hillClimbingSearch = (problem) => {
-  let current = problem.rootNode
-  while (true) {
-    const neighbor = biggestValueNode(problem.expand(current))
-    if (neighbor.value <= current.value) return current
-    current = neighbor
-  }
-}
+export const hillClimbingSearch = (problem) => recursiveHillClimbingSearch(problem, problem.rootNode)
+
+const recursiveHillClimbingSearch = (problem, current) =>
+  biggestValueNode(problem.expand(current)).value <= current.value
+    ? current
+    : recursiveHillClimbingSearch(problem, biggestValueNode(problem.expand(current)))
 
 const biggestValueNode = array => array.reduce(
   (prev, node) =>
