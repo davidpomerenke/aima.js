@@ -1,11 +1,9 @@
 import { depthLimitedSearch } from './depth-limited-search.mjs'
 
 export const iterativeDeepeningSearch = problem => {
-  let depth = 0
   let result
-  while (true) {
+  for (let depth = 0; true; depth++) {
     result = depthLimitedSearch(problem, depth)
     if (result !== 'cutoff') return result
-    depth += 1
   }
 }
