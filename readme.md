@@ -1,5 +1,9 @@
 # aima.js
 
+[![NPM version](https://img.shields.io/npm/v/aima.svg)](https://www.npmjs.com/package/aima)
+[![Build Status](https://travis-ci.org/davidpomerenke/aima.js.svg?branch=master)](https://travis-ci.org/davidpomerenke/aima.js)
+[![Gitter](https://badges.gitter.im/aima-js/community.svg)](https://gitter.im/aima-js/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 [*Artificial Intelligence - A Modern Approach*](http://aima.cs.berkeley.edu/) (*AIMA*) by Stuart Russell and Peter Norvig is the reference textbook on artificial intelligence. 
 
 This module implements some of the algorithms and data structures from the *AIMA* book in modern Node Javascript. The focus is on code understandability. 
