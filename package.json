@@ -1,7 +1,7 @@
 {
   "name": "aima",
   "version": "0.1.0",
-  "description": "Implementation of Russell & Norvig's Modern Approach to Artificial Intelligence. ",
+  "description": "Implementation of Russell & Norvig, 'Artificial Intelligence - A Modern Approach'. ",
   "main": "index.mjs",
   "scripts": {
     "test": "node --experimental-modules test.mjs",

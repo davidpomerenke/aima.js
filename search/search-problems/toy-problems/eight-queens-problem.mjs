@@ -1,5 +1,4 @@
 import { SearchProblem } from '../../search-problem.mjs'
-import cloneDeep from 'lodash.clonedeep'
 
 // incremental formulation of the eight-queens problem
 
@@ -18,21 +17,15 @@ export const eightQueensProblem = new SearchProblem({
     nextRow(state) < 9 &&
     !isAttacked(state, /* y */ nextRow(state), /* x */ action)
   )),
-  result: (state, action) => {
-    state = cloneDeep(state)
-    const y = state.findIndex(row => !row.includes(1))
-    const x = action
-    state[y][x] = 1
-    return state
-  },
+  result: (state, action) => state.map((row, y) => row.map((tile, x) =>
+    y === state.findIndex(_row => !_row.includes(1)) && x === action ? 1 : tile
+  )),
   stepCost: (state, action) => 0,
   goalTest: state => state.every(row => row.includes(1))
 })
 
-const isAttacked = (state, y, x) => {
-  return [row, col, diag1, diag2]
-    .some(line => line(state, y, x).includes(1))
-}
+const isAttacked = (state, y, x) => [row, col, diag1, diag2]
+  .some(line => line(state, y, x).includes(1))
 
 const nextRow = state => state.findIndex(row => !row.includes(1))
 

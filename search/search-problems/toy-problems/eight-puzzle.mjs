@@ -5,24 +5,18 @@ import cloneDeep from 'lodash.clonedeep'
 export const makeEightPuzzle = (initialState) => new SearchProblem({
   initialState: initialState,
   actions: state => Object.keys(moves).filter(key => moveIsValid({
-    y: getPositionOfZero(state).y + moves[key].y,
-    x: getPositionOfZero(state).x + moves[key].x
+    y: zero(state).y + moves[key].y,
+    x: zero(state).x + moves[key].x
   })),
-  result: (state, action) => {
-    state = cloneDeep(state)
-    const move = moves[action]
-    const oldZero = getPositionOfZero(state)
-    const newZero = {
-      y: oldZero.y + move.y,
-      x: oldZero.x + move.x
-    }
-    const movedNumber = state[newZero.y][newZero.x]
-    state[oldZero.y][oldZero.x] = movedNumber
-    state[newZero.y][newZero.x] = 0
-    return state
-  },
+  result: (state, action) => cloneDeep(state).map((row, y) => row.map((nr, x) =>
+    y === zero(state).y + moves[action].y && x === zero(state).x + moves[action].x
+      ? 0 // shift zero to new position
+      : nr === 0
+        ? state[zero(state).y + moves[action].y][zero(state).x + moves[action].x] // shift number to old position of zero
+        : nr // keep all other numbers
+  )),
   stepCost: (state, action) => 1,
-  heuristic: state =>
+  heuristic: state => // sum of manhattan distance between state and goal position of all numbers
     state.reduce((prev, row, y) =>
       prev + row.reduce((prev, nr, x) =>
         prev + manhattanDist([y, x], goalPosition(nr)),
@@ -31,11 +25,10 @@ export const makeEightPuzzle = (initialState) => new SearchProblem({
   goalTest: state => deepEqual(state, goalState)
 })
 
-const moveIsValid = zero => {
-  return (zero.y) in [0, 1, 2] && (zero.x) in [0, 1, 2]
-}
+const moveIsValid = zero => zero.y in [0, 1, 2] && (zero.x) in [0, 1, 2]
 
-const getPositionOfZero = state => ({
+// position of zero
+const zero = state => ({
   y: state.indexOf(state.filter(row => row.includes(0))[0]),
   x: state.filter(row => row.includes(0))[0].indexOf(0)
 })

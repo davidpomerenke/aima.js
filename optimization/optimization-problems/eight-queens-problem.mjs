@@ -1,5 +1,4 @@
 import { OptimizationProblem } from '../optimization-problem.mjs'
-import cloneDeep from 'lodash.clonedeep'
 
 // complete-state formulation of the eight-queens problem
 
@@ -20,14 +19,9 @@ export const eightQueensProblem = new OptimizationProblem({
       .filter(x => row[x] === 0)
       .map(x => [y, x])
   ], []),
-  result: (state, action) => {
-    const y = action[0]
-    const x = action[1]
-    state = cloneDeep(state)
-    state[y] = [0, 0, 0, 0, 0, 0, 0, 0]
-    state[y][x] = 1
-    return state
-  },
+  result: (state, [yMove, xMove]) => state.map((row, y) => row.map((tile, x) =>
+    y === yMove ? (x === xMove ? 1 : 0) : tile
+  )),
   value: (state) => -nrAttackedQueens(state)
 })
 
@@ -37,11 +31,7 @@ const nrAttackedQueens = state => combinations(
   state.map((row, y) => [y, /* x */ row.indexOf(1)]) // queen positions
 ).reduce((total, [q1, q2]) => total + attacks(q1, q2) * 1, 0)
 
-const combinations = array => {
-  const combinations = []
-  while (array.length > 1) {
-    const el = array.pop()
-    combinations.push(...array.map(em => [el, em]))
-  }
-  return combinations
-}
+const combinations = array => array.reduce((prev, a, i) => [
+  ...prev,
+  ...array.slice(0, i).map(b => [a, b])
+], [])
