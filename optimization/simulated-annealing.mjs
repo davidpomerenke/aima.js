@@ -1,6 +1,6 @@
 import gen from 'random-seed'
 
-export const simulatedAnnealing = (problem, schedule = (time) => 1 / time, seed) => {
+export const simulatedAnnealing = (problem, schedule = time => 1 / time, seed) => {
   const rand = gen.create(seed) // random seed initialization for testing
   const randEl = (array) => array[Math.floor(rand.random() * array.length)]
 

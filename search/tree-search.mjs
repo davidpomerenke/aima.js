@@ -1,4 +1,4 @@
-export const makeTreeSearch = (Queue) => (problem) => {
+export const makeTreeSearch = Queue => problem => {
   const frontier = new Queue()
   frontier.add(problem.initialState.rootNode)
   let node

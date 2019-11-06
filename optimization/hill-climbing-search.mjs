@@ -7,7 +7,7 @@ export const hillClimbingSearch = (problem) => {
   }
 }
 
-const biggestValueNode = (array) => array.reduce(
+const biggestValueNode = array => array.reduce(
   (prev, node) =>
     node.value > prev.value
       ? node

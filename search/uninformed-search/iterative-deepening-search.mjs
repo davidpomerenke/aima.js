@@ -1,6 +1,6 @@
 import { depthLimitedSearch } from './depth-limited-search.mjs'
 
-export const iterativeDeepeningSearch = (problem) => {
+export const iterativeDeepeningSearch = problem => {
   let depth = 0
   let result
   while (true) {

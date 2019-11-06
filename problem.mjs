@@ -8,7 +8,7 @@ export class Problem {
   }
 
   result (state, action) {
-    return this.actions(state).some(a => deepEqual(a, action))
+    return this.actions(state).some(_action => deepEqual(_action, action))
       ? this._result(state, action)
       : undefined
   }

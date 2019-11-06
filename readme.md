@@ -6,9 +6,9 @@ This module implements some of the algorithms and data structures from the *AIMA
 
 ## Installation
 
-`git clone https://github.com/davidpomerenke/slope.git && cd aima.js && npm test`
+`git clone https://github.com/davidpomerenke/aima.js.git && cd aima.js && npm test`
 
-**Note:** This package uses ES6-modules which require running `node` with the `--experimental-modules` flag. ES6 modules are expected to become standard features by the end of November 2019. 
+**Note:** This package uses ES6 modules which require running `node` with the `--experimental-modules` flag. ES6 modules are expected to become standard features by the end of November 2019. 
 
 ## Usage
 
@@ -59,7 +59,7 @@ To my knowledge, there are exactly two other Javascript projects related to *AIM
 
 - [ajlopez/NodeAima](https://github.com/ajlopez/NodeAima) is an abandoned implementation of only the *vacuum world* in Node Javascript. 
 
-The existing code from these projects still has to be harnessed for this module! 
+The existing code from these projects still has to be harnessed for this project! 
 
 ## Contributing
 

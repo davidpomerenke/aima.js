@@ -1,9 +1,8 @@
 import { OptimizationProblem } from '../optimization-problem.mjs'
 import cloneDeep from 'lodash.clonedeep'
 
-/**
- * complete-state formulation of the eight-queens problem
- */
+// complete-state formulation of the eight-queens problem
+
 export const eightQueensProblem = new OptimizationProblem({
   initialState: [
     [1, 0, 0, 0, 0, 0, 0, 0],
@@ -15,7 +14,7 @@ export const eightQueensProblem = new OptimizationProblem({
     [1, 0, 0, 0, 0, 0, 0, 0],
     [1, 0, 0, 0, 0, 0, 0, 0]
   ],
-  actions: (state) => state.reduce((total, row, y) => [
+  actions: state => state.reduce((total, row, y) => [
     ...total,
     ...[0, 1, 2, 3, 4, 5, 6, 7]
       .filter(x => row[x] === 0)
@@ -32,15 +31,13 @@ export const eightQueensProblem = new OptimizationProblem({
   value: (state) => -nrAttackedQueens(state)
 })
 
-const attacks = ([y1, x1], [y2, x2]) => (y1 === y2 || x1 === x2 || y2 - y1 === x2 - x1)
+const attacks = ([y1, x1], [y2, x2]) => y1 === y2 || x1 === x2 || y2 - y1 === x2 - x1
 
-const nrAttackedQueens = (state) => {
-  const queenPositions = state.map((row, y) => [y, /* x */ row.indexOf(1)])
-  return combinations(queenPositions)
-    .reduce((total, [q1, q2]) => total + attacks(q1, q2) * 1, 0)
-}
+const nrAttackedQueens = state => combinations(
+  state.map((row, y) => [y, /* x */ row.indexOf(1)]) // queen positions
+).reduce((total, [q1, q2]) => total + attacks(q1, q2) * 1, 0)
 
-const combinations = (array) => {
+const combinations = array => {
   const combinations = []
   while (array.length > 1) {
     const el = array.pop()

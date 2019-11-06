@@ -24,7 +24,7 @@ export class Game extends Problem {
   childNode (node, action) {
     return {
       ...super.childNode(node, action),
-      value: this.value(this.result(node.state, action))
+      player: this.player(this.initialState)
     }
   }
 }

@@ -3,7 +3,7 @@ import cloneDeep from 'lodash.clonedeep'
 
 export const vacuumWorld = new SearchProblem({
   initialState: { location: 'A', A: 'dirty', B: 'dirty' },
-  actions: (state) => ['left', 'right', 'suck'],
+  actions: state => ['left', 'right', 'suck'],
   result: (state, action) => {
     state = cloneDeep(state)
     switch (action) {
@@ -18,5 +18,5 @@ export const vacuumWorld = new SearchProblem({
     return state
   },
   stepCost: (state, action) => 1,
-  goalTest: state => (state.A === 'clean' && state.B === 'clean')
+  goalTest: state => state.A === 'clean' && state.B === 'clean'
 })

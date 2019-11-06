@@ -1,6 +1,5 @@
-/**
- * minimax algorithm with alpha-beta pruning
- */
+// minimax algorithm with alpha-beta pruning
+
 export const alphaBetaSearch = (game, state) =>
   game.actions(state)
     .map(action => ({

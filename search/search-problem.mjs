@@ -9,7 +9,7 @@ export class SearchProblem extends Problem {
       result: result
     })
     this._stepCost = stepCost
-    this.heuristic = heuristic || ((state) => 0)
+    this.heuristic = heuristic || (state => 0)
     this.goalTest = goalTest
   }
 

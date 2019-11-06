@@ -1,6 +1,6 @@
 import deepEqual from 'deep-equal'
 
-export const makeGraphSearch = (Queue) => (problem) => {
+export const makeGraphSearch = Queue => problem => {
   const frontier = new Queue()
   frontier.add(problem.rootNode)
   const explored = new Set()
