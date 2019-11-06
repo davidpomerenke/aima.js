@@ -1,9 +1,8 @@
 import { depthLimitedSearch } from './depth-limited-search.mjs'
 
-export const iterativeDeepeningSearch = problem => {
-  let result
-  for (let depth = 0; true; depth++) {
-    result = depthLimitedSearch(problem, depth)
-    if (result !== 'cutoff') return result
-  }
-}
+export const iterativeDeepeningSearch = problem => recursiveIterativeDeepeningSearch(problem, 0)
+
+const recursiveIterativeDeepeningSearch = (problem, depth) =>
+  depthLimitedSearch(problem, depth) !== 'cutoff'
+    ? depthLimitedSearch(problem, depth)
+    : recursiveIterativeDeepeningSearch(problem, depth + 1)

@@ -33,14 +33,14 @@ Section | Page | Type | Algorithm | File
 3.3 | 77 | Search | **Graph Search** | `search/graph-search.mjs`
 3.3.1 | 79 | Abstraction | **Node Structure** | cf. `problem.mjs`
 3.3.1 | 80 | Abstraction | FIFO, LIFO, and Priority **Queue** | `search/queues/queue.mjs`
-3.4.1 | 82 | Search | **Breadth-Frist Search** | `search/uninformed-search/breadth-first-search.mjs`
+3.4.1 | 82 | Search | **Breadth-First Search** | `search/uninformed-search/breadth-first-search.mjs`
 3.4.2 | 84 | Search | **Uniform Cost Search** | `search/uninformed-search/uniform-cost-search.mjs`
 3.4.3 | 87 | Search | **Depth-First Search** | `search/uninformed-search/depth-first-search.mjs`
 3.4.4 | 88 | Search | **Depth-Limited Search** | `search/uninformed-search/depth-limited-search.mjs`
 3.4.5 | 89 | Search | **Iterative Deepening Search** | `search/uninformed-search/iterative-deepening-search.mjs`
 3.5.1 | 92 | Search | **Greedy Best-First Search** | `search/heuristic-search/greedy-search.mjs`
-3.5.2 | 93 | Search | **A\*-Search** | `search/heuristic-search/a-star-search.mjs`
-3.5.2 | 99 | Search | **Recursive Best-First-Search** | cf. branch `feature-recursive-best-first-search`
+3.5.2 | 93 | Search | **A\* Search** | `search/heuristic-search/a-star-search.mjs`
+3.5.2 | 99 | Search | **Recursive Best-First Search** | cf. branch `feature-recursive-best-first-search`
 4.1 | 121 | Abstraction | **Optimization Problem** | `optimization/optimization-problem.mjs`
 4.1.1 | 122 | Problem | Complete-State **8-Queens Problem** | `optimization/optimization-problems/eight-queens-problem.mjs`
 4.1.1 | 122 | Search | **Hill-Climbing** | `optimization/hill-climbing-search.mjs`
