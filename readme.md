@@ -24,7 +24,7 @@ const simpleEightPuzzle = makeEightPuzzle([
 console.log(Problem.solution(aStarSearch(simpleEightPuzzle)))
 ```
 
-Put the above example code in `my-file.mjs` and run it! 
+Put the above example code in `my-file.mjs` and run it: 
 
 `node --experimental-modules my-file.mjs`
 
