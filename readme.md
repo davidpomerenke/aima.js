@@ -4,13 +4,33 @@
 
 This module implements some of the algorithms and data structures from the *AIMA* book in modern Node Javascript. The focus is on code understandability. 
 
-## Installation
+## Installation and Usage
 
-`git clone https://github.com/davidpomerenke/aima.js.git && cd aima.js && npm test`
+**Note:** This package uses ES modules which require running `node` with the `--experimental-modules` flag. ES modules are expected to become standard features by the end of November 2019. 
 
-**Note:** This package uses ES6 modules which require running `node` with the `--experimental-modules` flag. ES6 modules are expected to become standard features by the end of November 2019. 
+For using this package as a module in your own node project: 
 
-## Usage
+`npm install aima`
+
+```javascript
+import { Problem, makeEightPuzzle, aStarSearch } from 'aima'
+
+const simpleEightPuzzle = makeEightPuzzle([
+  [1, 2, 7],
+  [6, 0, 4],
+  [8, 3, 5]
+])
+
+console.log(Problem.solution(aStarSearch(simpleEightPuzzle)))
+```
+
+Put the above example code in `my-file.mjs` and run it! 
+
+`node --experimental-modules my-file.mjs`
+
+In order to understand the code and look at the examples in the `.test.mjs` files, you may wish to clone or download this repository! 
+
+## Documentation
 
 Almost every code file `my-file.mjs` is accompanied by some test file `my-file.test.mjs`. The test files provide easy examples on how to use the code files. 
 
