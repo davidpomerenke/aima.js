@@ -1,6 +1,5 @@
 import { SearchProblem } from '../../search-problem.mjs'
 import deepEqual from 'deep-equal'
-import cloneDeep from 'lodash.clonedeep'
 
 export const makeEightPuzzle = (initialState) => new SearchProblem({
   initialState: initialState,
@@ -8,7 +7,7 @@ export const makeEightPuzzle = (initialState) => new SearchProblem({
     y: zero(state).y + moves[key].y,
     x: zero(state).x + moves[key].x
   })),
-  result: (state, action) => cloneDeep(state).map((row, y) => row.map((nr, x) =>
+  result: (state, action) => state.map((row, y) => row.map((nr, x) =>
     y === zero(state).y + moves[action].y && x === zero(state).x + moves[action].x
       ? 0 // shift zero to new position
       : nr === 0
