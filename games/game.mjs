@@ -1,11 +1,12 @@
 import { Problem } from '../problem.mjs'
 
 export class Game extends Problem {
-  constructor ({ initialState, player, actions, result, terminalTest, utility }) {
+  constructor ({ initialState, player, actions, result, terminalTest, utility, heuristic }) {
     super({ initialState, actions, result })
     this.player = player
     this.terminalTest = terminalTest
     this._utility = utility
+    this.heuristic = heuristic || (state => 0)
   }
 
   utility (state) {
