@@ -1,6 +1,6 @@
 {
   "name": "aima",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "author": "David Pomerenke",
   "description": "Implementation of Russell & Norvig, \"Artificial Intelligence - A Modern Approach\". ",
   "repository": {
