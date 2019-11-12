@@ -6,7 +6,7 @@
 
 [*Artificial Intelligence - A Modern Approach*](http://aima.cs.berkeley.edu/) (*AIMA*) by Stuart Russell and Peter Norvig is the reference textbook on artificial intelligence. 
 
-This module implements some of the algorithms and data structures from the *AIMA* book in modern Node Javascript. The focus is on code understandability. 
+This package implements some of the algorithms and data structures from the *AIMA* book in modern, function-oriented Node Javascript. The focus is on code understandability. 
 
 ## Installation and Usage
 
@@ -28,15 +28,13 @@ const simpleEightPuzzle = makeEightPuzzle([
 console.log(Problem.solution(aStarSearch(simpleEightPuzzle)))
 ```
 
-Put the above example code in `my-file.mjs` and run it: 
+Put the above example code in `example.mjs` and run it: 
 
-`node --experimental-modules my-file.mjs`
-
-In order to understand the code and look at the examples in the `.test.mjs` files, you may wish to clone or download this repository! 
+`node --experimental-modules example.mjs`
 
 ## Documentation
 
-Almost every code file `my-file.mjs` is accompanied by some test file `my-file.test.mjs`. The test files provide easy examples on how to use the code files. 
+Almost every `.mjs` code file is accompanied by some `.test.mjs` test file. The test files provide easy examples on how to use the code files. They are only included in the Github repository, not in the npm module. 
 
 ## Book References
 
@@ -73,6 +71,7 @@ Section | Page | Type | Algorithm | File
 5.1 | 163 | Problem | **Tic Tac Toe** | `games/games/tic-tac-toe.mjs`
 5.2.1 | 166 | Search | **MiniMax Algorithm** | `games/minimax-decision.mjs`
 5.3 | 170 | Search | **Alpha-Beta Search** | `games/alpha-beta-search.mjs`
+t.b.c. | | | |
 
 
 ## Related Work
