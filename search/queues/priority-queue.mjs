@@ -1,21 +1,18 @@
 import { Queue } from './queue.mjs'
-import sortBy from 'lodash.sortby'
 
 export const makePriorityQueue = (mapFunc) => class PriorityQueue extends Queue {
   constructor () {
     super()
     this.mapFunc = mapFunc
+    this.sortFunc = (a, b) => (mapFunc(a) - mapFunc(b))
   }
 
   poll () {
-    // sortBy from lodash.sortby is stable,
-    // Array.prototype.sort() is also stable in node but not in all browsers,
-    // so maybe it would be unstable with webpack etc.
-    this.queue = sortBy(this.queue, this.mapFunc)
+    this.queue = this.queue.sort(this.sortFunc)
     return this.queue.shift()
   }
 
   sort () {
-    this.queue = sortBy(this.queue, this.mapFunc)
+    this.queue = this.queue.sort(this.sortFunc)
   }
 }
