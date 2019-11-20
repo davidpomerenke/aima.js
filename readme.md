@@ -51,26 +51,26 @@ Section | Page | Type | Algorithm | File
 3.2.2 | 73 | Problem | **Route Finding** | `search/search-problems/real-world-problems/route-finding-problem.mjs`
 3.2.2 | 74 | Problem | **Touring Problem** | `search/search-problems/real-world-problems/touring-problem.mjs`
 3.2.2 | 74 | Problem | **Traveling Salesperson Problem** | `search/search-problems/real-world-problems/traveling-salesperson-problem.mjs`
-3.3 | 77 | Search | **Tree Search** | `search/tree-search.mjs`
-3.3 | 77 | Search | **Graph Search** | `search/graph-search.mjs`
+3.3 | 77 | Algorithm | **Tree Search** | `search/tree-search.mjs`
+3.3 | 77 | Algorithm | **Graph Search** | `search/graph-search.mjs`
 3.3.1 | 79 | Abstraction | **Node Structure** | cf. `problem.mjs`
 3.3.1 | 80 | Abstraction | FIFO, LIFO, and Priority **Queue** | `search/queues/queue.mjs`
-3.4.1 | 82 | Search | **Breadth-First Search** | `search/uninformed-search/breadth-first-search.mjs`
-3.4.2 | 84 | Search | **Uniform Cost Search** | `search/uninformed-search/uniform-cost-search.mjs`
-3.4.3 | 87 | Search | **Depth-First Search** | `search/uninformed-search/depth-first-search.mjs`
-3.4.4 | 88 | Search | **Depth-Limited Search** | `search/uninformed-search/depth-limited-search.mjs`
-3.4.5 | 89 | Search | **Iterative Deepening Search** | `search/uninformed-search/iterative-deepening-search.mjs`
-3.5.1 | 92 | Search | **Greedy Best-First Search** | `search/heuristic-search/greedy-search.mjs`
-3.5.2 | 93 | Search | **A\* Search** | `search/heuristic-search/a-star-search.mjs`
-3.5.2 | 99 | Search | **Recursive Best-First Search** | cf. branch `feature-recursive-best-first-search`
+3.4.1 | 82 | Algorithm | **Breadth-First Search** | `search/uninformed-search/breadth-first-search.mjs`
+3.4.2 | 84 | Algorithm | **Uniform Cost Search** | `search/uninformed-search/uniform-cost-search.mjs`
+3.4.3 | 87 | Algorithm | **Depth-First Search** | `search/uninformed-search/depth-first-search.mjs`
+3.4.4 | 88 | Algorithm | **Depth-Limited Search** | `search/uninformed-search/depth-limited-search.mjs`
+3.4.5 | 89 | Algorithm | **Iterative Deepening Search** | `search/uninformed-search/iterative-deepening-search.mjs`
+3.5.1 | 92 | Algorithm | **Greedy Best-First Search** | `search/heuristic-search/greedy-search.mjs`
+3.5.2 | 93 | Algorithm | **A\* Search** | `search/heuristic-search/a-star-search.mjs`
+3.5.2 | 99 | Algorithm | **Recursive Best-First Search** | cf. branch `feature-recursive-best-first-search`
 4.1 | 121 | Abstraction | **Optimization Problem** | `optimization/optimization-problem.mjs`
 4.1.1 | 122 | Problem | Complete-State **8-Queens Problem** | `optimization/optimization-problems/eight-queens-problem.mjs`
-4.1.1 | 122 | Search | **Hill-Climbing** | `optimization/hill-climbing-search.mjs`
-4.1.2 | 126 | Search | **Simulated Annealing / Gradient Descent** | `optimization/simulated-annealing.mjs`
+4.1.1 | 122 | Algorithm | **Hill-Climbing** | `optimization/hill-climbing-search.mjs`
+4.1.2 | 126 | Algorithm | **Simulated Annealing / Gradient Descent** | `optimization/simulated-annealing.mjs`
 5.1 | 162 | Abstraction | **Game Problem** | `games/game.mjs`
 5.1 | 163 | Problem | **Tic Tac Toe** | `games/games/tic-tac-toe.mjs`
-5.2.1 | 166 | Search | **MiniMax Algorithm** | `games/minimax-decision.mjs`
-5.3 | 170 | Search | **Alpha-Beta Search** | `games/alpha-beta-search.mjs`
+5.2.1 | 166 | Algorithm | **MiniMax Algorithm** | `games/minimax-decision.mjs`
+5.3 | 170 | Algorithm | **Alpha-Beta Search** | `games/alpha-beta-search.mjs`
 t.b.c. | | | |
 
 
@@ -83,6 +83,12 @@ To my knowledge, there are exactly two other Javascript projects related to *AIM
 - [ajlopez/NodeAima](https://github.com/ajlopez/NodeAima) is an abandoned implementation of only the *vacuum world* in Node Javascript. 
 
 The existing code from these projects still has to be harnessed for this project! 
+
+## Extensions
+- [aima-checkers](https://github.com/davidpomerenke/aima-checkers)
+
+## Applications
+- [aima-checkers-gui](https://github.com/davidpomerenke/aima-checkers-gui)
 
 ## Contributing
 
