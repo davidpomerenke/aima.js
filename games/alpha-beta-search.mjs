@@ -1,3 +1,9 @@
+// pseudocode: https://github.com/aimacode/aima-pseudocode/blob/master/md/Alpha-Beta-Search.md
+
+// changes to the pseudocode
+// - a depth limit has been added (infinity by default)
+// - betaAlphaSearch has been added for player min in analogy to alphaBetaSearch for player max (applicable to zero-sum games only)
+
 export const alphaBetaSearch = (game, state, limit = Infinity) =>
   game.actions(state)
     .map(action => ({

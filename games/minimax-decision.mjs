@@ -1,3 +1,11 @@
+// pseudocode: https://github.com/aimacode/aima-pseudocode/blob/master/md/Minimax-Decision.md
+
+// changes to the pseudocode:
+// - a depth limit has been added (infinity by default)
+// - maximinDecision has been added for player min in analogy to minimaxDecision for player max
+//   (applicable to zero-sum games only; note that the terms 'maximin' and 'minimax' are generally used inconsistently)
+// - the notation is functional
+
 export const minimaxDecision = (game, state, limit = Infinity) =>
   game.actions(state)
     .map(action => ({
