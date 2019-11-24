@@ -7,37 +7,37 @@ const simpleEightPuzzle = makeEightPuzzle([
   [6, 7, 8]
 ])
 
-const state = []
-state[0] = simpleEightPuzzle.initialState
-assert.deepEqual(state[0], [
+let state
+state = simpleEightPuzzle.initialState
+assert.deepEqual(state, [
   [1, 4, 2],
   [3, 0, 5],
   [6, 7, 8]
 ])
-assert.equal(simpleEightPuzzle.heuristic(state[0]), 4)
+assert.equal(simpleEightPuzzle.heuristic(state), 4)
 
-state[1] = simpleEightPuzzle.result(state[0], 'up')
-assert.deepEqual(state[1], [
+state = simpleEightPuzzle.result(state, 'up')
+assert.deepEqual(state, [
   [1, 0, 2],
   [3, 4, 5],
   [6, 7, 8]
 ])
-assert.equal(simpleEightPuzzle.heuristic(state[1]), 2)
-assert(!simpleEightPuzzle.goalTest(state[1]))
+assert.equal(simpleEightPuzzle.heuristic(state), 2)
+assert(!simpleEightPuzzle.goalTest(state))
 
-state[2] = simpleEightPuzzle.result(state[1], 'left')
-assert.deepEqual(state[2], [
+state = simpleEightPuzzle.result(state, 'left')
+assert.deepEqual(state, [
   [0, 1, 2],
   [3, 4, 5],
   [6, 7, 8]
 ])
-assert.equal(simpleEightPuzzle.heuristic(state[2]), 0)
-assert(simpleEightPuzzle.goalTest(state[2]))
+assert.equal(simpleEightPuzzle.heuristic(state), 0)
+assert(simpleEightPuzzle.goalTest(state))
 
 const complexEightPuzzle = makeEightPuzzle([
   [7, 2, 4],
   [5, 0, 6],
   [8, 3, 1]
 ])
-state[3] = complexEightPuzzle.initialState
-assert.equal(simpleEightPuzzle.heuristic(state[3]), 20)
+state = complexEightPuzzle.initialState
+assert.equal(simpleEightPuzzle.heuristic(state), 20)
