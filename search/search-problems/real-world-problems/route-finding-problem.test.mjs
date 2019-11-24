@@ -4,18 +4,17 @@ import { strict as assert } from 'assert'
 
 const routeFindingProblem = makeRouteFindingProblem(cities, 'Arad', 'Bucharest')
 
-const state = []
-state[0] = routeFindingProblem.initialState
-assert.equal(state[0], 'Arad')
-assert.equal(routeFindingProblem.stepCost(state[0], 'Sibiu'), 140)
+let state = routeFindingProblem.initialState
+assert.equal(state, 'Arad')
+assert.equal(routeFindingProblem.stepCost(state, 'Sibiu'), 140)
 
-state[1] = routeFindingProblem.result(state[0], 'Sibiu')
-assert.equal(state[1], 'Sibiu')
-assert.equal(routeFindingProblem.stepCost(state[1], 'RimnicuVilcea'), 80)
+state = routeFindingProblem.result(state, 'Sibiu')
+assert.equal(state, 'Sibiu')
+assert.equal(routeFindingProblem.stepCost(state, 'RimnicuVilcea'), 80)
 
-state[2] = routeFindingProblem.result(state[1], 'RimnicuVilcea')
-assert.equal(state[2], 'RimnicuVilcea')
-assert.equal(routeFindingProblem.stepCost(state[2], 'Arad'), undefined)
+state = routeFindingProblem.result(state, 'RimnicuVilcea')
+assert.equal(state, 'RimnicuVilcea')
+assert.equal(routeFindingProblem.stepCost(state, 'Arad'), undefined)
 
-state[3] = routeFindingProblem.result(state[2], 'Arad')
-assert.equal(state[3], undefined)
+state = routeFindingProblem.result(state, 'Arad')
+assert.equal(state, undefined)

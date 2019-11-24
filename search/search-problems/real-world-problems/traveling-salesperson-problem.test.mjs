@@ -4,14 +4,13 @@ import { strict as assert } from 'assert'
 
 const travelingSalespersonProblem = makeTravelingSalespersonProblem(cities, 'Arad', 'Bucharest')
 
-const state = []
-state[0] = travelingSalespersonProblem.initialState
-assert.deepEqual(state[0], ['Arad'])
-assert.equal(travelingSalespersonProblem.stepCost(state[0], 'Sibiu'), 140)
+let state = travelingSalespersonProblem.initialState
+assert.deepEqual(state, ['Arad'])
+assert.equal(travelingSalespersonProblem.stepCost(state, 'Sibiu'), 140)
 
-state[1] = travelingSalespersonProblem.result(state[0], 'Sibiu')
-assert.deepEqual(state[1], ['Arad', 'Sibiu'])
-assert.equal(travelingSalespersonProblem.stepCost(state[1], 'Arad'), undefined)
+state = travelingSalespersonProblem.result(state, 'Sibiu')
+assert.deepEqual(state, ['Arad', 'Sibiu'])
+assert.equal(travelingSalespersonProblem.stepCost(state, 'Arad'), undefined)
 
-state[2] = travelingSalespersonProblem.result(state[1], 'Arad')
-assert.deepEqual(state[2], undefined)
+state = travelingSalespersonProblem.result(state, 'Arad')
+assert.deepEqual(state, undefined)
