@@ -1,4 +1,5 @@
 import { mapColoringProblem } from './map-coloring-problem.mjs'
+// import { breadthFirstSearch } from '../../search/uninformed-search/breadth-first-search.mjs'
 import { strict as assert } from 'assert'
 
 let solution
@@ -45,3 +46,5 @@ solution = [
   ['T', 'red']
 ]
 assert(mapColoringProblem.satisfied(solution))
+
+// console.log(breadthFirstSearch(mapColoringProblem))
