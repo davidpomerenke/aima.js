@@ -1,4 +1,6 @@
-export const mapColoringProblem = {
+import { ConstraintSatisfactionProblem } from '../constraint-satisfaction-problem.mjs'
+
+export const mapColoringProblem = new ConstraintSatisfactionProblem({
   domains: ['WA', 'NT', 'Q', 'NSW', 'V', 'SA', 'T'].map(state => [state, ['red', 'green', 'blue']]),
   constraints: [
     [[
@@ -13,4 +15,4 @@ export const mapColoringProblem = {
       ['NSW', 'V']
     ], (a, b) => a !== b]
   ]
-}
+})
