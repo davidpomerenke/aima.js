@@ -5,11 +5,14 @@ export class ConstraintSatisfactionProblem extends SearchProblem {
   constructor ({ domains, constraints }) {
     super({
       initialState: [],
-      actions: state => domains[state.length][1].map(value =>
-        [domains[state.length][0], value]),
+      actions: state => state.length < domains.length
+        ? domains[state.length][1].map(value =>
+          [domains[state.length][0], value])
+        : [],
       result: (state, action) => [...state, action],
       stepCost: state => 0,
       goalTest: state =>
+        state.length === domains.length &&
         this.domains.every(([varName, domain]) =>
           domain.some(v => deepEqual(v, get(state, varName)))) &&
         this.constraints.every(([varList, constraint]) => varList.every(vars =>

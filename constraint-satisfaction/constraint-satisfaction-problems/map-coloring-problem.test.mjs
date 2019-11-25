@@ -1,6 +1,22 @@
 import { mapColoringProblem } from './map-coloring-problem.mjs'
-// import { breadthFirstSearch } from '../../search/uninformed-search/breadth-first-search.mjs'
+import { depthFirstSearch } from '../../search/uninformed-search/depth-first-search.mjs'
 import { strict as assert } from 'assert'
+
+let state
+state = mapColoringProblem.initialState
+assert.deepEqual(state, [])
+assert(!mapColoringProblem.satisfied(state))
+assert.deepEqual(mapColoringProblem.actions(state), [['WA', 'red'], ['WA', 'green'], ['WA', 'blue']])
+
+state = mapColoringProblem.result(state, ['WA', 'red'])
+assert.deepEqual(state, [['WA', 'red']])
+assert(!mapColoringProblem.satisfied(state))
+assert.deepEqual(mapColoringProblem.actions(state), [['NT', 'red'], ['NT', 'green'], ['NT', 'blue']])
+
+state = mapColoringProblem.result(state, ['NT', 'green'])
+assert.deepEqual(state, [['WA', 'red'], ['NT', 'green']])
+assert(!mapColoringProblem.satisfied(state))
+assert.deepEqual(mapColoringProblem.actions(state), [['Q', 'red'], ['Q', 'green'], ['Q', 'blue']])
 
 let solution
 solution = [
@@ -47,4 +63,12 @@ solution = [
 ]
 assert(mapColoringProblem.satisfied(solution))
 
-// console.log(breadthFirstSearch(mapColoringProblem))
+assert.deepEqual(depthFirstSearch(mapColoringProblem).state, [
+  ['WA', 'blue'],
+  ['NT', 'green'],
+  ['Q', 'blue'],
+  ['NSW', 'green'],
+  ['V', 'blue'],
+  ['SA', 'red'],
+  ['T', 'blue']
+])
