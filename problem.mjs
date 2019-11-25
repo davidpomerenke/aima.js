@@ -31,9 +31,9 @@ export class Problem {
     return this.actions(node.state).map(action => this.childNode(node, action))
   }
 
-  static solution (node) {
+  static solutionPath (node) {
     // return path leading to the solution
-    if ('parent' in node) return [...Problem.solution(node.parent), node.state]
+    if ('parent' in node) return [...Problem.solutionPath(node.parent), node.state]
     else return [node.state]
   }
 }

@@ -25,7 +25,7 @@ const simpleEightPuzzle = makeEightPuzzle([
   [8, 3, 5]
 ])
 
-console.log(Problem.solution(aStarSearch(simpleEightPuzzle)))
+console.log(Problem.solutionPath(aStarSearch(simpleEightPuzzle)))
 ```
 
 Put the above example code in `example.mjs` and run it: 

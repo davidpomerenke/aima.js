@@ -46,7 +46,7 @@ assert(depthLimitedSearch(simpleKnuthConjecture, 3).state, 1)
 
 // route finding
 const routeFindingProblem = makeRouteFindingProblem(cities, 'Arad', 'Bucharest')
-assert.deepEqual(Problem.solution(depthLimitedSearch(routeFindingProblem, 4)), ['Arad', 'Sibiu', 'Fagaras', 'Bucharest'])
+assert.deepEqual(Problem.solutionPath(depthLimitedSearch(routeFindingProblem, 4)), ['Arad', 'Sibiu', 'Fagaras', 'Bucharest'])
 
 // touring
 const touringProblem = makeTouringProblem(cities, 'Arad', 'Bucharest')

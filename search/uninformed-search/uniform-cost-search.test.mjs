@@ -44,7 +44,7 @@ assert(uniformCostSearch(simpleKnuthConjecture).state, 1)
 
 // route finding
 const routeFindingProblem = makeRouteFindingProblem(cities, 'Arad', 'Bucharest')
-assert.deepEqual(Problem.solution(uniformCostSearch(routeFindingProblem)), ['Arad', 'Sibiu', 'RimnicuVilcea', 'Pitesti', 'Bucharest'])
+assert.deepEqual(Problem.solutionPath(uniformCostSearch(routeFindingProblem)), ['Arad', 'Sibiu', 'RimnicuVilcea', 'Pitesti', 'Bucharest'])
 
 // touring
 const touringProblem = makeTouringProblem(cities, 'Arad', 'Bucharest')

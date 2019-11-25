@@ -43,7 +43,7 @@ assert(aStarSearch(simpleKnuthConjecture).state, 1)
 
 // route finding
 const routeFindingProblem = makeRouteFindingProblem(cities, 'Arad', 'Bucharest')
-assert.deepEqual(Problem.solution(aStarSearch(routeFindingProblem)), ['Arad', 'Sibiu', 'RimnicuVilcea', 'Pitesti', 'Bucharest'])
+assert.deepEqual(Problem.solutionPath(aStarSearch(routeFindingProblem)), ['Arad', 'Sibiu', 'RimnicuVilcea', 'Pitesti', 'Bucharest'])
 
 // touring
 const touringProblem = makeTouringProblem(cities, 'Arad', 'Bucharest')
