@@ -71,10 +71,10 @@ Section | Page | Type | Algorithm | File
 5.1 | 163 | Problem | **Tic Tac Toe** | [`ticTacToe`](https://github.com/davidpomerenke/aima.js/blob/master/games/games/tic-tac-toe.mjs)
 5.2.1 | 166 | Algorithm | **MiniMax Algorithm** | [`minimaxDecision`](https://github.com/davidpomerenke/aima.js/blob/master/games/minimax-decision.mjs)
 5.3 | 170 | Algorithm | **Alpha-Beta Search** | [`alphaBetaSearch`](https://github.com/davidpomerenke/aima.js/blob/master/games/alpha-beta-search.mjs)
-6.1 | 202 | Abstraction | **Constraint Satisfaction Problem** | [`ConstraintSatisfactionProblem`](https://github.com/davidpomerenke/aima.js/blob/master/constraint-satisfaction/constraint-satisfaction-problem.mjs)
-6.1.1 | 203 | Problem | **Map Coloring Problem** | [`mapColoringProblem`](https://github.com/davidpomerenke/aima.js/blob/master/constraint-satisfaction/constraint-satisfaction-problems/map-coloring-problem.mjs)
-6.1.3 | 205 | Problem | Constraint-Satisfaction **8-Queens Problem** | [`constraintSatisfactionEightQueensProblem`](https://github.com/davidpomerenke/aima.js/blob/master/constraint-satisfaction/constraint-satisfaction-problems/eight-queens-problem.mjs)
-6.2.1 | 208 | Algorithm | **Node-Consistency** | [`makeNodeConsistent`](https://github.com/davidpomerenke/aima.js/blob/master/constraint-satisfaction/node-consistency.mjs)
+6.1 | 202 | Abstraction | **Constraint Satisfaction Problem** | [`ConstraintSatisfactionProblem`](https://github.com/davidpomerenke/aima.js/blob/master/constraints/constraint-satisfaction-problem.mjs)
+6.1.1 | 203 | Problem | **Map Coloring Problem** | [`mapColoringProblem`](https://github.com/davidpomerenke/aima.js/blob/master/constraints/constraint-satisfaction-problems/map-coloring-problem.mjs)
+6.1.3 | 205 | Problem | Constraint-Satisfaction **8-Queens Problem** | [`constraintSatisfactionEightQueensProblem`](https://github.com/davidpomerenke/aima.js/blob/master/constraints/constraint-satisfaction-problems/eight-queens-problem.mjs)
+6.2.1 | 208 | Algorithm | **Node-Consistency** | [`makeNodeConsistent`](https://github.com/davidpomerenke/aima.js/blob/master/constraints/node-consistency.mjs)
 t.b.c. | | | |
 
 
