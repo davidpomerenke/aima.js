@@ -31,4 +31,4 @@ export class ConstraintSatisfactionProblem extends SearchProblem {
   }
 }
 
-const get = (solution, varName) => solution.find(([varName2, value]) => varName === varName2)[1]
+const get = (pairList, key) => pairList.find(([key2, value]) => key === key2)[1]
