@@ -1,4 +1,4 @@
-import { eightQueensProblem } from './eight-queens-problem.mjs'
+import { constraintSatisfactionEightQueensProblem as eightQueensProblem } from './eight-queens-problem.mjs'
 import { strict as assert } from 'assert'
 
 let solution

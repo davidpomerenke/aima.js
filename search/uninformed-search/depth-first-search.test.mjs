@@ -1,5 +1,5 @@
 import { depthFirstSearch } from './depth-first-search.mjs'
-import { eightQueensProblem } from '../search-problems/toy-problems/eight-queens-problem.mjs'
+import { incrementalEightQueensProblem as eightQueensProblem } from '../search-problems/toy-problems/eight-queens-problem.mjs'
 import { makeTouringProblem } from '../search-problems/real-world-problems/touring-problem.mjs'
 import { makeTravelingSalespersonProblem } from '../search-problems/real-world-problems/traveling-salesperson-problem.mjs'
 import { cities } from '../search-problems/real-world-problems/cities.mjs'

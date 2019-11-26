@@ -40,37 +40,41 @@ Almost every `.mjs` code file is accompanied by some `.test.mjs` test file. The 
 
 Section | Page | Type | Algorithm | File
 --- | ---:| --- | --- | ---
-2.4 | 47 | Agent | **Table-Driven Agent** | `intelligent-agents/table-driven-agent.mjs`
-2.4 | 49 | Agent | **Simple Reflex Agent** | `intelligent-agents/simple-reflex-agent.mjs`
-3.1.1 | 67 | Abstraction | **Search Problem** | `search/search-problem.mjs`
-3.1 | 68 | Data | **Map of Romania** | `search/search-problems/real-world-problems/cities`
-3.2.1 | 70 | Problem | **Vacuum World** | `search/search-problems/toy-problems/vacuum-world.mjs`
-3.2.1 | 71 | Problem | **8-Puzzle** | `search/search-problems/toy-problems/eight-puzzle.mjs`
-3.2.1 | 72 | Problem | Incremental **8-Queens Problem** | `search/search-problems/toy-problems/eight-queens-problem.mjs`
-3.2.1 | 73 | Problem | **Knuth Conjecture** | `search/search-problems/toy-problems/knuth-conjecture.mjs`
-3.2.2 | 73 | Problem | **Route Finding** | `search/search-problems/real-world-problems/route-finding-problem.mjs`
-3.2.2 | 74 | Problem | **Touring Problem** | `search/search-problems/real-world-problems/touring-problem.mjs`
-3.2.2 | 74 | Problem | **Traveling Salesperson Problem** | `search/search-problems/real-world-problems/traveling-salesperson-problem.mjs`
-3.3 | 77 | Algorithm | **Tree Search** | `search/tree-search.mjs`
-3.3 | 77 | Algorithm | **Graph Search** | `search/graph-search.mjs`
-3.3.1 | 79 | Abstraction | **Node Structure** | cf. `problem.mjs`
-3.3.1 | 80 | Abstraction | FIFO, LIFO, and Priority **Queue** | `search/queues/queue.mjs`
-3.4.1 | 82 | Algorithm | **Breadth-First Search** | `search/uninformed-search/breadth-first-search.mjs`
-3.4.2 | 84 | Algorithm | **Uniform Cost Search** | `search/uninformed-search/uniform-cost-search.mjs`
-3.4.3 | 87 | Algorithm | **Depth-First Search** | `search/uninformed-search/depth-first-search.mjs`
-3.4.4 | 88 | Algorithm | **Depth-Limited Search** | `search/uninformed-search/depth-limited-search.mjs`
-3.4.5 | 89 | Algorithm | **Iterative Deepening Search** | `search/uninformed-search/iterative-deepening-search.mjs`
-3.5.1 | 92 | Algorithm | **Greedy Best-First Search** | `search/heuristic-search/greedy-search.mjs`
-3.5.2 | 93 | Algorithm | **A\* Search** | `search/heuristic-search/a-star-search.mjs`
-3.5.2 | 99 | Algorithm | **Recursive Best-First Search** | cf. branch `feature-recursive-best-first-search`
-4.1 | 121 | Abstraction | **Optimization Problem** | `optimization/optimization-problem.mjs`
-4.1.1 | 122 | Problem | Complete-State **8-Queens Problem** | `optimization/optimization-problems/eight-queens-problem.mjs`
-4.1.1 | 122 | Algorithm | **Hill-Climbing** | `optimization/hill-climbing-search.mjs`
-4.1.2 | 126 | Algorithm | **Simulated Annealing / Gradient Descent** | `optimization/simulated-annealing.mjs`
-5.1 | 162 | Abstraction | **Game Problem** | `games/game.mjs`
-5.1 | 163 | Problem | **Tic Tac Toe** | `games/games/tic-tac-toe.mjs`
-5.2.1 | 166 | Algorithm | **MiniMax Algorithm** | `games/minimax-decision.mjs`
-5.3 | 170 | Algorithm | **Alpha-Beta Search** | `games/alpha-beta-search.mjs`
+2.4 | 47 | Agent | **Table-Driven Agent** | [`TableDrivenAgent`](https://github.com/davidpomerenke/aima.js/blob/master/intelligent-agents/table-driven-agent.mjs)
+2.4 | 49 | Agent | **Simple Reflex Agent** | [`SimpleReflexAgent`](https://github.com/davidpomerenke/aima.js/blob/master/intelligent-agents/simple-reflex-agent.mjs)
+3.1.1 | 67 | Abstraction | **Search Problem** | [`SearchProblem`](https://github.com/davidpomerenke/aima.js/blob/master/search/search-problem.mjs)
+3.1 | 68 | Data | **Map of Romania** | [`cities`](https://github.com/davidpomerenke/aima.js/blob/master/search/search-problems/real-world-problems/cities)
+3.2.1 | 70 | Problem | **Vacuum World** | [`vacuumWorld`](https://github.com/davidpomerenke/aima.js/blob/master/search/search-problems/toy-problems/vacuum-world.mjs)
+3.2.1 | 71 | Problem | **8-Puzzle** | [`makeEightPuzzle`](https://github.com/davidpomerenke/aima.js/blob/master/search/search-problems/toy-problems/eight-puzzle.mjs)
+3.2.1 | 72 | Problem | Incremental **8-Queens Problem** | [`incrementalEightQueensProblem`](https://github.com/davidpomerenke/aima.js/blob/master/search/search-problems/toy-problems/eight-queens-problem.mjs)
+3.2.1 | 73 | Problem | **Knuth Conjecture** | [`makeKnuthConjecture`](https://github.com/davidpomerenke/aima.js/blob/master/search/search-problems/toy-problems/knuth-conjecture.mjs)
+3.2.2 | 73 | Problem | **Route Finding** | [`makeRouteFindingProblem`](https://github.com/davidpomerenke/aima.js/blob/master/search/search-problems/real-world-problems/route-finding-problem.mjs)
+3.2.2 | 74 | Problem | **Touring Problem** | [`makeTouringProblem`](https://github.com/davidpomerenke/aima.js/blob/master/search/search-problems/real-world-problems/touring-problem.mjs)
+3.2.2 | 74 | Problem | **Traveling Salesperson Problem** | [`makeTravelingSalespersonProblem`](https://github.com/davidpomerenke/aima.js/blob/master/search/search-problems/real-world-problems/traveling-salesperson-problem.mjs)
+3.3 | 77 | Algorithm | **Tree Search** | [`TreeSearch`](https://github.com/davidpomerenke/aima.js/blob/master/search/tree-search.mjs)
+3.3 | 77 | Algorithm | **Graph Search** | [`GraphSearch`](https://github.com/davidpomerenke/aima.js/blob/master/search/graph-search.mjs)
+3.3.1 | 79 | Abstraction | **Node Structure** | cf. [`Problem`](https://github.com/davidpomerenke/aima.js/blob/master/problem.mjs)
+3.3.1 | 80 | Abstraction | FIFO, LIFO, and Priority **Queue** | [`Queue`](https://github.com/davidpomerenke/aima.js/blob/master/search/queues/queue.mjs)
+3.4.1 | 82 | Algorithm | **Breadth-First Search** | [`breadthFirstSearch`](https://github.com/davidpomerenke/aima.js/blob/master/search/uninformed-search/breadth-first-search.mjs)
+3.4.2 | 84 | Algorithm | **Uniform Cost Search** | [`uniformCostSearch`](https://github.com/davidpomerenke/aima.js/blob/master/search/uninformed-search/uniform-cost-search.mjs)
+3.4.3 | 87 | Algorithm | **Depth-First Search** | [`depthFirstSearch`](https://github.com/davidpomerenke/aima.js/blob/master/search/uninformed-search/depth-first-search.mjs)
+3.4.4 | 88 | Algorithm | **Depth-Limited Search** | [`depthLimitedSearch`](https://github.com/davidpomerenke/aima.js/blob/master/search/uninformed-search/depth-limited-search.mjs)
+3.4.5 | 89 | Algorithm | **Iterative Deepening Search** | [`iterativeDeepeningSearch`](https://github.com/davidpomerenke/aima.js/blob/master/search/uninformed-search/iterative-deepening-search.mjs)
+3.5.1 | 92 | Algorithm | **Greedy Best-First Search** | [`greedySearch`](https://github.com/davidpomerenke/aima.js/blob/master/search/heuristic-search/greedy-search.mjs)
+3.5.2 | 93 | Algorithm | **A\* Search** | [`aStarSearch`](https://github.com/davidpomerenke/aima.js/blob/master/search/heuristic-search/a-star-search.mjs)
+3.5.2 | 99 | Algorithm | **Recursive Best-First Search** | cf. branch [`feature-recursive-best-first-search`](https://github.com/davidpomerenke/aima.js/blob/feature-recursive-best-first-search/searching/heuristic-search/recursive-best-first-search.mjs)
+4.1 | 121 | Abstraction | **Optimization Problem** | [`OptimizationProblem`](https://github.com/davidpomerenke/aima.js/blob/master/optimization/optimization-problem.mjs)
+4.1.1 | 122 | Problem | Complete-State **8-Queens Problem** | [`completeStateEightQueensProblem`](https://github.com/davidpomerenke/aima.js/blob/master/optimization/optimization-problems/eight-queens-problem.mjs)
+4.1.1 | 122 | Algorithm | **Hill-Climbing Search** | [`hillClimbingSearch`](https://github.com/davidpomerenke/aima.js/blob/master/optimization/hill-climbing-search.mjs)
+4.1.2 | 126 | Algorithm | **Simulated Annealing / Gradient Descent** | [`simulatedAnnealing`](https://github.com/davidpomerenke/aima.js/blob/master/optimization/simulated-annealing.mjs)
+5.1 | 162 | Abstraction | **Game** | [`Game`](https://github.com/davidpomerenke/aima.js/blob/master/games/game.mjs)
+5.1 | 163 | Problem | **Tic Tac Toe** | [`ticTacToe`](https://github.com/davidpomerenke/aima.js/blob/master/games/games/tic-tac-toe.mjs)
+5.2.1 | 166 | Algorithm | **MiniMax Algorithm** | [`minimaxDecision`](https://github.com/davidpomerenke/aima.js/blob/master/games/minimax-decision.mjs)
+5.3 | 170 | Algorithm | **Alpha-Beta Search** | [`alphaBetaSearch`](https://github.com/davidpomerenke/aima.js/blob/master/games/alpha-beta-search.mjs)
+6.1 | 202 | Abstraction | **Constraint Satisfaction Problem** | [`ConstraintSatisfactionProblem`](https://github.com/davidpomerenke/aima.js/blob/master/constraint-satisfaction/constraint-satisfaction-problem.mjs)
+6.1.1 | 203 | Problem | **Map Coloring Problem** | [`mapColoringProblem`](https://github.com/davidpomerenke/aima.js/blob/master/constraint-satisfaction/constraint-satisfaction-problems/map-coloring-problem.mjs)
+6.1.3 | 205 | Problem | Constraint-Satisfaction **8-Queens Problem** | [`constraintSatisfactionEightQueensProblem`](https://github.com/davidpomerenke/aima.js/blob/master/constraint-satisfaction/constraint-satisfaction-problems/eight-queens-problem.mjs)
+6.2.1 | 208 | Algorithm | **Node-Consistency** | [`makeNodeConsistent`](https://github.com/davidpomerenke/aima.js/blob/master/constraint-satisfaction/node-consistency.mjs)
 t.b.c. | | | |
 
 

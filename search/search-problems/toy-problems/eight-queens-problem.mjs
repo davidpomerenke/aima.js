@@ -2,7 +2,7 @@ import { SearchProblem } from '../../search-problem.mjs'
 
 // incremental formulation of the eight-queens problem
 
-export const eightQueensProblem = new SearchProblem({
+export const incrementalEightQueensProblem = new SearchProblem({
   initialState: [
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],

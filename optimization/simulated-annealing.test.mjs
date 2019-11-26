@@ -1,5 +1,5 @@
 import { simulatedAnnealing } from './simulated-annealing.mjs'
-import { eightQueensProblem } from './optimization-problems/eight-queens-problem.mjs'
+import { completeStateEightQueensProblem as eightQueensProblem } from './optimization-problems/eight-queens-problem.mjs'
 import gen from 'random-seed'
 import { strict as assert } from 'assert'
 

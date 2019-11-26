@@ -2,7 +2,7 @@ import { OptimizationProblem } from '../optimization-problem.mjs'
 
 // complete-state formulation of the eight-queens problem
 
-export const eightQueensProblem = new OptimizationProblem({
+export const completeStateEightQueensProblem = new OptimizationProblem({
   initialState: [
     [1, 0, 0, 0, 0, 0, 0, 0],
     [1, 0, 0, 0, 0, 0, 0, 0],

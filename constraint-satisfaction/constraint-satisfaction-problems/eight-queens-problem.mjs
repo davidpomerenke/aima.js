@@ -5,7 +5,7 @@ import { ConstraintSatisfactionProblem } from '../constraint-satisfaction-proble
 const queens = [0, 1, 2, 3, 4, 5, 6, 7]
 const attacks = ([y1, x1], [y2, x2]) => y1 === y2 || x1 === x2 || y2 - y1 === x2 - x1
 
-export const eightQueensProblem = new ConstraintSatisfactionProblem({
+export const constraintSatisfactionEightQueensProblem = new ConstraintSatisfactionProblem({
   domains: queens.map(queen => [
     queen,
     [0, 1, 2, 3, 4, 5, 6, 7].flatMap(y =>

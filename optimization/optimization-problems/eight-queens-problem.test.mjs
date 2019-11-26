@@ -1,4 +1,4 @@
-import { eightQueensProblem } from './eight-queens-problem.mjs'
+import { completeStateEightQueensProblem as eightQueensProblem } from './eight-queens-problem.mjs'
 import { strict as assert } from 'assert'
 
 let state = eightQueensProblem.initialState

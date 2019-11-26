@@ -1,5 +1,5 @@
 import { hillClimbingSearch } from './hill-climbing-search.mjs'
-import { eightQueensProblem } from './optimization-problems/eight-queens-problem.mjs'
+import { completeStateEightQueensProblem as eightQueensProblem } from './optimization-problems/eight-queens-problem.mjs'
 import { strict as assert } from 'assert'
 
 const solution = hillClimbingSearch(eightQueensProblem).state
