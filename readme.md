@@ -75,6 +75,7 @@ Section | Page | Type | Algorithm | File
 6.1.1 | 203 | Problem | **Map Coloring Problem** | [`mapColoringProblem`](https://github.com/davidpomerenke/aima.js/blob/master/constraints/constraint-satisfaction-problems/map-coloring-problem.mjs)
 6.1.3 | 205 | Problem | Constraint-Satisfaction **8-Queens Problem** | [`constraintSatisfactionEightQueensProblem`](https://github.com/davidpomerenke/aima.js/blob/master/constraints/constraint-satisfaction-problems/eight-queens-problem.mjs)
 6.2.1 | 208 | Algorithm | **Node-Consistency** | [`makeNodeConsistent`](https://github.com/davidpomerenke/aima.js/blob/master/constraints/node-consistency.mjs)
+7.4.1 | 244 | Algorithm | **Syntax** of Propositional Logic | [`plParse`](https://github.com/davidpomerenke/aima.js/blob/master/logics/syntax.mjs)
 t.b.c. | | | |
 
 
