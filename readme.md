@@ -1,7 +1,9 @@
 # aima.js
 
 [![NPM version](https://img.shields.io/npm/v/aima.svg)](https://www.npmjs.com/package/aima)
-![](https://github.com/davidpomerenke/aima.js/workflows/Node%20CI/badge.svg)
+[![Node CI](https://github.com/davidpomerenke/aima.js/workflows/Node%20CI/badge.svg)](https://github.com/davidpomerenke/aima.js/actions?query=workflow%3A%22Node+CI%22)
+[![codecov](https://codecov.io/gh/davidpomerenke/aima.js/branch/master/graph/badge.svg)](https://codecov.io/gh/davidpomerenke/aima.js)
+[![Depfu](https://badges.depfu.com/badges/e04a4818c5dd19a107c3d0dd8dbb7c0a/overview.svg)](https://depfu.com/github/davidpomerenke/aima.js?project_id=10309)
 [![Gitter](https://badges.gitter.im/aima-js/community.svg)](https://gitter.im/aima-js/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 [*Artificial Intelligence - A Modern Approach*](http://aima.cs.berkeley.edu/) (*AIMA*) by Stuart Russell and Peter Norvig is the reference textbook on artificial intelligence. 

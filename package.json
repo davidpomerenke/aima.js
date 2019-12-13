@@ -20,7 +20,8 @@
   "main": "index.mjs",
   "scripts": {
     "test": "node --experimental-modules test.mjs",
-    "debug": "node inspect --experimental-modules test.mjs"
+    "debug": "node inspect --experimental-modules test.mjs",
+    "coverage": "c8 npm test --reporter=text-lcov > coverage.lcov"
   },
   "engines": {
     "node": ">= 12.0"
@@ -29,6 +30,7 @@
     "deep-equal": "^1.1.0"
   },
   "devDependencies": {
+    "c8": "^6.0.1",
     "random-seed": "^0.3.0"
   }
 }
