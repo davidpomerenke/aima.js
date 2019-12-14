@@ -12,8 +12,6 @@ This package implements some of the algorithms and data structures from the *AIM
 
 ## Installation and Usage
 
-**Note:** This package uses ES modules which require running `node` with the `--experimental-modules` flag. ES modules are expected to become standard features by the end of November 2019. 
-
 For using this package as a module in your own node project: 
 
 `npm install aima`
@@ -32,7 +30,7 @@ console.log(Problem.solutionPath(aStarSearch(simpleEightPuzzle)))
 
 Put the above example code in `example.mjs` and run it: 
 
-`node --experimental-modules example.mjs`
+`node example.mjs`
 
 ## Documentation
 
