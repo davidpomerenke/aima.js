@@ -17,15 +17,15 @@
     "Optimization",
     "Games"
   ],
-  "main": "index.js",
+  "main": "index.mjs",
   "files": [
-    "index.js"
+    "index.mjs"
   ],
   "scripts": {
-    "test": "npm run prepare && node --require source-map-support/register index.js",
-    "prepare": "coffee --compile --transpile --inline-map --output index.js readme.litcoffee",
+    "test": "coffee --compile --output test.mjs readme.litcoffee && node --require source-map-support/register test.mjs",
+    "prepare": "coffee --compile --output index.mjs readme.litcoffee",
     "build-docs": "docco readme.litcoffee --layout linear && mv docs/readme.html docs/index.html",
-    "coverage": "coffee --compile --output index.mjs readme.litcoffee && c8 node index.mjs --reporter=text-lcov > coverage.lcov"
+    "coverage": "npm run prepare && c8 node index.mjs --reporter=text-lcov > coverage.lcov"
   },
   "engines": {
     "node": ">= 13.0"
@@ -35,16 +35,9 @@
     "random-seed": "^0.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.4",
-    "@babel/preset-env": "^7.8.4",
     "c8": "^7.0.1",
     "coffeescript": "^2.5.1",
     "docco": "^0.8.0",
     "source-map-support": "^0.5.16"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ]
   }
 }
