@@ -8,7 +8,7 @@
     <img src="https://github.com/davidpomerenke/aima-coffee/workflows/Node%20CI/badge.svg" alt="Tests" />
   </a>
   <a href="https://codecov.io/gh/davidpomerenke/aima-coffee">
-    <img src="https://codecov.io/gh/davidpomerenke/aima-coffee/branch/master/graph/badge.svg" alt="Tests" />
+    <img src="https://codecov.io/gh/davidpomerenke/aima-coffee/branch/master/graph/badge.svg" alt="Coverage" />
   </a>
   <a href="https://gitter.im/aima-coffee/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge">
     <img src="https://badges.gitter.im/aima-coffee/community.svg" alt="Chat" />

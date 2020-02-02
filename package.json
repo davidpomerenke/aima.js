@@ -6,6 +6,7 @@
   "repository": {
     "url": "https://github.com/davidpomerenke/aima-coffee"
   },
+  "homepage": "https://davidpomerenke.github.io/aima-coffee",
   "license": "ISC",
   "keywords": [
     "Artificial Intelligence",
@@ -20,7 +21,8 @@
   "type": "module",
   "main": "index.mjs",
   "files": [
-    "index.mjs"
+    "index.mjs",
+    "readme.md"
   ],
   "scripts": {
     "test": "coffee --compile --output test.mjs readme.litcoffee && node --require source-map-support/register test.mjs",
