@@ -4,11 +4,11 @@
   <a href="https://www.npmjs.com/package/aima">
     <img src="https://img.shields.io/npm/v/aima.svg" alt="NPM Package" />
   </a>
-  <a href="https://github.com/davidpomerenke/aima.js/actions?query=workflow%3A%22Node+CI%22">
-    <img src="https://github.com/davidpomerenke/aima.js/workflows/Node%20CI/badge.svg" alt="Tests" />
+  <a href="https://github.com/davidpomerenke/aima-coffee/actions?query=workflow%3A%22Node+CI%22">
+    <img src="https://github.com/davidpomerenke/aima-coffee/workflows/Node%20CI/badge.svg" alt="Tests" />
   </a>
-  <a href="https://gitter.im/aima-js/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge">
-    <img src="https://badges.gitter.im/aima-js/community.svg" alt="Chat" />
+  <a href="https://gitter.im/aima-coffee/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge">
+    <img src="https://badges.gitter.im/aima-coffee/community.svg" alt="Chat" />
   </a>
 </p>
 
