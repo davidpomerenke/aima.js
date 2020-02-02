@@ -17,11 +17,15 @@
     "Optimization",
     "Games"
   ],
-  "main": "index.mjs",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
-    "test": "node test.mjs",
-    "debug": "node inspect test.mjs",
-    "coverage": "c8 npm test --reporter=text-lcov > coverage.lcov"
+    "test": "npm run prepare && node --require source-map-support/register index.js",
+    "prepare": "coffee --compile --transpile --inline-map --output index.js readme.litcoffee",
+    "build-docs": "docco readme.litcoffee --layout linear",
+    "coverage": "coffee --compile --output index.mjs readme.litcoffee && c8 node index.mjs --reporter=text-lcov > coverage.lcov"
   },
   "engines": {
     "node": ">= 13.0"
@@ -30,7 +34,16 @@
     "deep-equal": "^1.1.1"
   },
   "devDependencies": {
-    "c8": "^6.0.1",
-    "random-seed": "^0.3.0"
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "coffeescript": "^2.5.1",
+    "docco": "^0.8.0",
+    "random-seed": "^0.3.0",
+    "source-map-support": "^0.5.16"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
   }
 }
