@@ -17,6 +17,7 @@
     "Optimization",
     "Games"
   ],
+  "type": "module",
   "main": "index.mjs",
   "files": [
     "index.mjs"
