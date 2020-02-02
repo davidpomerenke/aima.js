@@ -7,6 +7,9 @@
   <a href="https://github.com/davidpomerenke/aima-coffee/actions?query=workflow%3A%22Node+CI%22">
     <img src="https://github.com/davidpomerenke/aima-coffee/workflows/Node%20CI/badge.svg" alt="Tests" />
   </a>
+  <a href="https://codecov.io/gh/davidpomerenke/aima-coffee">
+    <img src="https://codecov.io/gh/davidpomerenke/aima-coffee/branch/master/graph/badge.svg" alt="Tests" />
+  </a>
   <a href="https://gitter.im/aima-coffee/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge">
     <img src="https://badges.gitter.im/aima-coffee/community.svg" alt="Chat" />
   </a>
@@ -1395,6 +1398,7 @@ Changes to the pseudocode:
   This is applicable to zero-sum games only. Note that the terms 'maximin' and 'minimax' are generally used inconsistently.
 - The notation is functional.
 
+
     export minimaxDecision = (game, state, limit = Infinity) ->
       game.actions state
         .map (action) ->
@@ -1450,6 +1454,7 @@ Changes to the pseudocode:
 - A depth limit has been added (`Infinity` by default).
 - `betaAlphaSearch` has been added for player Min in analogy to `alphaBetaSearch` for player Max.
   This is applicable to zero-sum games only.
+
 
     export alphaBetaSearch = (game, state, limit = Infinity) ->
       game.actions state
