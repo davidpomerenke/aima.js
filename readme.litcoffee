@@ -1451,7 +1451,7 @@ Changes to the pseudocode:
         else
           game.actions state
             .reduce ((prev, current) ->
-              Math.min prev, (minValue game, (game.result state, current), limit - 1)), Infinity
+              Math.min prev, (maxValue game, (game.result state, current), limit - 1)), Infinity
 
 The `minimaxDecision` algorithm is tested at the end of the next section, together with the `alphaBetaSearch` algorithm.
 
@@ -1483,7 +1483,7 @@ Changes to the pseudocode:
           action: action,
           outcome: alphaBetaMaxValue game, (game.result state, action), limit - 1, -Infinity, +Infinity
         .reduce (current, next) ->
-          if next.outcome > current.outcome
+          if next.outcome < current.outcome
             next
           else
             current
@@ -1509,9 +1509,9 @@ Changes to the pseudocode:
       v = +Infinity
       for action in game.actions state
         v = Math.min v, (alphaBetaMaxValue game, (game.result state, action), limit, alpha, beta)
-        if v <= beta
+        if v <= alpha
           v
-        alpha = Math.min alpha, v
+        beta = Math.min beta, v
       v
     # Tests:
 
