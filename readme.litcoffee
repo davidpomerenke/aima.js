@@ -69,6 +69,16 @@ Every contribution is very welcome: Modifications of existing code to make it mo
 
 Thank you very much in advance for your contribution :)
 
+## Development
+
+The node package does not include this CoffeeScript file, but instead a compiled JavaScript version.
+Furthermore, the testing sections and the corresponding imports are cut out from the CoffeeScript before compilation.
+A line with the comment `Testing:`, `Example:`, or `For example:` marks the beginning of a _testing section_,
+which will not appear in the package.
+This is to ensure that the package is minimal and widely compatible.
+
+The compilation pipeline is included in `package.json` and is started by `npm run prepare`, which is triggered automatically before publishing with `npm publish`.
+
 ## Pre-Requisites
 
 ### Dependencies
@@ -84,7 +94,7 @@ Thank you very much in advance for your contribution :)
     sum = (array, func) ->
       array.reduce ((accumulator, value, index) ->
         accumulator + func value, index, array), 0
-    #
+    # Tests:
     array = [ [100, 1000], [200, 2000], [300, 3000] ]
     assert.equal (sum array, (x)           -> x[1]),                        6000
     assert.equal (sum array, (x, i)        -> x[1] + 10 * i),               6030
@@ -95,7 +105,7 @@ Thank you very much in advance for your contribution :)
     factorial = (n) -> 
       [...Array(n).keys()]
         .reduce ((prev, i) -> prev * (i + 1)), 1
-    #
+    # Tests:
     assert.equal factorial(5), 1 * 2 * 3 * 4 * 5
     assert.equal factorial(10), factorial(5) * 6 * 7 * 8 * 9 * 10
 
@@ -273,7 +283,7 @@ Confer section 3.2.1, p. 70.
       goalTest: (state) ->
         state.A == 'clean' and
         state.B == 'clean'
-    #
+    # Tests:
     state = vacuumWorld.initialState
     assert.deepEqual state, { location: 'A', A: 'dirty', B: 'dirty' }
 
@@ -355,7 +365,7 @@ Confer section 3.2.1, p. 71.
               manhattanDist [y, x], goalPosition number
         goalTest: (state) ->
           deepEqual state, goalState
-    #
+    # Tests:
     simpleEightPuzzle = makeEightPuzzle [
       [1, 4, 2]
       [3, 0, 5]
@@ -418,7 +428,7 @@ Incremental formulation of the 8-queens problem. Confer section 3.2.1, p. 72.
         x == x0 or
         y == y0 or
         Math.abs(y - y0) == Math.abs(x - x0)
-    #
+    # Tests:
     state = incrementalEightQueensProblem.initialState
 
     state = incrementalEightQueensProblem.result state, 3
@@ -454,7 +464,7 @@ Confer section 3.2.1, p. 73.
         result: (state, action) -> [...state, action],
         stepCost: (state, action) -> 1,
         goalTest: (state) -> (calc state) == goal
-    #
+    # Tests:
     simpleKnuthConjecture  = makeKnuthConjecture 1
     complexKnuthConjecture = makeKnuthConjecture 5
 
@@ -624,7 +634,7 @@ Confer section 3.2.2, p. 73.
           graph.straightLineDist[state][end]
         goalTest: (state) ->
           deepEqual state, end
-    #
+    # Tests:
     routeFindingProblem = makeRouteFindingProblem cities, 'Arad', 'Bucharest'
 
     state = routeFindingProblem.initialState
@@ -661,7 +671,7 @@ Confer section 3.2.2, p. 74.
           graph.straightLineDist[state[state.length - 1]][end]
         goalTest: (state) ->
           deepEqual state[state.length - 1], end
-    #
+    # Tests:
     touringProblem = makeTouringProblem cities, 'Arad', 'Bucharest'
 
     state = touringProblem.initialState
@@ -695,7 +705,7 @@ Confer section 3.2.2, p. 74.
         goalTest: (state) ->
           state.length == (Object.keys graph.dist).length and
           state[state.length - 1] == end
-    #
+    # Tests:
     travelingSalespersonProblem = makeTravelingSalespersonProblem cities, 'Arad', 'Bucharest'
 
     state = travelingSalespersonProblem.initialState
@@ -808,7 +818,7 @@ Confer section 3.3.1, p. 80.
 Confer section 3.4.1, p. 82.
 
     export breadthFirstSearch = makeGraphSearch FifoQueue
-    #
+    # Tests:
 
     assert.deepEqual (Problem.solutionPath breadthFirstSearch vacuumWorld), [
       { location: 'A', A: 'dirty', B: 'dirty' }
@@ -848,7 +858,7 @@ Confer section 3.4.1, p. 82.
 Confer section 3.4.2, p. 84.
 
     export uniformCostSearch = makeGraphSearch makePriorityQueue (node) -> node.pathCost
-    #
+    # Tests:
 
     assert.deepEqual (Problem.solutionPath uniformCostSearch vacuumWorld), [
       { location: 'A', A: 'dirty', B: 'dirty' }
@@ -888,7 +898,7 @@ Confer section 3.4.2, p. 84.
 Confer section 3.4.3, p. 87.
 
     export depthFirstSearch = makeGraphSearch LifoQueue
-    #
+    # Tests:
 
     assert.deepEqual (depthFirstSearch incrementalEightQueensProblem).state, [
       [0, 0, 0, 0, 0, 0, 0, 1]
@@ -937,7 +947,7 @@ Confer section 3.4.4, p. 88.
           'cutoff'
         else
           false
-    #
+    # Tests:
 
     assert.equal (depthLimitedSearch vacuumWorld, 2), 'cutoff'
     assert.deepEqual (Problem.solutionPath (depthLimitedSearch vacuumWorld, 3)), [
@@ -984,7 +994,7 @@ Confer section 3.4.5, p. 89.
         result
       else
         recursiveIterativeDeepeningSearch problem, (depth + 1)
-    #
+    # Tests:
 
     assert.deepEqual (Problem.solutionPath iterativeDeepeningSearch vacuumWorld), [
       { location: 'A', A: 'dirty', B: 'dirty' }
@@ -1027,7 +1037,7 @@ Confer section 3.5.1, p. 92.
 
     export greedySearch = makeGraphSearch \
       makePriorityQueue (node) -> node.heuristic
-    #
+    # Tests:
 
     assert.deepEqual (Problem.solutionPath greedySearch vacuumWorld), [
       { location: 'A', A: 'dirty', B: 'dirty' }
@@ -1068,7 +1078,7 @@ Confer section 3.5.2, p. 93.
 
     export aStarSearch  = makeGraphSearch \
       makePriorityQueue (node) -> node.pathCost + node.heuristic
-    #
+    # Tests:
 
     assert.deepEqual (Problem.solutionPath aStarSearch vacuumWorld), [
       { location: 'A', A: 'dirty', B: 'dirty' }
@@ -1177,7 +1187,7 @@ Complete-state formulation of the 8-queens problem. From section 4.1.1, p. 122.
           .slice 0, i
           .map (b) -> [a, b]
       ]), []
-    #
+    # Tests:
     state = completeStateEightQueensProblem.initialState
     assert.equal (completeStateEightQueensProblem.actions state).length, 8 * (8 - 1)
     assert.equal (completeStateEightQueensProblem.value state), -(8**2 - 8) / 2
@@ -1214,7 +1224,7 @@ Confer section 4.1.1, p. 122.
           node
         else
           prev
-    #
+    # Tests:
 
 solution = (hillClimbingSearch completeStateEightQueensProblem).state
 assert.deepEqual solution, [
@@ -1253,7 +1263,7 @@ Parameter `random`: A random number generator function. Use seeded function for 
         else if (Math.E**(evalSlope / temp) * random()) > 0.5
           current = next
         time += 1
-    #
+    # Tests:
 
     rand = gen.create 'seedshrdlu4523' # random seed initialization for testing
     nSteps = 2
@@ -1343,7 +1353,7 @@ Confer section 5.1, p. 163.
         .flat()
         .filter (square) -> square == x
         .length
-    #
+    # Tests:
 
     state = ticTacToe.initialState
 
@@ -1503,7 +1513,7 @@ Changes to the pseudocode:
           v
         alpha = Math.min alpha, v
       v
-    #
+    # Tests:
 
     for algorithm in [minimaxDecision, alphaBetaSearch]
       state = [
@@ -1595,7 +1605,7 @@ Confer section 6.1.1, p. 203.
           (a, b) -> a != b
         ]
       ]
-    #
+    # Tests:
 
     state = mapColoringProblem.initialState
     assert.deepEqual state, []
@@ -1693,7 +1703,7 @@ Confer section 6.1.3, p. 205.
           (a, b) -> not attacks a, b
         ]
       ]
-    #
+    # Tests:
 
     solution = [
       [1, 0, 0, 0, 0, 0, 0, 0]
@@ -1746,7 +1756,7 @@ Confer section 6.2.1, p. 208.
 
     nonUnaryConstraints = (constraints) ->
       constraints.filter (constraint) -> constraint[1].length > 1
-    #
+    # Tests:
 
     problem = new ConstraintSatisfactionProblem
       domains: [
@@ -1790,7 +1800,10 @@ Confer section 7.4.1, p. 244.
         if (levels sentence).some (level) -> level > 1
           if (operatorIndex sentence) > -1
             [
-              (sentence.slice (operatorIndex sentence), (operatorIndex sentence) + 1)[0],
+              (sentence.slice \
+                (operatorIndex sentence), \
+                (operatorIndex sentence) + 1 \
+              )[0],
               ...if not unaryOperators.includes sentence[operatorIndex sentence]
                 [recursiveParse (sentence.slice 1, operatorIndex sentence), vars]
               else
@@ -1831,7 +1844,7 @@ Confer section 7.4.1, p. 244.
     operatorIndex = (sentence) ->
       sentence.findIndex (char, i) ->
         (levels sentence)[i] == 1 and operators.includes char
-    #
+    # Tests:
 
     for [proposition, syntax] in [
       [ [ 'A'                   ], 'ERROR'                            ]

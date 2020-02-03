@@ -19,6 +19,7 @@
     "Games"
   ],
   "type": "module",
+  "module": "index.mjs",
   "main": "index.mjs",
   "files": [
     "index.mjs",
@@ -26,7 +27,7 @@
   ],
   "scripts": {
     "test": "coffee --compile --output test.mjs readme.litcoffee && node --require source-map-support/register test.mjs",
-    "prepare": "coffee --compile --output index.mjs readme.litcoffee",
+    "prepare": "cat readme.litcoffee | sed -e 's/.*import.* from (assert|random-seed).*|(\\n(    # )?(Test(ing|s)?|(For )?(E|e)xamples?):.*(\\n    .*|\\n)*)/\\n/g' | coffee --stdio --literate --compile > index.mjs",
     "build-docs": "docco readme.litcoffee --layout linear && mv docs/readme.html docs/index.html",
     "coverage": "npm run prepare && c8 node index.mjs --reporter=text-lcov > coverage.lcov"
   },
@@ -34,13 +35,13 @@
     "node": ">= 13.0"
   },
   "dependencies": {
-    "deep-equal": "^1.1.1",
-    "random-seed": "^0.3.0"
+    "deep-equal": "^1.1.1"
   },
   "devDependencies": {
     "c8": "^7.0.1",
     "coffeescript": "^2.5.1",
     "docco": "^0.8.0",
+    "random-seed": "^0.3.0",
     "source-map-support": "^0.5.16"
   }
 }

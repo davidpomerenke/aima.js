@@ -22,6 +22,9 @@
   <a href="https://github.com/davidpomerenke/aima-coffee/actions?query=workflow%3A%22Node+CI%22">
     <img src="https://github.com/davidpomerenke/aima-coffee/workflows/Node%20CI/badge.svg" alt="Tests" />
   </a>
+  <a href="https://codecov.io/gh/davidpomerenke/aima-coffee">
+    <img src="https://codecov.io/gh/davidpomerenke/aima-coffee/branch/master/graph/badge.svg" alt="Coverage" />
+  </a>
   <a href="https://gitter.im/aima-coffee/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge">
     <img src="https://badges.gitter.im/aima-coffee/community.svg" alt="Chat" />
   </a>
@@ -69,6 +72,13 @@ The <em>aimacode</em> organization also features repositories with <em>AIMA</em>
 <h2 id="contributing">Contributing</h2>
 <p>Every contribution is very welcome: Modifications of existing code to make it more understandable and beautiful; additional algorithms and data structures from the book; additional problems and games; additional usage examples; additional documentation; anything else you have in mind. Please create an issue or a pull request!</p>
 <p>Thank you very much in advance for your contribution :)</p>
+<h2 id="development">Development</h2>
+<p>The node package does not include this CoffeeScript file, but instead a compiled JavaScript version.
+Furthermore, the testing sections and the corresponding imports are cut out from the CoffeeScript before compilation.
+A line with the comment <code>Testing:</code>, <code>Example:</code>, or <code>For example:</code> marks the beginning of a <em>testing section</em>,
+which will not appear in the package.
+This is to ensure that the package is minimal and widely compatible.</p>
+<p>The compilation pipeline is included in <code>package.json</code> and is started by <code>npm run prepare</code>, which is triggered automatically before publishing with <code>npm publish</code>.</p>
 <h2 id="pre-requisites">Pre-Requisites</h2>
 <h3 id="dependencies">Dependencies</h3>
 
@@ -94,7 +104,8 @@ The <em>aimacode</em> organization also features repositories with <em>AIMA</em>
         
       
         
-        
+        <p>Tests:</p>
+
         
           <div class='highlight'><pre>array = [ [<span class="hljs-number">100</span>, <span class="hljs-number">1000</span>], [<span class="hljs-number">200</span>, <span class="hljs-number">2000</span>], [<span class="hljs-number">300</span>, <span class="hljs-number">3000</span>] ]
 assert.equal (sum array, <span class="hljs-function"><span class="hljs-params">(x)</span>           -&gt;</span> x[<span class="hljs-number">1</span>]),                        <span class="hljs-number">6000</span>
@@ -112,7 +123,8 @@ assert.equal (sum array, <span class="hljs-function"><span class="hljs-params">(
         
       
         
-        
+        <p>Tests:</p>
+
         
           <div class='highlight'><pre>assert.equal factorial(<span class="hljs-number">5</span>), <span class="hljs-number">1</span> * <span class="hljs-number">2</span> * <span class="hljs-number">3</span> * <span class="hljs-number">4</span> * <span class="hljs-number">5</span>
 assert.equal factorial(<span class="hljs-number">10</span>), factorial(<span class="hljs-number">5</span>) * <span class="hljs-number">6</span> * <span class="hljs-number">7</span> * <span class="hljs-number">8</span> * <span class="hljs-number">9</span> * <span class="hljs-number">10</span></pre></div>
@@ -316,7 +328,8 @@ assert.equal (reflexVacuumAgent.action [ [<span class="hljs-string">'C'</span>, 
         
       
         
-        
+        <p>Tests:</p>
+
         
           <div class='highlight'><pre>state = vacuumWorld.initialState
 assert.deepEqual state, { location: <span class="hljs-string">'A'</span>, A: <span class="hljs-string">'dirty'</span>, B: <span class="hljs-string">'dirty'</span> }
@@ -419,7 +432,8 @@ assert vacuumWorld.goalTest state</pre></div>
         
       
         
-        
+        <p>Tests:</p>
+
         
           <div class='highlight'><pre>simpleEightPuzzle = makeEightPuzzle [
   [<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>]
@@ -492,7 +506,8 @@ assert.equal (simpleEightPuzzle.heuristic state), <span class="hljs-number">20</
         
       
         
-        
+        <p>Tests:</p>
+
         
           <div class='highlight'><pre>state = incrementalEightQueensProblem.initialState
 
@@ -534,7 +549,8 @@ assert.deepEqual (incrementalEightQueensProblem.result state, <span class="hljs-
         
       
         
-        
+        <p>Tests:</p>
+
         
           <div class='highlight'><pre>simpleKnuthConjecture  = makeKnuthConjecture <span class="hljs-number">1</span>
 complexKnuthConjecture = makeKnuthConjecture <span class="hljs-number">5</span>
@@ -712,7 +728,8 @@ assert complexKnuthConjecture.goalTest state</pre></div>
         
       
         
-        
+        <p>Tests:</p>
+
         
           <div class='highlight'><pre>routeFindingProblem = makeRouteFindingProblem cities, <span class="hljs-string">'Arad'</span>, <span class="hljs-string">'Bucharest'</span>
 
@@ -755,7 +772,8 @@ assert.equal state, <span class="hljs-literal">undefined</span></pre></div>
         
       
         
-        
+        <p>Tests:</p>
+
         
           <div class='highlight'><pre>touringProblem = makeTouringProblem cities, <span class="hljs-string">'Arad'</span>, <span class="hljs-string">'Bucharest'</span>
 
@@ -795,7 +813,8 @@ assert.deepEqual state, <span class="hljs-literal">undefined</span></pre></div>
         
       
         
-        
+        <p>Tests:</p>
+
         
           <div class='highlight'><pre>travelingSalespersonProblem = makeTravelingSalespersonProblem cities, <span class="hljs-string">'Arad'</span>, <span class="hljs-string">'Bucharest'</span>
 
@@ -928,7 +947,8 @@ assert.deepEqual state, <span class="hljs-literal">undefined</span></pre></div>
         
       
         
-        
+        <p>Tests:</p>
+
         
           <div class='highlight'><pre>
 assert.deepEqual (Problem.solutionPath breadthFirstSearch vacuumWorld), [
@@ -974,7 +994,8 @@ assert.equal (breadthFirstSearch travelingSalespersonProblem), <span class="hljs
         
       
         
-        
+        <p>Tests:</p>
+
         
           <div class='highlight'><pre>
 assert.deepEqual (Problem.solutionPath uniformCostSearch vacuumWorld), [
@@ -1020,7 +1041,8 @@ assert.equal (uniformCostSearch travelingSalespersonProblem), <span class="hljs-
         
       
         
-        
+        <p>Tests:</p>
+
         
           <div class='highlight'><pre>
 assert.deepEqual (depthFirstSearch incrementalEightQueensProblem).state, [
@@ -1075,7 +1097,8 @@ assert.equal (depthFirstSearch travelingSalespersonProblem), <span class="hljs-l
         
       
         
-        
+        <p>Tests:</p>
+
         
           <div class='highlight'><pre>
 assert.equal (depthLimitedSearch vacuumWorld, <span class="hljs-number">2</span>), <span class="hljs-string">'cutoff'</span>
@@ -1128,7 +1151,8 @@ assert.equal (depthLimitedSearch travelingSalespersonProblem, <span class="hljs-
         
       
         
-        
+        <p>Tests:</p>
+
         
           <div class='highlight'><pre>
 assert.deepEqual (Problem.solutionPath iterativeDeepeningSearch vacuumWorld), [
@@ -1176,7 +1200,8 @@ assert.equal (iterativeDeepeningSearch travelingSalespersonProblem), <span class
         
       
         
-        
+        <p>Tests:</p>
+
         
           <div class='highlight'><pre>
 assert.deepEqual (Problem.solutionPath greedySearch vacuumWorld), [
@@ -1223,7 +1248,8 @@ assert.equal (greedySearch travelingSalespersonProblem), <span class="hljs-liter
         
       
         
-        
+        <p>Tests:</p>
+
         
           <div class='highlight'><pre>
 assert.deepEqual (Problem.solutionPath aStarSearch vacuumWorld), [
@@ -1340,7 +1366,8 @@ assert.equal (aStarSearch travelingSalespersonProblem), <span class="hljs-litera
         
       
         
-        
+        <p>Tests:</p>
+
         
           <div class='highlight'><pre>state = completeStateEightQueensProblem.initialState
 assert.equal (completeStateEightQueensProblem.actions state).length, <span class="hljs-number">8</span> * (<span class="hljs-number">8</span> - <span class="hljs-number">1</span>)
@@ -1383,7 +1410,8 @@ assert.equal (completeStateEightQueensProblem.value state), -(<span class="hljs-
         
       
         
-        
+        <p>Tests:</p>
+
         
       
         
@@ -1425,7 +1453,8 @@ assert.deepEqual solution, [
         
       
         
-        
+        <p>Tests:</p>
+
         
           <div class='highlight'><pre>
 rand = gen.create <span class="hljs-string">'seedshrdlu4523'</span> <span class="hljs-comment"># random seed initialization for testing</span>
@@ -1522,7 +1551,8 @@ This is excluded from testing because it takes too long.</p>
         
       
         
-        
+        <p>Tests:</p>
+
         
           <div class='highlight'><pre>
 state = ticTacToe.initialState
@@ -1689,7 +1719,8 @@ This is applicable to zero-sum games only.</li>
         
       
         
-        
+        <p>Tests:</p>
+
         
           <div class='highlight'><pre>
 <span class="hljs-keyword">for</span> algorithm <span class="hljs-keyword">in</span> [minimaxDecision, alphaBetaSearch]
@@ -1797,7 +1828,8 @@ This is applicable to zero-sum games only.</li>
         
       
         
-        
+        <p>Tests:</p>
+
         
           <div class='highlight'><pre>
 state = mapColoringProblem.initialState
@@ -1901,7 +1933,8 @@ Confer section 6.1.3, p. 205.</p>
         
       
         
-        
+        <p>Tests:</p>
+
         
           <div class='highlight'><pre>
 solution = [
@@ -1960,7 +1993,8 @@ assert constraintSatisfactionEightQueensProblem.satisfied solution</pre></div>
         
       
         
-        
+        <p>Tests:</p>
+
         
           <div class='highlight'><pre>
 problem = <span class="hljs-keyword">new</span> ConstraintSatisfactionProblem
@@ -2007,7 +2041,10 @@ operators       = [...unaryOperators, ...binaryOperators]
     <span class="hljs-keyword">if</span> (levels sentence).some (level) -&gt; level &gt; <span class="hljs-number">1</span>
       <span class="hljs-keyword">if</span> (operatorIndex sentence) &gt; <span class="hljs-number">-1</span>
         [
-          (sentence.slice (operatorIndex sentence), (operatorIndex sentence) + <span class="hljs-number">1</span>)[<span class="hljs-number">0</span>],
+          (sentence.slice \
+            (operatorIndex sentence), \
+            (operatorIndex sentence) + <span class="hljs-number">1</span> \
+          )[<span class="hljs-number">0</span>],
           ...<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> unaryOperators.includes sentence[operatorIndex sentence]
             [recursiveParse (sentence.slice <span class="hljs-number">1</span>, operatorIndex sentence), vars]
           <span class="hljs-keyword">else</span>
@@ -2051,7 +2088,8 @@ operators       = [...unaryOperators, ...binaryOperators]
         
       
         
-        
+        <p>Tests:</p>
+
         
           <div class='highlight'><pre>
 <span class="hljs-keyword">for</span> [proposition, syntax] <span class="hljs-keyword">in</span> [
