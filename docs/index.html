@@ -84,7 +84,7 @@ This is to ensure that the package is minimal and widely compatible.</p>
 
           
             <div class='highlight'><pre><span class="hljs-keyword">import</span> deepEqual            <span class="hljs-keyword">from</span> <span class="hljs-string">'deep-equal'</span>
-<span class="hljs-keyword">import</span> gen                  <span class="hljs-keyword">from</span> <span class="hljs-string">'random-seed'</span>
+<span class="hljs-keyword">import</span> gen                  <span class="hljs-keyword">from</span> <span class="hljs-string">'random-seed'</span> <span class="hljs-comment"># testing only</span>
 <span class="hljs-keyword">import</span> { strict <span class="hljs-keyword">as</span> assert } <span class="hljs-keyword">from</span> <span class="hljs-string">'assert'</span></pre></div>
           
         
@@ -94,7 +94,8 @@ This is to ensure that the package is minimal and widely compatible.</p>
 
       
         
-        <h3 id="utilities">Utilities</h3>
+        <p>All lines ending with a comment <code># testing only</code>, as well as all assertions, will be removed for production.</p>
+<h3 id="utilities">Utilities</h3>
 <h4 id="sum">Sum</h4>
 
         
@@ -104,8 +105,7 @@ This is to ensure that the package is minimal and widely compatible.</p>
         
       
         
-        <p>Tests:</p>
-
+        
         
           <div class='highlight'><pre>array = [ [<span class="hljs-number">100</span>, <span class="hljs-number">1000</span>], [<span class="hljs-number">200</span>, <span class="hljs-number">2000</span>], [<span class="hljs-number">300</span>, <span class="hljs-number">3000</span>] ]
 assert.equal (sum array, <span class="hljs-function"><span class="hljs-params">(x)</span>           -&gt;</span> x[<span class="hljs-number">1</span>]),                        <span class="hljs-number">6000</span>
@@ -123,8 +123,7 @@ assert.equal (sum array, <span class="hljs-function"><span class="hljs-params">(
         
       
         
-        <p>Tests:</p>
-
+        
         
           <div class='highlight'><pre>assert.equal factorial(<span class="hljs-number">5</span>), <span class="hljs-number">1</span> * <span class="hljs-number">2</span> * <span class="hljs-number">3</span> * <span class="hljs-number">4</span> * <span class="hljs-number">5</span>
 assert.equal factorial(<span class="hljs-number">10</span>), factorial(<span class="hljs-number">5</span>) * <span class="hljs-number">6</span> * <span class="hljs-number">7</span> * <span class="hljs-number">8</span> * <span class="hljs-number">9</span> * <span class="hljs-number">10</span></pre></div>
@@ -328,8 +327,7 @@ assert.equal (reflexVacuumAgent.action [ [<span class="hljs-string">'C'</span>, 
         
       
         
-        <p>Tests:</p>
-
+        
         
           <div class='highlight'><pre>state = vacuumWorld.initialState
 assert.deepEqual state, { location: <span class="hljs-string">'A'</span>, A: <span class="hljs-string">'dirty'</span>, B: <span class="hljs-string">'dirty'</span> }
@@ -432,8 +430,7 @@ assert vacuumWorld.goalTest state</pre></div>
         
       
         
-        <p>Tests:</p>
-
+        
         
           <div class='highlight'><pre>simpleEightPuzzle = makeEightPuzzle [
   [<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>]
@@ -506,8 +503,7 @@ assert.equal (simpleEightPuzzle.heuristic state), <span class="hljs-number">20</
         
       
         
-        <p>Tests:</p>
-
+        
         
           <div class='highlight'><pre>state = incrementalEightQueensProblem.initialState
 
@@ -549,8 +545,7 @@ assert.deepEqual (incrementalEightQueensProblem.result state, <span class="hljs-
         
       
         
-        <p>Tests:</p>
-
+        
         
           <div class='highlight'><pre>simpleKnuthConjecture  = makeKnuthConjecture <span class="hljs-number">1</span>
 complexKnuthConjecture = makeKnuthConjecture <span class="hljs-number">5</span>
@@ -728,8 +723,7 @@ assert complexKnuthConjecture.goalTest state</pre></div>
         
       
         
-        <p>Tests:</p>
-
+        
         
           <div class='highlight'><pre>routeFindingProblem = makeRouteFindingProblem cities, <span class="hljs-string">'Arad'</span>, <span class="hljs-string">'Bucharest'</span>
 
@@ -772,8 +766,7 @@ assert.equal state, <span class="hljs-literal">undefined</span></pre></div>
         
       
         
-        <p>Tests:</p>
-
+        
         
           <div class='highlight'><pre>touringProblem = makeTouringProblem cities, <span class="hljs-string">'Arad'</span>, <span class="hljs-string">'Bucharest'</span>
 
@@ -813,8 +806,7 @@ assert.deepEqual state, <span class="hljs-literal">undefined</span></pre></div>
         
       
         
-        <p>Tests:</p>
-
+        
         
           <div class='highlight'><pre>travelingSalespersonProblem = makeTravelingSalespersonProblem cities, <span class="hljs-string">'Arad'</span>, <span class="hljs-string">'Bucharest'</span>
 
@@ -947,8 +939,7 @@ assert.deepEqual state, <span class="hljs-literal">undefined</span></pre></div>
         
       
         
-        <p>Tests:</p>
-
+        
         
           <div class='highlight'><pre>
 assert.deepEqual (Problem.solutionPath breadthFirstSearch vacuumWorld), [
@@ -994,8 +985,7 @@ assert.equal (breadthFirstSearch travelingSalespersonProblem), <span class="hljs
         
       
         
-        <p>Tests:</p>
-
+        
         
           <div class='highlight'><pre>
 assert.deepEqual (Problem.solutionPath uniformCostSearch vacuumWorld), [
@@ -1041,8 +1031,7 @@ assert.equal (uniformCostSearch travelingSalespersonProblem), <span class="hljs-
         
       
         
-        <p>Tests:</p>
-
+        
         
           <div class='highlight'><pre>
 assert.deepEqual (depthFirstSearch incrementalEightQueensProblem).state, [
@@ -1097,8 +1086,7 @@ assert.equal (depthFirstSearch travelingSalespersonProblem), <span class="hljs-l
         
       
         
-        <p>Tests:</p>
-
+        
         
           <div class='highlight'><pre>
 assert.equal (depthLimitedSearch vacuumWorld, <span class="hljs-number">2</span>), <span class="hljs-string">'cutoff'</span>
@@ -1151,8 +1139,7 @@ assert.equal (depthLimitedSearch travelingSalespersonProblem, <span class="hljs-
         
       
         
-        <p>Tests:</p>
-
+        
         
           <div class='highlight'><pre>
 assert.deepEqual (Problem.solutionPath iterativeDeepeningSearch vacuumWorld), [
@@ -1200,8 +1187,7 @@ assert.equal (iterativeDeepeningSearch travelingSalespersonProblem), <span class
         
       
         
-        <p>Tests:</p>
-
+        
         
           <div class='highlight'><pre>
 assert.deepEqual (Problem.solutionPath greedySearch vacuumWorld), [
@@ -1248,8 +1234,7 @@ assert.equal (greedySearch travelingSalespersonProblem), <span class="hljs-liter
         
       
         
-        <p>Tests:</p>
-
+        
         
           <div class='highlight'><pre>
 assert.deepEqual (Problem.solutionPath aStarSearch vacuumWorld), [
@@ -1366,8 +1351,7 @@ assert.equal (aStarSearch travelingSalespersonProblem), <span class="hljs-litera
         
       
         
-        <p>Tests:</p>
-
+        
         
           <div class='highlight'><pre>state = completeStateEightQueensProblem.initialState
 assert.equal (completeStateEightQueensProblem.actions state).length, <span class="hljs-number">8</span> * (<span class="hljs-number">8</span> - <span class="hljs-number">1</span>)
@@ -1410,8 +1394,7 @@ assert.equal (completeStateEightQueensProblem.value state), -(<span class="hljs-
         
       
         
-        <p>Tests:</p>
-
+        
         
       
         
@@ -1453,12 +1436,12 @@ assert.deepEqual solution, [
         
       
         
-        <p>Tests:</p>
-
+        
         
           <div class='highlight'><pre>
-rand = gen.create <span class="hljs-string">'seedshrdlu4523'</span> <span class="hljs-comment"># random seed initialization for testing</span>
-nSteps = <span class="hljs-number">2</span>
+seed = <span class="hljs-string">'seedshrdlu4523'</span> <span class="hljs-comment"># testing only</span>
+rand = gen.create seed  <span class="hljs-comment"># testing only</span>
+nSteps = <span class="hljs-number">2</span>              <span class="hljs-comment"># testing only</span>
 assert.equal \
   (simulatedAnnealing completeStateEightQueensProblem, <span class="hljs-function">(<span class="hljs-params">(t)</span> -&gt;</span> <span class="hljs-number">1</span>/t - <span class="hljs-number">1</span>/nSteps), rand.random).value, \
   <span class="hljs-number">-22</span></pre></div>
@@ -1551,8 +1534,7 @@ This is excluded from testing because it takes too long.</p>
         
       
         
-        <p>Tests:</p>
-
+        
         
           <div class='highlight'><pre>
 state = ticTacToe.initialState
@@ -1653,7 +1635,7 @@ This is applicable to zero-sum games only. Note that the terms ‘maximin’ and
     <span class="hljs-keyword">else</span>
       game.actions state
         .reduce (<span class="hljs-function"><span class="hljs-params">(prev, current)</span> -&gt;</span>
-          Math.min prev, (minValue game, (game.result state, current), limit - <span class="hljs-number">1</span>)), Infinity</pre></div>
+          Math.min prev, (maxValue game, (game.result state, current), limit - <span class="hljs-number">1</span>)), Infinity</pre></div>
         
       
         
@@ -1686,7 +1668,7 @@ This is applicable to zero-sum games only.</li>
       action: action,
       outcome: alphaBetaMaxValue game, (game.result state, action), limit - <span class="hljs-number">1</span>, -Infinity, +Infinity
     .reduce (current, next) -&gt;
-      <span class="hljs-keyword">if</span> next.outcome &gt; current.outcome
+      <span class="hljs-keyword">if</span> next.outcome &lt; current.outcome
         next
       <span class="hljs-keyword">else</span>
         current
@@ -1712,15 +1694,14 @@ This is applicable to zero-sum games only.</li>
   v = +Infinity
   <span class="hljs-keyword">for</span> action <span class="hljs-keyword">in</span> game.actions state
     v = Math.min v, (alphaBetaMaxValue game, (game.result state, action), limit, alpha, beta)
-    <span class="hljs-keyword">if</span> v &lt;= beta
+    <span class="hljs-keyword">if</span> v &lt;= alpha
       v
-    alpha = Math.min alpha, v
+    beta = Math.min beta, v
   v</pre></div>
         
       
         
-        <p>Tests:</p>
-
+        
         
           <div class='highlight'><pre>
 <span class="hljs-keyword">for</span> algorithm <span class="hljs-keyword">in</span> [minimaxDecision, alphaBetaSearch]
@@ -1828,8 +1809,7 @@ This is applicable to zero-sum games only.</li>
         
       
         
-        <p>Tests:</p>
-
+        
         
           <div class='highlight'><pre>
 state = mapColoringProblem.initialState
@@ -1933,8 +1913,7 @@ Confer section 6.1.3, p. 205.</p>
         
       
         
-        <p>Tests:</p>
-
+        
         
           <div class='highlight'><pre>
 solution = [
@@ -1993,8 +1972,7 @@ assert constraintSatisfactionEightQueensProblem.satisfied solution</pre></div>
         
       
         
-        <p>Tests:</p>
-
+        
         
           <div class='highlight'><pre>
 problem = <span class="hljs-keyword">new</span> ConstraintSatisfactionProblem
@@ -2088,8 +2066,7 @@ operators       = [...unaryOperators, ...binaryOperators]
         
       
         
-        <p>Tests:</p>
-
+        
         
           <div class='highlight'><pre>
 <span class="hljs-keyword">for</span> [proposition, syntax] <span class="hljs-keyword">in</span> [
