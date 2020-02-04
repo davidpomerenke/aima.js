@@ -45,3 +45,13 @@
     "source-map-support": "^0.5.16"
   }
 }
+      "unassert",
+        "search-and-replace",
+        [
+          {
+            "search": "import gen                  from 'random-seed'",
+            "replace": ""
+          },
+            "search": "rand = gen.create seed",
+            "replace": ""
+          }
