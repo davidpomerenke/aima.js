@@ -71,13 +71,7 @@ Thank you very much in advance for your contribution :)
 
 ## Development
 
-The node package does not include this CoffeeScript file, but instead a compiled JavaScript version.
-Furthermore, the testing sections and the corresponding imports are cut out from the CoffeeScript before compilation.
-A line with the comment `Testing:`, `Example:`, or `For example:` marks the beginning of a _testing section_,
-which will not appear in the package.
-This is to ensure that the package is minimal and widely compatible.
-
-The compilation pipeline is included in `package.json` and is started by `npm run prepare`, which is triggered automatically before publishing with `npm publish`.
+`npm prepare` removes all assertion statements from the code, as well as all lines which are ended by `# testing only`. This way, the testing can be kept right next to the code it refers to, but it is excluded from the distributed package.
 
 ## Pre-Requisites
 
