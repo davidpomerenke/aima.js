@@ -87,20 +87,23 @@ All lines ending with a comment `# testing only`, as well as all assertions, wil
 
 #### Sum
 
-    sum = (array, func) ->
-      array.reduce ((accumulator, value, index) ->
-        accumulator + func value, index, array), 0
+    Array::sum = (func) ->
+      this.reduce (accumulator, value, index, array) ->
+        accumulator + func value, index, array
+      , 0
     #
     array = [ [100, 1000], [200, 2000], [300, 3000] ]
-    assert.equal (sum array, (x)           -> x[1]),                        6000
-    assert.equal (sum array, (x, i)        -> x[1] + 10 * i),               6030
-    assert.equal (sum array, (x, i, array) -> x[1] + 10 * i + array[0][0]), 6330
+    assert.equal (array.sum (x)           -> x[1]),                        6000
+    assert.equal (array.sum (x, i)        -> x[1] + 10 * i),               6030
+    assert.equal (array.sum (x, i, array) -> x[1] + 10 * i + array[0][0]), 6330
 
 #### Factorial
 
     factorial = (n) -> 
       [...Array(n).keys()]
-        .reduce ((prev, i) -> prev * (i + 1)), 1
+        .reduce (prev, i) ->
+          prev * (i + 1)
+        , 1
     #
     assert.equal factorial(5), 1 * 2 * 3 * 4 * 5
     assert.equal factorial(10), factorial(5) * 6 * 7 * 8 * 9 * 10
@@ -356,8 +359,8 @@ Confer section 3.2.1, p. 71.
                 nr
         stepCost: (state, action) -> 1
         heuristic: (state) ->
-          sum state, (numbers, y) ->
-            sum numbers, (number, x) ->
+          state.sum (numbers, y) ->
+            numbers.sum (number, x) ->
               manhattanDist [y, x], goalPosition number
         goalTest: (state) ->
           deepEqual state, goalState
@@ -1146,12 +1149,14 @@ Complete-state formulation of the 8-queens problem. From section 4.1.1, p. 122.
         [1, 0, 0, 0, 0, 0, 0, 0]
       ]
       actions: (state) ->
-        state.reduce ((total, row, y) -> [
-          ...total,
-          ...[0, 1, 2, 3, 4, 5, 6, 7]
-            .filter (x) -> row[x] == 0
-            .map (x) -> [y, x]
-        ]), []
+        state.reduce (total, row, y) ->
+          [
+            ...total,
+            ...[0, 1, 2, 3, 4, 5, 6, 7]
+              .filter (x) -> row[x] == 0
+              .map (x) -> [y, x]
+          ]
+        , []
       result: (state, [yMove, xMove]) ->
         state.map (row, y) ->
           row.map (tile, x) ->
@@ -1173,16 +1178,19 @@ Complete-state formulation of the 8-queens problem. From section 4.1.1, p. 122.
       combinations \
         state.map (row, y) ->
           [y, row.indexOf 1]
-        .reduce ((total, [q1, q2]) ->
-          total + attacks(q1, q2) * 1), 0
+        .reduce (total, [q1, q2]) ->
+          total + attacks(q1, q2) * 1
+        , 0
 
     combinations = (array) ->
-      array.reduce ((prev, a, i) -> [
-        ...prev,
-        ...array
-          .slice 0, i
-          .map (b) -> [a, b]
-      ]), []
+      array.reduce (prev, a, i) -> 
+        [
+          ...prev,
+          ...array
+            .slice 0, i
+            .map (b) -> [a, b]
+        ]
+      , []
     #
     state = completeStateEightQueensProblem.initialState
     assert.equal (completeStateEightQueensProblem.actions state).length, 8 * (8 - 1)
@@ -1436,8 +1444,9 @@ Changes to the pseudocode:
           game.heuristic state
         else
           game.actions state
-            .reduce ((prev, current) ->
-              Math.max prev, (minValue game, (game.result state, current), limit - 1)), -Infinity
+            .reduce (prev, current) ->
+              Math.max prev, (minValue game, (game.result state, current), limit - 1)
+            , -Infinity
 
     minValue = (game, state, limit) ->
       if game.terminalTest state
@@ -1447,8 +1456,9 @@ Changes to the pseudocode:
           game.heuristic state
         else
           game.actions state
-            .reduce ((prev, current) ->
-              Math.min prev, (maxValue game, (game.result state, current), limit - 1)), Infinity
+            .reduce (prev, current) ->
+              Math.min prev, (maxValue game, (game.result state, current), limit - 1)
+            , Infinity
 
 The `minimaxDecision` algorithm is tested at the end of the next section, together with the `alphaBetaSearch` algorithm.
 
@@ -1832,10 +1842,12 @@ Confer section 7.4.1, p. 244.
             -1
           else
             0
-        .reduce ((prev, derivation) -> [
-          ...prev,
-          prev[prev.length - 1] + derivation
-        ]), [0]
+        .reduce (prev, derivation) ->
+          [
+            ...prev,
+            prev[prev.length - 1] + derivation
+          ]
+        , [0]
         .slice(1)
 
     operatorIndex = (sentence) ->

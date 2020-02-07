@@ -2,3 +2,4 @@ node_modules/
 index.mjs
 test.mjs
 readme.md
+test.coffee
