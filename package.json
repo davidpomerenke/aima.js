@@ -26,7 +26,7 @@
     "readme.md"
   ],
   "scripts": {
-    "test": "coffee --compile --print readme.litcoffee | node --input-type=module --require source-map-support/register",
+    "test": "coffee --compile --inline-map --output readme.mjs readme.litcoffee && node --require source-map-support/register readme.mjs",
     "prepare": "cat readme.litcoffee | sed -e 's/^.*# testing only$//g' | coffee --stdio --literate --compile --transpile > index.mjs",
     "build-docs": "docco readme.litcoffee --layout linear && mv docs/readme.html docs/index.html",
     "coverage": "npm run prepare && c8 node index.mjs --reporter=text-lcov > coverage.lcov"

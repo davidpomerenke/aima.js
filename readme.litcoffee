@@ -87,15 +87,49 @@ All lines ending with a comment `# testing only`, as well as all assertions, wil
 
 #### Sum
 
-    Array::sum = (func) ->
-      this.reduce (accumulator, value, index, array) ->
-        accumulator + func value, index, array
+    Array::sum = (f = (x) -> x) ->
+      this.reduce (accumulator, element, index, array) ->
+        accumulator + f element, index, array
       , 0
     #
     array = [ [100, 1000], [200, 2000], [300, 3000] ]
     assert.equal (array.sum (x)           -> x[1]),                        6000
     assert.equal (array.sum (x, i)        -> x[1] + 10 * i),               6030
     assert.equal (array.sum (x, i, array) -> x[1] + 10 * i + array[0][0]), 6330
+
+#### Argmax, Argmin
+
+    Array::argmin = (f) ->
+      this.reduce (accumulator, element) ->
+        if (f element) < f accumulator
+          element
+        else
+          accumulator
+    #
+    Array::argmax = (f) ->
+      this.reduce (accumulator, element) ->
+        if (f element) > f accumulator
+          element
+        else
+          accumulator
+    #
+    array = [ [100, 3000], [200, 1000], [300, 2000] ]
+    assert.deepEqual (array.argmax (x) -> x[0]), [300, 2000]
+    assert.deepEqual (array.argmax (x) -> x[1]), [100, 3000]
+    assert.deepEqual (array.argmin (x) -> x[0]), [100, 3000]
+    assert.deepEqual (array.argmin (x) -> x[1]), [200, 1000]
+
+#### Max, Min
+
+    Array::min = ->
+      this.argmin (x) -> x
+    #
+    Array::max = ->
+      this.argmax (x) -> x
+    #
+    array = [3, 5, 4, 1, 2]
+    assert.equal array.max(), 5
+    assert.equal array.min(), 1
 
 #### Factorial
 
@@ -1169,18 +1203,16 @@ Complete-state formulation of the 8-queens problem. From section 4.1.1, p. 122.
               tile
       value: (state) -> -nrAttackedQueens state
 
-    attacks = ([y1, x1], [y2, x2]) ->
-      y1 == y2 or
-      x1 == x2 or
-      y2 - y1 == x2 - x1
-
     nrAttackedQueens = (state) ->
+      attacks = ([y1, x1], [y2, x2]) ->
+        y1 == y2 or
+        x1 == x2 or
+        y2 - y1 == x2 - x1
       combinations \
         state.map (row, y) ->
           [y, row.indexOf 1]
-        .reduce (total, [q1, q2]) ->
-          total + attacks(q1, q2) * 1
-        , 0
+        .sum ([q1, q2]) ->
+          attacks(q1, q2) * 1
 
     combinations = (array) ->
       array.reduce (prev, a, i) -> 
@@ -1217,17 +1249,15 @@ Confer section 4.1.1, p. 122.
       recursiveHillClimbingSearch problem, problem.rootNode
 
     recursiveHillClimbingSearch = (problem, current) ->
-      if (biggestValueNode problem.expand current).value <= current.value
+      neighbor = biggestValueNode problem.expand current
+      if neighbor.value <= current.value
         current
       else
-        recursiveHillClimbingSearch problem, biggestValueNode problem.expand current
+        recursiveHillClimbingSearch problem, neighbor
 
     biggestValueNode = (array) ->
-      array.reduce (prev, node) ->
-        if node.value > prev.value
-          node
-        else
-          prev
+      console.log(array)
+      array.max()
     #
 
 solution = (hillClimbingSearch completeStateEightQueensProblem).state
@@ -1419,22 +1449,14 @@ Changes to the pseudocode:
         .map (action) ->
           action: action
           outcome: minValue game, (game.result state, action), limit - 1
-        .reduce (current, next) ->
-          if next.outcome > current.outcome
-            next
-          else
-            current
+        .argmax (x) -> x.outcome
 
     export maximinDecision = (game, state, limit = Infinity) ->
       game.actions state
         .map (action) ->
           action: action
           outcome: maxValue game, (game.result state, action), limit - 1
-        .reduce (current, next) ->
-          if next.outcome < current.outcome
-            next
-          else
-            current
+        .argmin (x) -> x.outcome
 
     maxValue = (game, state, limit) ->
       if game.terminalTest state
@@ -1478,22 +1500,14 @@ Changes to the pseudocode:
         .map (action) ->
           action: action,
           outcome: alphaBetaMinValue game, (game.result state, action), limit - 1, -Infinity, +Infinity
-        .reduce (current, next) ->
-          if next.outcome > current.outcome
-            next
-          else
-            current
+        .argmax (x) -> x.outcome
 
     export betaAlphaSearch = (game, state, limit = Infinity) ->
       game.actions state
         .map (action) ->
           action: action,
           outcome: alphaBetaMaxValue game, (game.result state, action), limit - 1, -Infinity, +Infinity
-        .reduce (current, next) ->
-          if next.outcome < current.outcome
-            next
-          else
-            current
+        .argmin (x) -> x.outcome
 
     alphaBetaMaxValue = (game, state, limit, alpha, beta) ->
       if game.terminalTest state
@@ -1688,14 +1702,8 @@ Confer section 6.1.1, p. 203.
 Constraint-satisfaction formulation of the eight-queens problem.
 Confer section 6.1.3, p. 205.
 
-    queens = [0, 1, 2, 3, 4, 5, 6, 7]
-    attacks = ([y1, x1], [y2, x2]) -> 
-      y1 == y2 or
-      x1 == x2 or
-      y2 - y1 == x2 - x1
-
     export constraintSatisfactionEightQueensProblem = new ConstraintSatisfactionProblem
-      domains: queens.map (queen) -> [
+      domains: [0, 1, 2, 3, 4, 5, 6, 7].map (queen) -> [
         queen
         [0, 1, 2, 3, 4, 5, 6, 7].flatMap (y) ->
           [0, 1, 2, 3, 4, 5, 6, 7].map (x) ->
@@ -1703,11 +1711,16 @@ Confer section 6.1.3, p. 205.
       ]
       constraints: [
         [
-          queens.flatMap (queen1) ->
-            queens
+          [0, 1, 2, 3, 4, 5, 6, 7].flatMap (queen1) ->
+            [0, 1, 2, 3, 4, 5, 6, 7]
               .filter (queen2) -> queen1 != queen2
               .map (queen2) -> [queen1, queen2]
-          (a, b) -> not attacks a, b
+          (a, b) ->
+            attacks = ([y1, x1], [y2, x2]) -> 
+              y1 == y2 or
+              x1 == x2 or
+              y2 - y1 == x2 - x1
+            not attacks a, b
         ]
       ]
     #
