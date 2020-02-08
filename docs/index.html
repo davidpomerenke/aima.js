@@ -73,12 +73,7 @@ The <em>aimacode</em> organization also features repositories with <em>AIMA</em>
 <p>Every contribution is very welcome: Modifications of existing code to make it more understandable and beautiful; additional algorithms and data structures from the book; additional problems and games; additional usage examples; additional documentation; anything else you have in mind. Please create an issue or a pull request!</p>
 <p>Thank you very much in advance for your contribution :)</p>
 <h2 id="development">Development</h2>
-<p>The node package does not include this CoffeeScript file, but instead a compiled JavaScript version.
-Furthermore, the testing sections and the corresponding imports are cut out from the CoffeeScript before compilation.
-A line with the comment <code>Testing:</code>, <code>Example:</code>, or <code>For example:</code> marks the beginning of a <em>testing section</em>,
-which will not appear in the package.
-This is to ensure that the package is minimal and widely compatible.</p>
-<p>The compilation pipeline is included in <code>package.json</code> and is started by <code>npm run prepare</code>, which is triggered automatically before publishing with <code>npm publish</code>.</p>
+<p><code>npm prepare</code> removes all assertion statements from the code, as well as all lines which are ended by <code># testing only</code>. This way, the testing can be kept right next to the code it refers to, but it is excluded from the distributed package.</p>
 <h2 id="pre-requisites">Pre-Requisites</h2>
 <h3 id="dependencies">Dependencies</h3>
 
@@ -99,18 +94,75 @@ This is to ensure that the package is minimal and widely compatible.</p>
 <h4 id="sum">Sum</h4>
 
         
-          <div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">sum</span> = <span class="hljs-params">(array, func)</span> -&gt;</span>
-  array.reduce (<span class="hljs-function"><span class="hljs-params">(accumulator, value, index)</span> -&gt;</span>
-    accumulator + func value, index, array), <span class="hljs-number">0</span></pre></div>
+          <div class='highlight'><pre>Array::sum = <span class="hljs-function"><span class="hljs-params">(f = (x) -&gt; x)</span> -&gt;</span>
+  <span class="hljs-keyword">this</span>.reduce (accumulator, element, index, array) -&gt;
+    accumulator + f element, index, array
+  , <span class="hljs-number">0</span></pre></div>
         
       
         
         
         
           <div class='highlight'><pre>array = [ [<span class="hljs-number">100</span>, <span class="hljs-number">1000</span>], [<span class="hljs-number">200</span>, <span class="hljs-number">2000</span>], [<span class="hljs-number">300</span>, <span class="hljs-number">3000</span>] ]
-assert.equal (sum array, <span class="hljs-function"><span class="hljs-params">(x)</span>           -&gt;</span> x[<span class="hljs-number">1</span>]),                        <span class="hljs-number">6000</span>
-assert.equal (sum array, <span class="hljs-function"><span class="hljs-params">(x, i)</span>        -&gt;</span> x[<span class="hljs-number">1</span>] + <span class="hljs-number">10</span> * i),               <span class="hljs-number">6030</span>
-assert.equal (sum array, <span class="hljs-function"><span class="hljs-params">(x, i, array)</span> -&gt;</span> x[<span class="hljs-number">1</span>] + <span class="hljs-number">10</span> * i + array[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]), <span class="hljs-number">6330</span></pre></div>
+assert.equal (array.sum (x)           -&gt; x[<span class="hljs-number">1</span>]),                        <span class="hljs-number">6000</span>
+assert.equal (array.sum (x, i)        -&gt; x[<span class="hljs-number">1</span>] + <span class="hljs-number">10</span> * i),               <span class="hljs-number">6030</span>
+assert.equal (array.sum (x, i, array) -&gt; x[<span class="hljs-number">1</span>] + <span class="hljs-number">10</span> * i + array[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]), <span class="hljs-number">6330</span></pre></div>
+        
+      
+        
+        <h4 id="argmax-argmin">Argmax, Argmin</h4>
+
+        
+          <div class='highlight'><pre>Array::argmin = <span class="hljs-function"><span class="hljs-params">(f)</span> -&gt;</span>
+  <span class="hljs-keyword">this</span>.reduce (accumulator, element) -&gt;
+    <span class="hljs-keyword">if</span> (f element) &lt; f accumulator
+      element
+    <span class="hljs-keyword">else</span>
+      accumulator</pre></div>
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>Array::argmax = <span class="hljs-function"><span class="hljs-params">(f)</span> -&gt;</span>
+  <span class="hljs-keyword">this</span>.reduce (accumulator, element) -&gt;
+    <span class="hljs-keyword">if</span> (f element) &gt; f accumulator
+      element
+    <span class="hljs-keyword">else</span>
+      accumulator</pre></div>
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>array = [ [<span class="hljs-number">100</span>, <span class="hljs-number">3000</span>], [<span class="hljs-number">200</span>, <span class="hljs-number">1000</span>], [<span class="hljs-number">300</span>, <span class="hljs-number">2000</span>] ]
+assert.deepEqual (array.argmax (x) -&gt; x[<span class="hljs-number">0</span>]), [<span class="hljs-number">300</span>, <span class="hljs-number">2000</span>]
+assert.deepEqual (array.argmax (x) -&gt; x[<span class="hljs-number">1</span>]), [<span class="hljs-number">100</span>, <span class="hljs-number">3000</span>]
+assert.deepEqual (array.argmin (x) -&gt; x[<span class="hljs-number">0</span>]), [<span class="hljs-number">100</span>, <span class="hljs-number">3000</span>]
+assert.deepEqual (array.argmin (x) -&gt; x[<span class="hljs-number">1</span>]), [<span class="hljs-number">200</span>, <span class="hljs-number">1000</span>]</pre></div>
+        
+      
+        
+        <h4 id="max-min">Max, Min</h4>
+
+        
+          <div class='highlight'><pre>Array::min = <span class="hljs-function">-&gt;</span>
+  <span class="hljs-keyword">this</span>.argmin (x) -&gt; x</pre></div>
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>Array::max = <span class="hljs-function">-&gt;</span>
+  <span class="hljs-keyword">this</span>.argmax (x) -&gt; x</pre></div>
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>array = [<span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]
+assert.equal array.max(), <span class="hljs-number">5</span>
+assert.equal array.min(), <span class="hljs-number">1</span></pre></div>
         
       
         
@@ -119,7 +171,9 @@ assert.equal (sum array, <span class="hljs-function"><span class="hljs-params">(
         
           <div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">factorial</span> = <span class="hljs-params">(n)</span> -&gt;</span> 
   [...Array(n).keys()]
-    .reduce (<span class="hljs-function"><span class="hljs-params">(prev, i)</span> -&gt;</span> prev * (i + <span class="hljs-number">1</span>)), <span class="hljs-number">1</span></pre></div>
+    .reduce (prev, i) -&gt;
+      prev * (i + <span class="hljs-number">1</span>)
+    , <span class="hljs-number">1</span></pre></div>
         
       
         
@@ -422,8 +476,8 @@ assert vacuumWorld.goalTest state</pre></div>
             nr
     stepCost: <span class="hljs-function"><span class="hljs-params">(state, action)</span> -&gt;</span> <span class="hljs-number">1</span>
     heuristic: <span class="hljs-function"><span class="hljs-params">(state)</span> -&gt;</span>
-      sum state, <span class="hljs-function"><span class="hljs-params">(numbers, y)</span> -&gt;</span>
-        sum numbers, <span class="hljs-function"><span class="hljs-params">(number, x)</span> -&gt;</span>
+      state.sum (numbers, y) -&gt;
+        numbers.sum (number, x) -&gt;
           manhattanDist [y, x], goalPosition number
     goalTest: <span class="hljs-function"><span class="hljs-params">(state)</span> -&gt;</span>
       deepEqual state, goalState</pre></div>
@@ -1311,12 +1365,14 @@ assert.equal (aStarSearch travelingSalespersonProblem), <span class="hljs-litera
     [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]
   ]
   actions: <span class="hljs-function"><span class="hljs-params">(state)</span> -&gt;</span>
-    state.reduce (<span class="hljs-function"><span class="hljs-params">(total, row, y)</span> -&gt;</span> [
-      ...total,
-      ...[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>]
-        .filter (x) -&gt; row[x] == <span class="hljs-number">0</span>
-        .map (x) -&gt; [y, x]
-    ]), []
+    state.reduce (total, row, y) -&gt;
+      [
+        ...total,
+        ...[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>]
+          .filter (x) -&gt; row[x] == <span class="hljs-number">0</span>
+          .map (x) -&gt; [y, x]
+      ]
+    , []
   result: <span class="hljs-function"><span class="hljs-params">(state, [yMove, xMove])</span> -&gt;</span>
     state.map (row, y) -&gt;
       row.map (tile, x) -&gt;
@@ -1329,25 +1385,26 @@ assert.equal (aStarSearch travelingSalespersonProblem), <span class="hljs-litera
           tile
   value: <span class="hljs-function"><span class="hljs-params">(state)</span> -&gt;</span> -nrAttackedQueens state
 <span class="hljs-function">
-<span class="hljs-title">attacks</span> = <span class="hljs-params">([y1, x1], [y2, x2])</span> -&gt;</span>
-  y1 == y2 <span class="hljs-keyword">or</span>
-  x1 == x2 <span class="hljs-keyword">or</span>
-  y2 - y1 == x2 - x1
-<span class="hljs-function">
 <span class="hljs-title">nrAttackedQueens</span> = <span class="hljs-params">(state)</span> -&gt;</span>
+<span class="hljs-function">  <span class="hljs-title">attacks</span> = <span class="hljs-params">([y1, x1], [y2, x2])</span> -&gt;</span>
+    y1 == y2 <span class="hljs-keyword">or</span>
+    x1 == x2 <span class="hljs-keyword">or</span>
+    y2 - y1 == x2 - x1
   combinations \
     state.map (row, y) -&gt;
       [y, row.indexOf <span class="hljs-number">1</span>]
-    .reduce (<span class="hljs-function"><span class="hljs-params">(total, [q1, q2])</span> -&gt;</span>
-      total + attacks(q1, q2) * <span class="hljs-number">1</span>), <span class="hljs-number">0</span>
+    .sum ([q1, q2]) -&gt;
+      attacks(q1, q2) * <span class="hljs-number">1</span>
 <span class="hljs-function">
 <span class="hljs-title">combinations</span> = <span class="hljs-params">(array)</span> -&gt;</span>
-  array.reduce (<span class="hljs-function"><span class="hljs-params">(prev, a, i)</span> -&gt;</span> [
-    ...prev,
-    ...array
-      .slice <span class="hljs-number">0</span>, i
-      .map (b) -&gt; [a, b]
-  ]), []</pre></div>
+  array.reduce (prev, a, i) -&gt; 
+    [
+      ...prev,
+      ...array
+        .slice <span class="hljs-number">0</span>, i
+        .map (b) -&gt; [a, b]
+    ]
+  , []</pre></div>
         
       
         
@@ -1380,17 +1437,15 @@ assert.equal (completeStateEightQueensProblem.value state), -(<span class="hljs-
   recursiveHillClimbingSearch problem, problem.rootNode
 <span class="hljs-function">
 <span class="hljs-title">recursiveHillClimbingSearch</span> = <span class="hljs-params">(problem, current)</span> -&gt;</span>
-  <span class="hljs-keyword">if</span> (biggestValueNode problem.expand current).value &lt;= current.value
+  neighbor = biggestValueNode problem.expand current
+  <span class="hljs-keyword">if</span> neighbor.value &lt;= current.value
     current
   <span class="hljs-keyword">else</span>
-    recursiveHillClimbingSearch problem, biggestValueNode problem.expand current
+    recursiveHillClimbingSearch problem, neighbor
 <span class="hljs-function">
 <span class="hljs-title">biggestValueNode</span> = <span class="hljs-params">(array)</span> -&gt;</span>
-  array.reduce (prev, node) -&gt;
-    <span class="hljs-keyword">if</span> node.value &gt; prev.value
-      node
-    <span class="hljs-keyword">else</span>
-      prev</pre></div>
+  <span class="hljs-built_in">console</span>.log(array)
+  array.max()</pre></div>
         
       
         
@@ -1598,22 +1653,14 @@ This is applicable to zero-sum games only. Note that the terms ‘maximin’ and
     .map (action) -&gt;
       action: action
       outcome: minValue game, (game.result state, action), limit - <span class="hljs-number">1</span>
-    .reduce (current, next) -&gt;
-      <span class="hljs-keyword">if</span> next.outcome &gt; current.outcome
-        next
-      <span class="hljs-keyword">else</span>
-        current
+    .argmax (x) -&gt; x.outcome
 
 <span class="hljs-keyword">export</span> maximinDecision = <span class="hljs-function"><span class="hljs-params">(game, state, limit = Infinity)</span> -&gt;</span>
   game.actions state
     .map (action) -&gt;
       action: action
       outcome: maxValue game, (game.result state, action), limit - <span class="hljs-number">1</span>
-    .reduce (current, next) -&gt;
-      <span class="hljs-keyword">if</span> next.outcome &lt; current.outcome
-        next
-      <span class="hljs-keyword">else</span>
-        current
+    .argmin (x) -&gt; x.outcome
 <span class="hljs-function">
 <span class="hljs-title">maxValue</span> = <span class="hljs-params">(game, state, limit)</span> -&gt;</span>
   <span class="hljs-keyword">if</span> game.terminalTest state
@@ -1623,8 +1670,9 @@ This is applicable to zero-sum games only. Note that the terms ‘maximin’ and
       game.heuristic state
     <span class="hljs-keyword">else</span>
       game.actions state
-        .reduce (<span class="hljs-function"><span class="hljs-params">(prev, current)</span> -&gt;</span>
-          Math.max prev, (minValue game, (game.result state, current), limit - <span class="hljs-number">1</span>)), -Infinity
+        .reduce (prev, current) -&gt;
+          Math.max prev, (minValue game, (game.result state, current), limit - <span class="hljs-number">1</span>)
+        , -Infinity
 <span class="hljs-function">
 <span class="hljs-title">minValue</span> = <span class="hljs-params">(game, state, limit)</span> -&gt;</span>
   <span class="hljs-keyword">if</span> game.terminalTest state
@@ -1634,8 +1682,9 @@ This is applicable to zero-sum games only. Note that the terms ‘maximin’ and
       game.heuristic state
     <span class="hljs-keyword">else</span>
       game.actions state
-        .reduce (<span class="hljs-function"><span class="hljs-params">(prev, current)</span> -&gt;</span>
-          Math.min prev, (maxValue game, (game.result state, current), limit - <span class="hljs-number">1</span>)), Infinity</pre></div>
+        .reduce (prev, current) -&gt;
+          Math.min prev, (maxValue game, (game.result state, current), limit - <span class="hljs-number">1</span>)
+        , Infinity</pre></div>
         
       
         
@@ -1656,22 +1705,14 @@ This is applicable to zero-sum games only.</li>
     .map (action) -&gt;
       action: action,
       outcome: alphaBetaMinValue game, (game.result state, action), limit - <span class="hljs-number">1</span>, -Infinity, +Infinity
-    .reduce (current, next) -&gt;
-      <span class="hljs-keyword">if</span> next.outcome &gt; current.outcome
-        next
-      <span class="hljs-keyword">else</span>
-        current
+    .argmax (x) -&gt; x.outcome
 
 <span class="hljs-keyword">export</span> betaAlphaSearch = <span class="hljs-function"><span class="hljs-params">(game, state, limit = Infinity)</span> -&gt;</span>
   game.actions state
     .map (action) -&gt;
       action: action,
       outcome: alphaBetaMaxValue game, (game.result state, action), limit - <span class="hljs-number">1</span>, -Infinity, +Infinity
-    .reduce (current, next) -&gt;
-      <span class="hljs-keyword">if</span> next.outcome &lt; current.outcome
-        next
-      <span class="hljs-keyword">else</span>
-        current
+    .argmin (x) -&gt; x.outcome
 <span class="hljs-function">
 <span class="hljs-title">alphaBetaMaxValue</span> = <span class="hljs-params">(game, state, limit, alpha, beta)</span> -&gt;</span>
   <span class="hljs-keyword">if</span> game.terminalTest state
@@ -1888,14 +1929,8 @@ assert.deepEqual (depthFirstSearch mapColoringProblem).state, [
 Confer section 6.1.3, p. 205.</p>
 
         
-          <div class='highlight'><pre>queens = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>]
-<span class="hljs-function"><span class="hljs-title">attacks</span> = <span class="hljs-params">([y1, x1], [y2, x2])</span> -&gt;</span> 
-  y1 == y2 <span class="hljs-keyword">or</span>
-  x1 == x2 <span class="hljs-keyword">or</span>
-  y2 - y1 == x2 - x1
-
-<span class="hljs-keyword">export</span> constraintSatisfactionEightQueensProblem = <span class="hljs-keyword">new</span> ConstraintSatisfactionProblem
-  domains: queens.map (queen) -&gt; [
+          <div class='highlight'><pre><span class="hljs-keyword">export</span> constraintSatisfactionEightQueensProblem = <span class="hljs-keyword">new</span> ConstraintSatisfactionProblem
+  domains: [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>].map (queen) -&gt; [
     queen
     [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>].flatMap (y) -&gt;
       [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>].map (x) -&gt;
@@ -1903,11 +1938,16 @@ Confer section 6.1.3, p. 205.</p>
   ]
   constraints: [
     [
-      queens.flatMap (queen1) -&gt;
-        queens
+      [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>].flatMap (queen1) -&gt;
+        [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>]
           .filter (queen2) -&gt; queen1 != queen2
           .map (queen2) -&gt; [queen1, queen2]
-      (a, b) -&gt; <span class="hljs-keyword">not</span> attacks a, b
+      (a, b) -&gt;
+<span class="hljs-function">        <span class="hljs-title">attacks</span> = <span class="hljs-params">([y1, x1], [y2, x2])</span> -&gt;</span> 
+          y1 == y2 <span class="hljs-keyword">or</span>
+          x1 == x2 <span class="hljs-keyword">or</span>
+          y2 - y1 == x2 - x1
+        <span class="hljs-keyword">not</span> attacks a, b
     ]
   ]</pre></div>
         
@@ -2054,10 +2094,12 @@ operators       = [...unaryOperators, ...binaryOperators]
         <span class="hljs-number">-1</span>
       <span class="hljs-keyword">else</span>
         <span class="hljs-number">0</span>
-    .reduce (<span class="hljs-function"><span class="hljs-params">(prev, derivation)</span> -&gt;</span> [
-      ...prev,
-      prev[prev.length - <span class="hljs-number">1</span>] + derivation
-    ]), [<span class="hljs-number">0</span>]
+    .reduce (prev, derivation) -&gt;
+      [
+        ...prev,
+        prev[prev.length - <span class="hljs-number">1</span>] + derivation
+      ]
+    , [<span class="hljs-number">0</span>]
     .slice(<span class="hljs-number">1</span>)
 <span class="hljs-function">
 <span class="hljs-title">operatorIndex</span> = <span class="hljs-params">(sentence)</span> -&gt;</span>
