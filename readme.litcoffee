@@ -1259,31 +1259,28 @@ Complete-state formulation of the 8-queens problem. From section 4.1.1, p. 122.
 Confer section 4.1.1, p. 122.
 
     export hillClimbingSearch = (problem) ->
-      recursiveHillClimbingSearch problem, problem.rootNode
+      recursiveHillClimbingSearch problem, problem.rootNode()
 
     recursiveHillClimbingSearch = (problem, current) ->
-      neighbor = biggestValueNode problem.expand current
+      neighbor = (problem.expand current)
+        .argmax (x) -> x.value
       if neighbor.value <= current.value
         current
       else
         recursiveHillClimbingSearch problem, neighbor
-
-    biggestValueNode = (array) ->
-      console.log(array)
-      array.max()
 #
 
-solution = (hillClimbingSearch completeStateEightQueensProblem).state
-assert.deepEqual solution, [
-  [0, 1, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 1, 0, 0, 0, 0],
-  [0, 0, 1, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0],
-  [1, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 1, 0, 0, 0],
-  [1, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 1, 0, 0]
-] # TODO:
+    solution = (hillClimbingSearch completeStateEightQueensProblem).state
+    assert.deepEqual solution, [
+      [0, 1, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 1, 0, 0, 0, 0],
+      [0, 0, 1, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 1, 0],
+      [1, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 1, 0, 0, 0],
+      [1, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 1, 0, 0]
+    ]
 
 #### Simulated Annealing
 

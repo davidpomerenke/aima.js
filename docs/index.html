@@ -1440,34 +1440,36 @@ assert.equal (completeStateEightQueensProblem.value state), -(<span class="hljs-
 
         
           <div class='highlight'><pre><span class="hljs-keyword">export</span> hillClimbingSearch = <span class="hljs-function"><span class="hljs-params">(problem)</span> -&gt;</span>
-  recursiveHillClimbingSearch problem, problem.rootNode
+  recursiveHillClimbingSearch problem, problem.rootNode()
 <span class="hljs-function">
 <span class="hljs-title">recursiveHillClimbingSearch</span> = <span class="hljs-params">(problem, current)</span> -&gt;</span>
-  neighbor = biggestValueNode problem.expand current
+  neighbor = (problem.expand current)
+    .argmax (x) -&gt; x.value
   <span class="hljs-keyword">if</span> neighbor.value &lt;= current.value
     current
   <span class="hljs-keyword">else</span>
-    recursiveHillClimbingSearch problem, neighbor
-<span class="hljs-function">
-<span class="hljs-title">biggestValueNode</span> = <span class="hljs-params">(array)</span> -&gt;</span>
-  <span class="hljs-built_in">console</span>.log(array)
-  array.max()</pre></div>
+    recursiveHillClimbingSearch problem, neighbor</pre></div>
         
       
         
         <p>#</p>
-<p>solution = (hillClimbingSearch completeStateEightQueensProblem).state
+
+        
+          <div class='highlight'><pre>solution = (hillClimbingSearch completeStateEightQueensProblem).state
 assert.deepEqual solution, [
-  [0, 1, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 1, 0, 0, 0, 0],
-  [0, 0, 1, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0],
-  [1, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 1, 0, 0, 0],
-  [1, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 1, 0, 0]
-] # TODO:</p>
-<h4 id="simulated-annealing">Simulated Annealing</h4>
+  [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
+  [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
+  [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
+  [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>],
+  [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
+  [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
+  [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
+  [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]
+]</pre></div>
+        
+      
+        
+        <h4 id="simulated-annealing">Simulated Annealing</h4>
 <p>Also known as <strong>Gradient Descent</strong>. From section 4.1.2, p. 126.</p>
 <p>Parameter <code>random</code>: A random number generator function. Use seeded function for testing!</p>
 
