@@ -26,10 +26,12 @@
     "readme.md"
   ],
   "scripts": {
-    "test": "coffee --compile --inline-map --output readme.mjs readme.litcoffee && node --require source-map-support/register readme.mjs",
-    "prepare": "cat readme.litcoffee | sed -e 's/^.*# testing only$//g' | coffee --stdio --literate --compile --transpile > index.mjs",
+    "test": "coffee --compile --inline-map --output test.mjs readme.litcoffee && node --require source-map-support/register test.mjs",
+    "prepare": "npm run build && npm run build-docs",
+    "build": "cat readme.litcoffee | sed -e 's/^.*# testing only$//g' | coffee --stdio --literate --compile --transpile > index.mjs",
     "build-docs": "docco readme.litcoffee --layout linear && mv docs/readme.html docs/index.html",
-    "coverage": "npm run prepare && c8 node index.mjs --reporter=text-lcov > coverage.lcov"
+    "coverage": "npm run prepare && c8 node index.mjs --reporter=text-lcov > coverage.lcov",
+    "dev": "coffee --compile --inline-map --output dev.mjs dev.coffee && node --require source-map-support/register dev.mjs"
   },
   "engines": {
     "node": ">= 13.0"

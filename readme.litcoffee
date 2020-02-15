@@ -71,19 +71,17 @@ Thank you very much in advance for your contribution :)
 
 ## Development
 
-`npm prepare` removes all assertion statements from the code, as well as all lines which are ended by `# testing only`. This way, the testing can be kept right next to the code it refers to, but it is excluded from the distributed package.
+`npm run build` removes all assertion statements from the code, as well as all lines which are ended by `# testing only`. This way, the testing can be kept right next to the code it refers to, but it is excluded from the distributed package.
 
-## Pre-Requisites
+# Code
 
-### Dependencies
+## Dependencies
 
     import deepEqual            from 'deep-equal'
     import gen                  from 'random-seed' # testing only
     import { strict as assert } from 'assert'
 
-All lines ending with a comment `# testing only`, as well as all assertions, will be removed for production.
-
-### Utilities
+## Utilities
 
 #### Sum
 
@@ -91,7 +89,8 @@ All lines ending with a comment `# testing only`, as well as all assertions, wil
       this.reduce (accumulator, element, index, array) ->
         accumulator + f element, index, array
       , 0
-    #
+#
+
     array = [ [100, 1000], [200, 2000], [300, 3000] ]
     assert.equal (array.sum (x)           -> x[1]),                        6000
     assert.equal (array.sum (x, i)        -> x[1] + 10 * i),               6030
@@ -105,14 +104,16 @@ All lines ending with a comment `# testing only`, as well as all assertions, wil
           element
         else
           accumulator
-    #
+#
+
     Array::argmax = (f) ->
       this.reduce (accumulator, element) ->
         if (f element) > f accumulator
           element
         else
           accumulator
-    #
+#
+
     array = [ [100, 3000], [200, 1000], [300, 2000] ]
     assert.deepEqual (array.argmax (x) -> x[0]), [300, 2000]
     assert.deepEqual (array.argmax (x) -> x[1]), [100, 3000]
@@ -123,10 +124,12 @@ All lines ending with a comment `# testing only`, as well as all assertions, wil
 
     Array::min = ->
       this.argmin (x) -> x
-    #
+#
+
     Array::max = ->
       this.argmax (x) -> x
-    #
+#
+
     array = [3, 5, 4, 1, 2]
     assert.equal array.max(), 5
     assert.equal array.min(), 1
@@ -138,7 +141,8 @@ All lines ending with a comment `# testing only`, as well as all assertions, wil
         .reduce (prev, i) ->
           prev * (i + 1)
         , 1
-    #
+#
+
     assert.equal factorial(5), 1 * 2 * 3 * 4 * 5
     assert.equal factorial(10), factorial(5) * 6 * 7 * 8 * 9 * 10
 
@@ -181,7 +185,7 @@ Example: __Table Vacuum Agent__
       [ [ ['B', 'clean'], ['B', 'dirty'] ] ]: 'suck'
       [ [ ['A', 'clean'], ['A', 'clean'], ['A', 'clean'] ] ]: 'right'
       [ [ ['A', 'clean'], ['A', 'clean'], ['A', 'dirty'] ] ]: 'suck'  #...
-    #
+#
     assert.equal tableVacuumAgent.action([ ['A', 'dirty'] ]), 'suck'
     assert.equal tableVacuumAgent.action([ ['A', 'clean'] ]), 'right'
     assert.equal tableVacuumAgent.action([ ['B', 'dirty'] ]), undefined
@@ -214,7 +218,7 @@ Example: __Reflex Vacuum Agent__
       condition: ([location, ...]) -> location == 'B'
       action: 'left'
     ]
-    #
+#
     assert.equal (reflexVacuumAgent.action [ ['A', 'dirty'] ]), 'suck'
     assert.equal (reflexVacuumAgent.action [ ['A', 'clean'] ]), 'right'
     assert.equal (reflexVacuumAgent.action [ ['B', 'dirty'] ]), 'suck'
@@ -316,7 +320,8 @@ Confer section 3.2.1, p. 70.
       goalTest: (state) ->
         state.A == 'clean' and
         state.B == 'clean'
-    #
+#
+
     state = vacuumWorld.initialState
     assert.deepEqual state, { location: 'A', A: 'dirty', B: 'dirty' }
 
@@ -398,7 +403,8 @@ Confer section 3.2.1, p. 71.
               manhattanDist [y, x], goalPosition number
         goalTest: (state) ->
           deepEqual state, goalState
-    #
+#
+
     simpleEightPuzzle = makeEightPuzzle [
       [1, 4, 2]
       [3, 0, 5]
@@ -430,7 +436,8 @@ Confer section 3.2.1, p. 71.
     ]
     assert.equal (simpleEightPuzzle.heuristic state), 0
     assert simpleEightPuzzle.goalTest state
-    #
+#
+
     complexEightPuzzle = makeEightPuzzle [
       [7, 2, 4]
       [5, 0, 6]
@@ -461,7 +468,8 @@ Incremental formulation of the 8-queens problem. Confer section 3.2.1, p. 72.
         x == x0 or
         y == y0 or
         Math.abs(y - y0) == Math.abs(x - x0)
-    #
+#
+
     state = incrementalEightQueensProblem.initialState
 
     state = incrementalEightQueensProblem.result state, 3
@@ -497,7 +505,8 @@ Confer section 3.2.1, p. 73.
         result: (state, action) -> [...state, action],
         stepCost: (state, action) -> 1,
         goalTest: (state) -> (calc state) == goal
-    #
+#
+
     simpleKnuthConjecture  = makeKnuthConjecture 1
     complexKnuthConjecture = makeKnuthConjecture 5
 
@@ -667,7 +676,8 @@ Confer section 3.2.2, p. 73.
           graph.straightLineDist[state][end]
         goalTest: (state) ->
           deepEqual state, end
-    #
+#
+
     routeFindingProblem = makeRouteFindingProblem cities, 'Arad', 'Bucharest'
 
     state = routeFindingProblem.initialState
@@ -704,7 +714,8 @@ Confer section 3.2.2, p. 74.
           graph.straightLineDist[state[state.length - 1]][end]
         goalTest: (state) ->
           deepEqual state[state.length - 1], end
-    #
+#
+
     touringProblem = makeTouringProblem cities, 'Arad', 'Bucharest'
 
     state = touringProblem.initialState
@@ -738,7 +749,8 @@ Confer section 3.2.2, p. 74.
         goalTest: (state) ->
           state.length == (Object.keys graph.dist).length and
           state[state.length - 1] == end
-    #
+#
+
     travelingSalespersonProblem = makeTravelingSalespersonProblem cities, 'Arad', 'Bucharest'
 
     state = travelingSalespersonProblem.initialState
@@ -851,7 +863,7 @@ Confer section 3.3.1, p. 80.
 Confer section 3.4.1, p. 82.
 
     export breadthFirstSearch = makeGraphSearch FifoQueue
-    #
+#
 
     assert.deepEqual (Problem.solutionPath breadthFirstSearch vacuumWorld), [
       { location: 'A', A: 'dirty', B: 'dirty' }
@@ -891,7 +903,7 @@ Confer section 3.4.1, p. 82.
 Confer section 3.4.2, p. 84.
 
     export uniformCostSearch = makeGraphSearch makePriorityQueue (node) -> node.pathCost
-    #
+#
 
     assert.deepEqual (Problem.solutionPath uniformCostSearch vacuumWorld), [
       { location: 'A', A: 'dirty', B: 'dirty' }
@@ -931,7 +943,7 @@ Confer section 3.4.2, p. 84.
 Confer section 3.4.3, p. 87.
 
     export depthFirstSearch = makeGraphSearch LifoQueue
-    #
+#
 
     assert.deepEqual (depthFirstSearch incrementalEightQueensProblem).state, [
       [0, 0, 0, 0, 0, 0, 0, 1]
@@ -980,7 +992,7 @@ Confer section 3.4.4, p. 88.
           'cutoff'
         else
           false
-    #
+#
 
     assert.equal (depthLimitedSearch vacuumWorld, 2), 'cutoff'
     assert.deepEqual (Problem.solutionPath (depthLimitedSearch vacuumWorld, 3)), [
@@ -1027,7 +1039,7 @@ Confer section 3.4.5, p. 89.
         result
       else
         recursiveIterativeDeepeningSearch problem, (depth + 1)
-    #
+#
 
     assert.deepEqual (Problem.solutionPath iterativeDeepeningSearch vacuumWorld), [
       { location: 'A', A: 'dirty', B: 'dirty' }
@@ -1070,7 +1082,7 @@ Confer section 3.5.1, p. 92.
 
     export greedySearch = makeGraphSearch \
       makePriorityQueue (node) -> node.heuristic
-    #
+#
 
     assert.deepEqual (Problem.solutionPath greedySearch vacuumWorld), [
       { location: 'A', A: 'dirty', B: 'dirty' }
@@ -1111,7 +1123,7 @@ Confer section 3.5.2, p. 93.
 
     export aStarSearch  = makeGraphSearch \
       makePriorityQueue (node) -> node.pathCost + node.heuristic
-    #
+#
 
     assert.deepEqual (Problem.solutionPath aStarSearch vacuumWorld), [
       { location: 'A', A: 'dirty', B: 'dirty' }
@@ -1223,7 +1235,8 @@ Complete-state formulation of the 8-queens problem. From section 4.1.1, p. 122.
             .map (b) -> [a, b]
         ]
       , []
-    #
+#
+
     state = completeStateEightQueensProblem.initialState
     assert.equal (completeStateEightQueensProblem.actions state).length, 8 * (8 - 1)
     assert.equal (completeStateEightQueensProblem.value state), -(8**2 - 8) / 2
@@ -1258,7 +1271,7 @@ Confer section 4.1.1, p. 122.
     biggestValueNode = (array) ->
       console.log(array)
       array.max()
-    #
+#
 
 solution = (hillClimbingSearch completeStateEightQueensProblem).state
 assert.deepEqual solution, [
@@ -1297,7 +1310,7 @@ Parameter `random`: A random number generator function. Use seeded function for 
         else if (Math.E**(evalSlope / temp) * random()) > 0.5
           current = next
         time += 1
-    #
+#
 
     seed = 'seedshrdlu4523' # testing only
     rand = gen.create seed  # testing only
@@ -1388,7 +1401,7 @@ Confer section 5.1, p. 163.
         .flat()
         .filter (square) -> square == x
         .length
-    #
+#
 
     state = ticTacToe.initialState
 
@@ -1442,7 +1455,7 @@ Changes to the pseudocode:
 - `maximinDecision` has been added for player Min in analogy to `minimaxDecision` for player Max.
   This is applicable to zero-sum games only. Note that the terms 'maximin' and 'minimax' are generally used inconsistently.
 - The notation is functional.
-
+#
 
     export minimaxDecision = (game, state, limit = Infinity) ->
       game.actions state
@@ -1493,7 +1506,7 @@ Changes to the pseudocode:
 - A depth limit has been added (`Infinity` by default).
 - `betaAlphaSearch` has been added for player Min in analogy to `alphaBetaSearch` for player Max.
   This is applicable to zero-sum games only.
-
+#
 
     export alphaBetaSearch = (game, state, limit = Infinity) ->
       game.actions state
@@ -1534,7 +1547,7 @@ Changes to the pseudocode:
           v
         beta = Math.min beta, v
       v
-    #
+#
 
     for algorithm in [minimaxDecision, alphaBetaSearch]
       state = [
@@ -1626,7 +1639,7 @@ Confer section 6.1.1, p. 203.
           (a, b) -> a != b
         ]
       ]
-    #
+#
 
     state = mapColoringProblem.initialState
     assert.deepEqual state, []
@@ -1723,7 +1736,7 @@ Confer section 6.1.3, p. 205.
             not attacks a, b
         ]
       ]
-    #
+#
 
     solution = [
       [1, 0, 0, 0, 0, 0, 0, 0]
@@ -1776,7 +1789,7 @@ Confer section 6.2.1, p. 208.
 
     nonUnaryConstraints = (constraints) ->
       constraints.filter (constraint) -> constraint[1].length > 1
-    #
+#
 
     problem = new ConstraintSatisfactionProblem
       domains: [
@@ -1866,7 +1879,7 @@ Confer section 7.4.1, p. 244.
     operatorIndex = (sentence) ->
       sentence.findIndex (char, i) ->
         (levels sentence)[i] == 1 and operators.includes char
-    #
+#
 
     for [proposition, syntax] in [
       [ [ 'A'                   ], 'ERROR'                            ]

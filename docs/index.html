@@ -73,9 +73,9 @@ The <em>aimacode</em> organization also features repositories with <em>AIMA</em>
 <p>Every contribution is very welcome: Modifications of existing code to make it more understandable and beautiful; additional algorithms and data structures from the book; additional problems and games; additional usage examples; additional documentation; anything else you have in mind. Please create an issue or a pull request!</p>
 <p>Thank you very much in advance for your contribution :)</p>
 <h2 id="development">Development</h2>
-<p><code>npm prepare</code> removes all assertion statements from the code, as well as all lines which are ended by <code># testing only</code>. This way, the testing can be kept right next to the code it refers to, but it is excluded from the distributed package.</p>
-<h2 id="pre-requisites">Pre-Requisites</h2>
-<h3 id="dependencies">Dependencies</h3>
+<p><code>npm run build</code> removes all assertion statements from the code, as well as all lines which are ended by <code># testing only</code>. This way, the testing can be kept right next to the code it refers to, but it is excluded from the distributed package.</p>
+<h1 id="code">Code</h1>
+<h2 id="dependencies">Dependencies</h2>
 
           
             <div class='highlight'><pre><span class="hljs-keyword">import</span> deepEqual            <span class="hljs-keyword">from</span> <span class="hljs-string">'deep-equal'</span>
@@ -89,8 +89,7 @@ The <em>aimacode</em> organization also features repositories with <em>AIMA</em>
 
       
         
-        <p>All lines ending with a comment <code># testing only</code>, as well as all assertions, will be removed for production.</p>
-<h3 id="utilities">Utilities</h3>
+        <h2 id="utilities">Utilities</h2>
 <h4 id="sum">Sum</h4>
 
         
@@ -101,7 +100,8 @@ The <em>aimacode</em> organization also features repositories with <em>AIMA</em>
         
       
         
-        
+        <p>#</p>
+
         
           <div class='highlight'><pre>array = [ [<span class="hljs-number">100</span>, <span class="hljs-number">1000</span>], [<span class="hljs-number">200</span>, <span class="hljs-number">2000</span>], [<span class="hljs-number">300</span>, <span class="hljs-number">3000</span>] ]
 assert.equal (array.sum (x)           -&gt; x[<span class="hljs-number">1</span>]),                        <span class="hljs-number">6000</span>
@@ -122,7 +122,8 @@ assert.equal (array.sum (x, i, array) -&gt; x[<span class="hljs-number">1</span>
         
       
         
-        
+        <p>#</p>
+
         
           <div class='highlight'><pre>Array::argmax = <span class="hljs-function"><span class="hljs-params">(f)</span> -&gt;</span>
   <span class="hljs-keyword">this</span>.reduce (accumulator, element) -&gt;
@@ -133,7 +134,8 @@ assert.equal (array.sum (x, i, array) -&gt; x[<span class="hljs-number">1</span>
         
       
         
-        
+        <p>#</p>
+
         
           <div class='highlight'><pre>array = [ [<span class="hljs-number">100</span>, <span class="hljs-number">3000</span>], [<span class="hljs-number">200</span>, <span class="hljs-number">1000</span>], [<span class="hljs-number">300</span>, <span class="hljs-number">2000</span>] ]
 assert.deepEqual (array.argmax (x) -&gt; x[<span class="hljs-number">0</span>]), [<span class="hljs-number">300</span>, <span class="hljs-number">2000</span>]
@@ -151,14 +153,16 @@ assert.deepEqual (array.argmin (x) -&gt; x[<span class="hljs-number">1</span>]),
         
       
         
-        
+        <p>#</p>
+
         
           <div class='highlight'><pre>Array::max = <span class="hljs-function">-&gt;</span>
   <span class="hljs-keyword">this</span>.argmax (x) -&gt; x</pre></div>
         
       
         
-        
+        <p>#</p>
+
         
           <div class='highlight'><pre>array = [<span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]
 assert.equal array.max(), <span class="hljs-number">5</span>
@@ -177,7 +181,8 @@ assert.equal array.min(), <span class="hljs-number">1</span></pre></div>
         
       
         
-        
+        <p>#</p>
+
         
           <div class='highlight'><pre>assert.equal factorial(<span class="hljs-number">5</span>), <span class="hljs-number">1</span> * <span class="hljs-number">2</span> * <span class="hljs-number">3</span> * <span class="hljs-number">4</span> * <span class="hljs-number">5</span>
 assert.equal factorial(<span class="hljs-number">10</span>), factorial(<span class="hljs-number">5</span>) * <span class="hljs-number">6</span> * <span class="hljs-number">7</span> * <span class="hljs-number">8</span> * <span class="hljs-number">9</span> * <span class="hljs-number">10</span></pre></div>
@@ -228,15 +233,11 @@ assert.equal factorial(<span class="hljs-number">10</span>), factorial(<span cla
         
       
         
-        
-        
-          <div class='highlight'><pre>assert.equal tableVacuumAgent.action([ [<span class="hljs-string">'A'</span>, <span class="hljs-string">'dirty'</span>] ]), <span class="hljs-string">'suck'</span>
-assert.equal tableVacuumAgent.action([ [<span class="hljs-string">'A'</span>, <span class="hljs-string">'clean'</span>] ]), <span class="hljs-string">'right'</span>
-assert.equal tableVacuumAgent.action([ [<span class="hljs-string">'B'</span>, <span class="hljs-string">'dirty'</span>] ]), <span class="hljs-literal">undefined</span></pre></div>
-        
-      
-        
-        <h4 id="simple-reflex-agent">Simple Reflex Agent</h4>
+        <p>#
+    assert.equal tableVacuumAgent.action([ [‘A’, ‘dirty’] ]), ‘suck’
+    assert.equal tableVacuumAgent.action([ [‘A’, ‘clean’] ]), ‘right’
+    assert.equal tableVacuumAgent.action([ [‘B’, ‘dirty’] ]), undefined</p>
+<h4 id="simple-reflex-agent">Simple Reflex Agent</h4>
 <p>Confer section 2.4, p. 49.</p>
 
         
@@ -270,17 +271,13 @@ assert.equal tableVacuumAgent.action([ [<span class="hljs-string">'B'</span>, <s
         
       
         
-        
-        
-          <div class='highlight'><pre>assert.equal (reflexVacuumAgent.action [ [<span class="hljs-string">'A'</span>, <span class="hljs-string">'dirty'</span>] ]), <span class="hljs-string">'suck'</span>
-assert.equal (reflexVacuumAgent.action [ [<span class="hljs-string">'A'</span>, <span class="hljs-string">'clean'</span>] ]), <span class="hljs-string">'right'</span>
-assert.equal (reflexVacuumAgent.action [ [<span class="hljs-string">'B'</span>, <span class="hljs-string">'dirty'</span>] ]), <span class="hljs-string">'suck'</span>
-assert.equal (reflexVacuumAgent.action [ [<span class="hljs-string">'C'</span>, <span class="hljs-string">'dirty'</span>] ]), <span class="hljs-string">'suck'</span>
-assert.equal (reflexVacuumAgent.action [ [<span class="hljs-string">'C'</span>, <span class="hljs-string">'clean'</span>] ]), <span class="hljs-literal">undefined</span></pre></div>
-        
-      
-        
-        <h2 id="problem-solving">Problem Solving</h2>
+        <p>#
+    assert.equal (reflexVacuumAgent.action [ [‘A’, ‘dirty’] ]), ‘suck’
+    assert.equal (reflexVacuumAgent.action [ [‘A’, ‘clean’] ]), ‘right’
+    assert.equal (reflexVacuumAgent.action [ [‘B’, ‘dirty’] ]), ‘suck’
+    assert.equal (reflexVacuumAgent.action [ [‘C’, ‘dirty’] ]), ‘suck’
+    assert.equal (reflexVacuumAgent.action [ [‘C’, ‘clean’] ]), undefined</p>
+<h2 id="problem-solving">Problem Solving</h2>
 <p>For the node structure, confer section 3.3.1, p. 79.</p>
 
         
@@ -381,7 +378,8 @@ assert.equal (reflexVacuumAgent.action [ [<span class="hljs-string">'C'</span>, 
         
       
         
-        
+        <p>#</p>
+
         
           <div class='highlight'><pre>state = vacuumWorld.initialState
 assert.deepEqual state, { location: <span class="hljs-string">'A'</span>, A: <span class="hljs-string">'dirty'</span>, B: <span class="hljs-string">'dirty'</span> }
@@ -484,7 +482,8 @@ assert vacuumWorld.goalTest state</pre></div>
         
       
         
-        
+        <p>#</p>
+
         
           <div class='highlight'><pre>simpleEightPuzzle = makeEightPuzzle [
   [<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>]
@@ -520,7 +519,8 @@ assert simpleEightPuzzle.goalTest state</pre></div>
         
       
         
-        
+        <p>#</p>
+
         
           <div class='highlight'><pre>complexEightPuzzle = makeEightPuzzle [
   [<span class="hljs-number">7</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>]
@@ -557,7 +557,8 @@ assert.equal (simpleEightPuzzle.heuristic state), <span class="hljs-number">20</
         
       
         
-        
+        <p>#</p>
+
         
           <div class='highlight'><pre>state = incrementalEightQueensProblem.initialState
 
@@ -599,7 +600,8 @@ assert.deepEqual (incrementalEightQueensProblem.result state, <span class="hljs-
         
       
         
-        
+        <p>#</p>
+
         
           <div class='highlight'><pre>simpleKnuthConjecture  = makeKnuthConjecture <span class="hljs-number">1</span>
 complexKnuthConjecture = makeKnuthConjecture <span class="hljs-number">5</span>
@@ -777,7 +779,8 @@ assert complexKnuthConjecture.goalTest state</pre></div>
         
       
         
-        
+        <p>#</p>
+
         
           <div class='highlight'><pre>routeFindingProblem = makeRouteFindingProblem cities, <span class="hljs-string">'Arad'</span>, <span class="hljs-string">'Bucharest'</span>
 
@@ -820,7 +823,8 @@ assert.equal state, <span class="hljs-literal">undefined</span></pre></div>
         
       
         
-        
+        <p>#</p>
+
         
           <div class='highlight'><pre>touringProblem = makeTouringProblem cities, <span class="hljs-string">'Arad'</span>, <span class="hljs-string">'Bucharest'</span>
 
@@ -860,7 +864,8 @@ assert.deepEqual state, <span class="hljs-literal">undefined</span></pre></div>
         
       
         
-        
+        <p>#</p>
+
         
           <div class='highlight'><pre>travelingSalespersonProblem = makeTravelingSalespersonProblem cities, <span class="hljs-string">'Arad'</span>, <span class="hljs-string">'Bucharest'</span>
 
@@ -993,10 +998,10 @@ assert.deepEqual state, <span class="hljs-literal">undefined</span></pre></div>
         
       
         
+        <p>#</p>
+
         
-        
-          <div class='highlight'><pre>
-assert.deepEqual (Problem.solutionPath breadthFirstSearch vacuumWorld), [
+          <div class='highlight'><pre>assert.deepEqual (Problem.solutionPath breadthFirstSearch vacuumWorld), [
   { location: <span class="hljs-string">'A'</span>, A: <span class="hljs-string">'dirty'</span>, B: <span class="hljs-string">'dirty'</span> }
   { location: <span class="hljs-string">'A'</span>, A: <span class="hljs-string">'clean'</span>, B: <span class="hljs-string">'dirty'</span> }
   { location: <span class="hljs-string">'B'</span>, A: <span class="hljs-string">'clean'</span>, B: <span class="hljs-string">'dirty'</span> }
@@ -1039,10 +1044,10 @@ assert.equal (breadthFirstSearch travelingSalespersonProblem), <span class="hljs
         
       
         
+        <p>#</p>
+
         
-        
-          <div class='highlight'><pre>
-assert.deepEqual (Problem.solutionPath uniformCostSearch vacuumWorld), [
+          <div class='highlight'><pre>assert.deepEqual (Problem.solutionPath uniformCostSearch vacuumWorld), [
   { location: <span class="hljs-string">'A'</span>, A: <span class="hljs-string">'dirty'</span>, B: <span class="hljs-string">'dirty'</span> }
   { location: <span class="hljs-string">'A'</span>, A: <span class="hljs-string">'clean'</span>, B: <span class="hljs-string">'dirty'</span> }
   { location: <span class="hljs-string">'B'</span>, A: <span class="hljs-string">'clean'</span>, B: <span class="hljs-string">'dirty'</span> }
@@ -1085,10 +1090,10 @@ assert.equal (uniformCostSearch travelingSalespersonProblem), <span class="hljs-
         
       
         
+        <p>#</p>
+
         
-        
-          <div class='highlight'><pre>
-assert.deepEqual (depthFirstSearch incrementalEightQueensProblem).state, [
+          <div class='highlight'><pre>assert.deepEqual (depthFirstSearch incrementalEightQueensProblem).state, [
   [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>]
   [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]
   [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]
@@ -1140,10 +1145,10 @@ assert.equal (depthFirstSearch travelingSalespersonProblem), <span class="hljs-l
         
       
         
+        <p>#</p>
+
         
-        
-          <div class='highlight'><pre>
-assert.equal (depthLimitedSearch vacuumWorld, <span class="hljs-number">2</span>), <span class="hljs-string">'cutoff'</span>
+          <div class='highlight'><pre>assert.equal (depthLimitedSearch vacuumWorld, <span class="hljs-number">2</span>), <span class="hljs-string">'cutoff'</span>
 assert.deepEqual (Problem.solutionPath (depthLimitedSearch vacuumWorld, <span class="hljs-number">3</span>)), [
   { location: <span class="hljs-string">'A'</span>, A: <span class="hljs-string">'dirty'</span>, B: <span class="hljs-string">'dirty'</span> }
   { location: <span class="hljs-string">'A'</span>, A: <span class="hljs-string">'clean'</span>, B: <span class="hljs-string">'dirty'</span> }
@@ -1193,10 +1198,10 @@ assert.equal (depthLimitedSearch travelingSalespersonProblem, <span class="hljs-
         
       
         
+        <p>#</p>
+
         
-        
-          <div class='highlight'><pre>
-assert.deepEqual (Problem.solutionPath iterativeDeepeningSearch vacuumWorld), [
+          <div class='highlight'><pre>assert.deepEqual (Problem.solutionPath iterativeDeepeningSearch vacuumWorld), [
   { location: <span class="hljs-string">'A'</span>, A: <span class="hljs-string">'dirty'</span>, B: <span class="hljs-string">'dirty'</span> }
   { location: <span class="hljs-string">'A'</span>, A: <span class="hljs-string">'clean'</span>, B: <span class="hljs-string">'dirty'</span> }
   { location: <span class="hljs-string">'B'</span>, A: <span class="hljs-string">'clean'</span>, B: <span class="hljs-string">'dirty'</span> }
@@ -1241,10 +1246,10 @@ assert.equal (iterativeDeepeningSearch travelingSalespersonProblem), <span class
         
       
         
+        <p>#</p>
+
         
-        
-          <div class='highlight'><pre>
-assert.deepEqual (Problem.solutionPath greedySearch vacuumWorld), [
+          <div class='highlight'><pre>assert.deepEqual (Problem.solutionPath greedySearch vacuumWorld), [
   { location: <span class="hljs-string">'A'</span>, A: <span class="hljs-string">'dirty'</span>, B: <span class="hljs-string">'dirty'</span> }
   { location: <span class="hljs-string">'A'</span>, A: <span class="hljs-string">'clean'</span>, B: <span class="hljs-string">'dirty'</span> }
   { location: <span class="hljs-string">'B'</span>, A: <span class="hljs-string">'clean'</span>, B: <span class="hljs-string">'dirty'</span> }
@@ -1288,10 +1293,10 @@ assert.equal (greedySearch travelingSalespersonProblem), <span class="hljs-liter
         
       
         
+        <p>#</p>
+
         
-        
-          <div class='highlight'><pre>
-assert.deepEqual (Problem.solutionPath aStarSearch vacuumWorld), [
+          <div class='highlight'><pre>assert.deepEqual (Problem.solutionPath aStarSearch vacuumWorld), [
   { location: <span class="hljs-string">'A'</span>, A: <span class="hljs-string">'dirty'</span>, B: <span class="hljs-string">'dirty'</span> }
   { location: <span class="hljs-string">'A'</span>, A: <span class="hljs-string">'clean'</span>, B: <span class="hljs-string">'dirty'</span> }
   { location: <span class="hljs-string">'B'</span>, A: <span class="hljs-string">'clean'</span>, B: <span class="hljs-string">'dirty'</span> }
@@ -1408,7 +1413,8 @@ assert.equal (aStarSearch travelingSalespersonProblem), <span class="hljs-litera
         
       
         
-        
+        <p>#</p>
+
         
           <div class='highlight'><pre>state = completeStateEightQueensProblem.initialState
 assert.equal (completeStateEightQueensProblem.actions state).length, <span class="hljs-number">8</span> * (<span class="hljs-number">8</span> - <span class="hljs-number">1</span>)
@@ -1449,11 +1455,8 @@ assert.equal (completeStateEightQueensProblem.value state), -(<span class="hljs-
         
       
         
-        
-        
-      
-        
-        <p>solution = (hillClimbingSearch completeStateEightQueensProblem).state
+        <p>#</p>
+<p>solution = (hillClimbingSearch completeStateEightQueensProblem).state
 assert.deepEqual solution, [
   [0, 1, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 1, 0, 0, 0, 0],
@@ -1491,10 +1494,10 @@ assert.deepEqual solution, [
         
       
         
+        <p>#</p>
+
         
-        
-          <div class='highlight'><pre>
-seed = <span class="hljs-string">'seedshrdlu4523'</span> <span class="hljs-comment"># testing only</span>
+          <div class='highlight'><pre>seed = <span class="hljs-string">'seedshrdlu4523'</span> <span class="hljs-comment"># testing only</span>
 rand = gen.create seed  <span class="hljs-comment"># testing only</span>
 nSteps = <span class="hljs-number">2</span>              <span class="hljs-comment"># testing only</span>
 assert.equal \
@@ -1589,10 +1592,10 @@ This is excluded from testing because it takes too long.</p>
         
       
         
+        <p>#</p>
+
         
-        
-          <div class='highlight'><pre>
-state = ticTacToe.initialState
+          <div class='highlight'><pre>state = ticTacToe.initialState
 
 state = ticTacToe.result state, [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>]
 assert.deepEqual state, [
@@ -1644,7 +1647,8 @@ assert.equal ticTacToe.utility(state), <span class="hljs-number">1</span></pre><
 <li>A depth limit has been added (<code>Infinity</code> by default).</li>
 <li><code>maximinDecision</code> has been added for player Min in analogy to <code>minimaxDecision</code> for player Max.
 This is applicable to zero-sum games only. Note that the terms ‘maximin’ and ‘minimax’ are generally used inconsistently.</li>
-<li>The notation is functional.</li>
+<li>The notation is functional.
+#</li>
 </ul>
 
         
@@ -1696,7 +1700,8 @@ This is applicable to zero-sum games only. Note that the terms ‘maximin’ and
 <ul>
 <li>A depth limit has been added (<code>Infinity</code> by default).</li>
 <li><code>betaAlphaSearch</code> has been added for player Min in analogy to <code>alphaBetaSearch</code> for player Max.
-This is applicable to zero-sum games only.</li>
+This is applicable to zero-sum games only.
+#</li>
 </ul>
 
         
@@ -1742,10 +1747,10 @@ This is applicable to zero-sum games only.</li>
         
       
         
+        <p>#</p>
+
         
-        
-          <div class='highlight'><pre>
-<span class="hljs-keyword">for</span> algorithm <span class="hljs-keyword">in</span> [minimaxDecision, alphaBetaSearch]
+          <div class='highlight'><pre><span class="hljs-keyword">for</span> algorithm <span class="hljs-keyword">in</span> [minimaxDecision, alphaBetaSearch]
   state = [
     [<span class="hljs-string">'x'</span>, <span class="hljs-string">'o'</span>, <span class="hljs-string">'x'</span>]
     [<span class="hljs-string">'o'</span>, <span class="hljs-string">'x'</span>, <span class="hljs-string">'x'</span>]
@@ -1850,10 +1855,10 @@ This is applicable to zero-sum games only.</li>
         
       
         
+        <p>#</p>
+
         
-        
-          <div class='highlight'><pre>
-state = mapColoringProblem.initialState
+          <div class='highlight'><pre>state = mapColoringProblem.initialState
 assert.deepEqual state, []
 assert <span class="hljs-keyword">not</span> mapColoringProblem.satisfied state
 assert.deepEqual (mapColoringProblem.actions state), [[<span class="hljs-string">'WA'</span>, <span class="hljs-string">'red'</span>], [<span class="hljs-string">'WA'</span>, <span class="hljs-string">'green'</span>], [<span class="hljs-string">'WA'</span>, <span class="hljs-string">'blue'</span>]]
@@ -1953,10 +1958,10 @@ Confer section 6.1.3, p. 205.</p>
         
       
         
+        <p>#</p>
+
         
-        
-          <div class='highlight'><pre>
-solution = [
+          <div class='highlight'><pre>solution = [
   [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]
   [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>]
   [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]
@@ -2012,10 +2017,10 @@ assert constraintSatisfactionEightQueensProblem.satisfied solution</pre></div>
         
       
         
+        <p>#</p>
+
         
-        
-          <div class='highlight'><pre>
-problem = <span class="hljs-keyword">new</span> ConstraintSatisfactionProblem
+          <div class='highlight'><pre>problem = <span class="hljs-keyword">new</span> ConstraintSatisfactionProblem
   domains: [
     [<span class="hljs-string">'Northern Australia'</span>, [<span class="hljs-string">'red'</span>, <span class="hljs-string">'blue'</span>, <span class="hljs-string">'green'</span>] ]
     [<span class="hljs-string">'Southern Australia'</span>, [<span class="hljs-string">'red'</span>, <span class="hljs-string">'blue'</span>, <span class="hljs-string">'green'</span>] ]
@@ -2108,10 +2113,10 @@ operators       = [...unaryOperators, ...binaryOperators]
         
       
         
+        <p>#</p>
+
         
-        
-          <div class='highlight'><pre>
-<span class="hljs-keyword">for</span> [proposition, syntax] <span class="hljs-keyword">in</span> [
+          <div class='highlight'><pre><span class="hljs-keyword">for</span> [proposition, syntax] <span class="hljs-keyword">in</span> [
   [ [ <span class="hljs-string">'A'</span>                   ], <span class="hljs-string">'ERROR'</span>                            ]
   [ [ <span class="hljs-string">'(A'</span>                  ], <span class="hljs-string">'ERROR'</span>                            ]
   [ [ <span class="hljs-string">'A)'</span>                  ], <span class="hljs-string">'ERROR'</span>                            ]
