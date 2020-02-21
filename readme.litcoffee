@@ -42,6 +42,12 @@ Put the above example code in `example.mjs` and run it:
 
 `node example.mjs`
 
+## Extensions
+- [aima-checkers](https://github.com/davidpomerenke/aima-checkers): Checkers rulebase.
+
+## Applications
+- [aima-checkers-gui](https://github.com/davidpomerenke/aima-checkers-gui): Graphical checkers browsergame for desktop and mobile.
+
 ## Related Work
 
 To my knowledge, there are exactly two other JavaScript projects related to *AIMA*: 
@@ -56,12 +62,6 @@ To my knowledge, there are exactly two other JavaScript projects related to *AIM
 - [ajlopez/NodeAima](https://github.com/ajlopez/NodeAima) is an abandoned implementation of only the *vacuum world* in Node JavaScript. 
 
 The existing code from these projects still has to be harnessed for this project! 
-
-## Extensions
-- [aima-checkers](https://github.com/davidpomerenke/aima-checkers): Checkers rulebase.
-
-## Applications
-- [aima-checkers-gui](https://github.com/davidpomerenke/aima-checkers-gui): Graphical checkers browsergame for desktop and mobile.
 
 ## Contributing
 
@@ -78,8 +78,13 @@ Thank you very much in advance for your contribution :)
 ## Dependencies
 
     import deepEqual            from 'deep-equal'
-    import gen                  from 'random-seed' # testing only
     import { strict as assert } from 'assert'
+
+For testing subroutines which depend on random numbers, we use a seeded random number generator which can be called by `rand.random()`:
+
+    import gen                  from 'random-seed' # testing only
+    seed = 'seedshrdlu4523'                        # testing only
+    rand = gen.create seed                         # testing only
 
 ## Utilities
 
@@ -137,10 +142,9 @@ Thank you very much in advance for your contribution :)
 #### Factorial
 
     factorial = (n) -> 
-      [...Array(n).keys()]
-        .reduce (prev, i) ->
-          prev * (i + 1)
-        , 1
+      [1..n]
+        .reduce (accumulator, current) ->
+          accumulator * current
 #
 
     assert.equal factorial(5), 1 * 2 * 3 * 4 * 5
@@ -1309,9 +1313,7 @@ Parameter `random`: A random number generator function. Use seeded function for 
         time += 1
 #
 
-    seed = 'seedshrdlu4523' # testing only
-    rand = gen.create seed  # testing only
-    nSteps = 2              # testing only
+    nSteps = 2
     assert.equal \
       (simulatedAnnealing completeStateEightQueensProblem, ((t) -> 1/t - 1/nSteps), rand.random).value, \
       -22
@@ -1905,3 +1907,81 @@ Confer section 7.4.1, p. 244.
       [ [ '(((A)|(B))&(~(C))))' ], 'ERROR'                            ]
     ]
       assert.deepEqual (plParse ...proposition), syntax
+
+## Learning
+
+### Models
+
+    export class Hypothesis
+      constructor: (@weights) ->
+
+_TODO:_ Should linear models and polynomials really be sister classes?
+
+#### Linear Model
+
+    export class LinearModel extends Hypothesis
+      apply: (x) ->
+        if x.length == (@weights.length - 1)
+          @weights[0] +
+          @weights
+            .slice 1
+            .sum (w, i) ->
+              w *
+              x[i]
+
+      complexity: (q = 1) ->
+        @weights
+          .sum (w) ->
+            Math.abs(w) ** q
+
+#### Polynomial
+
+    export class Polynomial extends Hypothesis
+      apply: (x) ->
+        @weights
+          .sum (w, i) ->
+            w * (x ** i)
+
+E. g. f(x) = x² + 5x + 3:
+
+    f = new Polynomial([3, 5, 2])
+    assert.deepEqual \
+      ([0,  1,  2,  3,  4,  5].map (x) -> f.apply x), \
+       [3, 10, 21, 36, 55, 78]
+
+### Regression
+
+#### Linear Regression
+
+    export linearRegression = (trainingSet) ->
+      w1 = \
+        (
+          trainingSet.length *
+          (trainingSet.sum (pair) -> pair[0] * pair[1]) -
+          (trainingSet.sum (pair) -> pair[0]) *
+          (trainingSet.sum (pair) -> pair[1])
+        ) /
+        (
+          trainingSet.length *
+          ( trainingSet.sum (pair) -> pair[0]  ** 2) -
+          ((trainingSet.sum (pair) -> pair[0]) ** 2)
+        )
+      w0 = \
+        (
+          (trainingSet.sum (pair) -> pair[1]) -
+          w1 *
+          (trainingSet.sum (pair) => pair[0])
+        ) /
+        trainingSet.length
+      new LinearModel [w0, w1]
+
+    console.log (
+      linearRegression (
+        [0..5].map (x) -> [
+          x,
+          ((new LinearModel [3, 0.5]).apply [x]) + rand.random() - 0.5
+        ]
+      )
+    ).weights
+
+#### Multilinear Regression
