@@ -1,19 +1,8 @@
 # aima-coffee
 
-<p align="center">
-  <a href="https://www.npmjs.com/package/aima">
-    <img src="https://img.shields.io/npm/v/aima.svg" alt="NPM Package" />
-  </a>
-  <a href="https://github.com/davidpomerenke/aima-coffee/actions?query=workflow%3A%22Node+CI%22">
-    <img src="https://github.com/davidpomerenke/aima-coffee/workflows/Node%20CI/badge.svg" alt="Tests" />
-  </a>
-  <a href="https://codecov.io/gh/davidpomerenke/aima-coffee">
-    <img src="https://codecov.io/gh/davidpomerenke/aima-coffee/branch/master/graph/badge.svg" alt="Coverage" />
-  </a>
-  <a href="https://gitter.im/aima-coffee/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge">
-    <img src="https://badges.gitter.im/aima-coffee/community.svg" alt="Chat" />
-  </a>
-</p>
+[![NPM Package](https://img.shields.io/npm/v/aima.svg)]("https://www.npmjs.com/package/aima")
+[![Tests](https://github.com/davidpomerenke/aima-coffee/workflows/Node%20CI/badge.svg)](https://github.com/davidpomerenke/aima-coffee/actions?query=workflow%3A%22Node+CI%22)
+[![Coverage](https://codecov.io/gh/davidpomerenke/aima-coffee/branch/master/graph/badge.svg)](https://codecov.io/gh/davidpomerenke/aima-coffee)
 
 [*Artificial Intelligence - A Modern Approach*](http://aima.cs.berkeley.edu/) (*AIMA*) by Stuart Russell and Peter Norvig is the reference textbook on artificial intelligence. 
 
@@ -94,7 +83,7 @@ For testing subroutines which depend on random numbers, we use a seeded random n
       this.reduce (accumulator, element, index, array) ->
         accumulator + f element, index, array
       , 0
-#
+##
 
     array = [ [100, 1000], [200, 2000], [300, 3000] ]
     assert.equal (array.sum (x)           -> x[1]),                        6000
@@ -109,7 +98,7 @@ For testing subroutines which depend on random numbers, we use a seeded random n
           element
         else
           accumulator
-#
+##
 
     Array::argmax = (f) ->
       this.reduce (accumulator, element) ->
@@ -117,7 +106,7 @@ For testing subroutines which depend on random numbers, we use a seeded random n
           element
         else
           accumulator
-#
+##
 
     array = [ [100, 3000], [200, 1000], [300, 2000] ]
     assert.deepEqual (array.argmax (x) -> x[0]), [300, 2000]
@@ -129,11 +118,11 @@ For testing subroutines which depend on random numbers, we use a seeded random n
 
     Array::min = ->
       this.argmin (x) -> x
-#
+##
 
     Array::max = ->
       this.argmax (x) -> x
-#
+##
 
     array = [3, 5, 4, 1, 2]
     assert.equal array.max(), 5
@@ -145,7 +134,7 @@ For testing subroutines which depend on random numbers, we use a seeded random n
       [1..n]
         .reduce (accumulator, current) ->
           accumulator * current
-#
+##
 
     assert.equal factorial(5), 1 * 2 * 3 * 4 * 5
     assert.equal factorial(10), factorial(5) * 6 * 7 * 8 * 9 * 10
@@ -189,7 +178,7 @@ Example: __Table Vacuum Agent__
       [ [ ['B', 'clean'], ['B', 'dirty'] ] ]: 'suck'
       [ [ ['A', 'clean'], ['A', 'clean'], ['A', 'clean'] ] ]: 'right'
       [ [ ['A', 'clean'], ['A', 'clean'], ['A', 'dirty'] ] ]: 'suck'  #...
-#
+##
     assert.equal tableVacuumAgent.action([ ['A', 'dirty'] ]), 'suck'
     assert.equal tableVacuumAgent.action([ ['A', 'clean'] ]), 'right'
     assert.equal tableVacuumAgent.action([ ['B', 'dirty'] ]), undefined
@@ -222,7 +211,7 @@ Example: __Reflex Vacuum Agent__
       condition: ([location, ...]) -> location == 'B'
       action: 'left'
     ]
-#
+##
     assert.equal (reflexVacuumAgent.action [ ['A', 'dirty'] ]), 'suck'
     assert.equal (reflexVacuumAgent.action [ ['A', 'clean'] ]), 'right'
     assert.equal (reflexVacuumAgent.action [ ['B', 'dirty'] ]), 'suck'
@@ -324,7 +313,7 @@ Confer section 3.2.1, p. 70.
       goalTest: (state) ->
         state.A == 'clean' and
         state.B == 'clean'
-#
+##
 
     state = vacuumWorld.initialState
     assert.deepEqual state, { location: 'A', A: 'dirty', B: 'dirty' }
@@ -407,7 +396,7 @@ Confer section 3.2.1, p. 71.
               manhattanDist [y, x], goalPosition number
         goalTest: (state) ->
           deepEqual state, goalState
-#
+##
 
     simpleEightPuzzle = makeEightPuzzle [
       [1, 4, 2]
@@ -440,7 +429,7 @@ Confer section 3.2.1, p. 71.
     ]
     assert.equal (simpleEightPuzzle.heuristic state), 0
     assert simpleEightPuzzle.goalTest state
-#
+##
 
     complexEightPuzzle = makeEightPuzzle [
       [7, 2, 4]
@@ -472,7 +461,7 @@ Incremental formulation of the 8-queens problem. Confer section 3.2.1, p. 72.
         x == x0 or
         y == y0 or
         Math.abs(y - y0) == Math.abs(x - x0)
-#
+##
 
     state = incrementalEightQueensProblem.initialState
 
@@ -509,7 +498,7 @@ Confer section 3.2.1, p. 73.
         result: (state, action) -> [...state, action],
         stepCost: (state, action) -> 1,
         goalTest: (state) -> (calc state) == goal
-#
+##
 
     simpleKnuthConjecture  = makeKnuthConjecture 1
     complexKnuthConjecture = makeKnuthConjecture 5
@@ -680,7 +669,7 @@ Confer section 3.2.2, p. 73.
           graph.straightLineDist[state][end]
         goalTest: (state) ->
           deepEqual state, end
-#
+##
 
     routeFindingProblem = makeRouteFindingProblem cities, 'Arad', 'Bucharest'
 
@@ -718,7 +707,7 @@ Confer section 3.2.2, p. 74.
           graph.straightLineDist[state[state.length - 1]][end]
         goalTest: (state) ->
           deepEqual state[state.length - 1], end
-#
+##
 
     touringProblem = makeTouringProblem cities, 'Arad', 'Bucharest'
 
@@ -753,7 +742,7 @@ Confer section 3.2.2, p. 74.
         goalTest: (state) ->
           state.length == (Object.keys graph.dist).length and
           state[state.length - 1] == end
-#
+##
 
     travelingSalespersonProblem = makeTravelingSalespersonProblem cities, 'Arad', 'Bucharest'
 
@@ -867,7 +856,7 @@ Confer section 3.3.1, p. 80.
 Confer section 3.4.1, p. 82.
 
     export breadthFirstSearch = makeGraphSearch FifoQueue
-#
+##
 
     assert.deepEqual (Problem.solutionPath breadthFirstSearch vacuumWorld), [
       { location: 'A', A: 'dirty', B: 'dirty' }
@@ -907,7 +896,7 @@ Confer section 3.4.1, p. 82.
 Confer section 3.4.2, p. 84.
 
     export uniformCostSearch = makeGraphSearch makePriorityQueue (node) -> node.pathCost
-#
+##
 
     assert.deepEqual (Problem.solutionPath uniformCostSearch vacuumWorld), [
       { location: 'A', A: 'dirty', B: 'dirty' }
@@ -947,7 +936,7 @@ Confer section 3.4.2, p. 84.
 Confer section 3.4.3, p. 87.
 
     export depthFirstSearch = makeGraphSearch LifoQueue
-#
+##
 
     assert.deepEqual (depthFirstSearch incrementalEightQueensProblem).state, [
       [0, 0, 0, 0, 0, 0, 0, 1]
@@ -996,7 +985,7 @@ Confer section 3.4.4, p. 88.
           'cutoff'
         else
           false
-#
+##
 
     assert.equal (depthLimitedSearch vacuumWorld, 2), 'cutoff'
     assert.deepEqual (Problem.solutionPath (depthLimitedSearch vacuumWorld, 3)), [
@@ -1043,7 +1032,7 @@ Confer section 3.4.5, p. 89.
         result
       else
         recursiveIterativeDeepeningSearch problem, (depth + 1)
-#
+##
 
     assert.deepEqual (Problem.solutionPath iterativeDeepeningSearch vacuumWorld), [
       { location: 'A', A: 'dirty', B: 'dirty' }
@@ -1086,7 +1075,7 @@ Confer section 3.5.1, p. 92.
 
     export greedySearch = makeGraphSearch \
       makePriorityQueue (node) -> node.heuristic
-#
+##
 
     assert.deepEqual (Problem.solutionPath greedySearch vacuumWorld), [
       { location: 'A', A: 'dirty', B: 'dirty' }
@@ -1127,7 +1116,7 @@ Confer section 3.5.2, p. 93.
 
     export aStarSearch  = makeGraphSearch \
       makePriorityQueue (node) -> node.pathCost + node.heuristic
-#
+##
 
     assert.deepEqual (Problem.solutionPath aStarSearch vacuumWorld), [
       { location: 'A', A: 'dirty', B: 'dirty' }
@@ -1239,7 +1228,7 @@ Complete-state formulation of the 8-queens problem. From section 4.1.1, p. 122.
             .map (b) -> [a, b]
         ]
       , []
-#
+##
 
     state = completeStateEightQueensProblem.initialState
     assert.equal (completeStateEightQueensProblem.actions state).length, 8 * (8 - 1)
@@ -1272,7 +1261,7 @@ Confer section 4.1.1, p. 122.
         current
       else
         recursiveHillClimbingSearch problem, neighbor
-#
+##
 
     solution = (hillClimbingSearch completeStateEightQueensProblem).state
     assert.deepEqual solution, [
@@ -1311,7 +1300,7 @@ Parameter `random`: A random number generator function. Use seeded function for 
         else if (Math.E**(evalSlope / temp) * random()) > 0.5
           current = next
         time += 1
-#
+##
 
     nSteps = 2
     assert.equal \
@@ -1400,7 +1389,7 @@ Confer section 5.1, p. 163.
         .flat()
         .filter (square) -> square == x
         .length
-#
+##
 
     state = ticTacToe.initialState
 
@@ -1454,7 +1443,7 @@ Changes to the pseudocode:
 - `maximinDecision` has been added for player Min in analogy to `minimaxDecision` for player Max.
   This is applicable to zero-sum games only. Note that the terms 'maximin' and 'minimax' are generally used inconsistently.
 - The notation is functional.
-#
+##
 
     export minimaxDecision = (game, state, limit = Infinity) ->
       game.actions state
@@ -1505,7 +1494,7 @@ Changes to the pseudocode:
 - A depth limit has been added (`Infinity` by default).
 - `betaAlphaSearch` has been added for player Min in analogy to `alphaBetaSearch` for player Max.
   This is applicable to zero-sum games only.
-#
+##
 
     export alphaBetaSearch = (game, state, limit = Infinity) ->
       game.actions state
@@ -1546,7 +1535,7 @@ Changes to the pseudocode:
           v
         beta = Math.min beta, v
       v
-#
+##
 
     for algorithm in [minimaxDecision, alphaBetaSearch]
       state = [
@@ -1638,7 +1627,7 @@ Confer section 6.1.1, p. 203.
           (a, b) -> a != b
         ]
       ]
-#
+##
 
     state = mapColoringProblem.initialState
     assert.deepEqual state, []
@@ -1735,7 +1724,7 @@ Confer section 6.1.3, p. 205.
             not attacks a, b
         ]
       ]
-#
+##
 
     solution = [
       [1, 0, 0, 0, 0, 0, 0, 0]
@@ -1788,7 +1777,7 @@ Confer section 6.2.1, p. 208.
 
     nonUnaryConstraints = (constraints) ->
       constraints.filter (constraint) -> constraint[1].length > 1
-#
+##
 
     problem = new ConstraintSatisfactionProblem
       domains: [
@@ -1878,7 +1867,7 @@ Confer section 7.4.1, p. 244.
     operatorIndex = (sentence) ->
       sentence.findIndex (char, i) ->
         (levels sentence)[i] == 1 and operators.includes char
-#
+##
 
     for [proposition, syntax] in [
       [ [ 'A'                   ], 'ERROR'                            ]
@@ -1930,9 +1919,8 @@ _TODO:_ Should linear models and polynomials really be sister classes?
               x[i]
 
       complexity: (q = 1) ->
-        @weights
-          .sum (w) ->
-            Math.abs(w) ** q
+        @weights.sum (w) ->
+          Math.abs(w) ** q
 
 #### Polynomial
 
@@ -1949,23 +1937,48 @@ E. g. f(x) = x² + 5x + 3:
       ([0,  1,  2,  3,  4,  5].map (x) -> f.apply x), \
        [3, 10, 21, 36, 55, 78]
 
+### Evaluation
+
+    export lossFunctions =
+      absolute: (correct, predicted) -> Math.abs (correct - predicted),
+      squared:  (correct, predicted) -> (correct - predicted) ** 2,
+      binary:   (correct, predicted) -> if correct == predicted then 1 else 0
+
+    export empiricalLoss = (hypothesis, lossFunction, examples) ->
+      (
+        examples.sum (pair) ->
+          lossFunction pair[1], hypothesis.apply [pair[0]]
+      ) /
+      examples.length
+
+    export cost = (hypothesis, lossFunction, examples, conversionRate = 0) ->
+      (empiricalLoss hypothesis, lossFunction, examples) +
+      conversionRate *
+      hypothesis.complexity
+
+    export bestHypothesis = \
+      (hypothesisSpace, lossFunction, examples, conversionRate = 0) ->
+      hypothesisSpace.argmin (x) -> cost x, lossFunction, examples, conversionRate
+
 ### Regression
 
 #### Linear Regression
 
     export linearRegression = (trainingSet) ->
-      w1 = \
-        (
-          trainingSet.length *
-          (trainingSet.sum (pair) -> pair[0] * pair[1]) -
-          (trainingSet.sum (pair) -> pair[0]) *
-          (trainingSet.sum (pair) -> pair[1])
-        ) /
-        (
-          trainingSet.length *
-          ( trainingSet.sum (pair) -> pair[0]  ** 2) -
-          ((trainingSet.sum (pair) -> pair[0]) ** 2)
-        )
+      divisor = \
+        trainingSet.length *
+        ( trainingSet.sum (pair) -> pair[0]  ** 2) -
+        ((trainingSet.sum (pair) -> pair[0]) ** 2)
+      w1 =
+        if divisor == 0
+          0
+        else
+          (
+            trainingSet.length *
+            (trainingSet.sum (pair) -> pair[0] * pair[1]) -
+            (trainingSet.sum (pair) -> pair[0]) *
+            (trainingSet.sum (pair) -> pair[1])
+          ) / divisor
       w0 = \
         (
           (trainingSet.sum (pair) -> pair[1]) -
@@ -1974,14 +1987,121 @@ E. g. f(x) = x² + 5x + 3:
         ) /
         trainingSet.length
       new LinearModel [w0, w1]
+##
 
-    console.log (
-      linearRegression (
-        [0..5].map (x) -> [
-          x,
-          ((new LinearModel [3, 0.5]).apply [x]) + rand.random() - 0.5
-        ]
-      )
-    ).weights
+    trueModel = new LinearModel [3, 0.5]
+    sampleSizes = [1, 5, 10, 100]
+    assert.deepEqual (
+      sampleSizes.map (n) -> 
+        examples = [0 .. (n - 1)].map (x) -> 
+          [x, (trueModel.apply [x]) + rand.random() - 0.5]
+        predictedModel = linearRegression examples
+        [n, predictedModel.weights, empiricalLoss predictedModel, lossFunctions.squared, examples]
+      ), [
+        #   n    w0                    w1                    empirical loss       
+        [   1 , [ 2.9863217363830663 , 0                  ], 0                    ]
+        [   5 , [ 2.933798302215137  , 0.4203891319253779 ], 0.026432483146730707 ]
+        [  10 , [ 3.1695157940114393 , 0.4639499877188505 ], 0.07533178680729899  ]
+        [ 100 , [ 3.0419489353360176 , 0.4986560392449387 ], 0.08407918383200677  ]
+      ]
 
-#### Multilinear Regression
+### Artificial Neural Networks
+
+    export activationFunctions =
+      step:    (x) -> (x > 0) * 1
+      sigmoid: (x) -> 1 / (1 + Math.E ** (-x))
+
+#### Neuron
+
+    export class Neuron
+      constructor: ({
+        @inputs = [],
+        weights,
+        @threshold = 0,
+        @activationFunction = activationFunctions.sigmoid
+      }) ->
+        @weights = weights || (Array inputs.length).fill 1
+
+      output: ->
+        @activationFunction \
+          (
+            @inputs
+              .map (input, i) =>
+                @weights[i] *
+                @inputs[i].output()
+              .sum()
+          ) -
+          @threshold
+
+Neurons as logic gates:
+
+    inputs = [{}, {}]
+    AND = new Neuron
+      inputs: inputs
+      weights: [1, 1]
+      threshold: 1.5
+      activationFunction: activationFunctions.step
+    OR = new Neuron
+      inputs: inputs
+      weights: [1, 1]
+      threshold: 0.5
+      activationFunction: activationFunctions.step
+    NOT = new Neuron
+      inputs: [inputs[0]]
+      weights: [-1]
+      threshold: -0.5
+      activationFunction: activationFunctions.step
+##
+
+    inputs[0].output = -> 0
+    inputs[1].output = -> 0
+    assert.equal AND.output(), 0
+    assert.equal OR.output(),  0
+    assert.equal NOT.output(), 1
+
+    inputs[0].output = -> 0
+    inputs[1].output = -> 1
+    assert.equal AND.output(), 0
+    assert.equal OR.output(),  1
+    assert.equal NOT.output(), 1
+
+    inputs[0].output = -> 1
+    inputs[1].output = -> 0
+    assert.equal AND.output(), 0
+    assert.equal OR.output(),  1
+    assert.equal NOT.output(), 0
+
+    inputs[0].output = -> 1
+    inputs[1].output = -> 1
+    assert.equal AND.output(), 1
+    assert.equal OR.output(),  1
+    assert.equal NOT.output(), 0
+
+Neurons representing the majority / minority function:
+
+    export majority = (inputs) -> new Neuron
+      inputs: inputs
+      weights: (Array inputs.length).fill 1
+      threshold: inputs.length / 2
+      activationFunction: activationFunctions.step
+
+    export minority = (inputs) -> new Neuron
+      inputs: inputs
+      weights: (Array inputs.length).fill -1
+      threshold: -inputs.length / 2
+      activationFunction: activationFunctions.step
+##
+
+    inputs = [0, 0, 0, undefined, 1, 1, 1]
+      .map (i) -> ({ output: -> i })
+
+    sevenMajority = majority inputs
+    sevenMinority = minority inputs
+
+    inputs[3].output = -> 0
+    assert.equal sevenMajority.output(), 0 
+    assert.equal sevenMinority.output(), 1
+
+    inputs[3].output = -> 1
+    assert.equal sevenMajority.output(), 1
+    assert.equal sevenMinority.output(), 0
