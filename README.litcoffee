@@ -62,9 +62,11 @@ Thank you very much in advance for your contribution :)
 
 - `npm test` verifies all the assertions in the code.
 
-- `npm run prepare` removes all assertion statements from the code, as well as all lines which are ended by `# testing only`. This way, the testing can be kept right next to the code it refers to, but it is excluded from the distributed package. The code is then transpiled to JavaScript into the `index.mjs` file. The `index.mjs` file is the content for the NPM package, and also the basis for coverage reporting.
+- `npm run build` removes all assertion statements from the code, as well as all lines which are ended by `# testing only`. This way, the testing can be kept right next to the code it refers to, but it is excluded from the distributed package. The code is then transpiled to JavaScript into the `index.mjs` file. The `index.mjs` file is the content for the NPM package, and also the basis for coverage reporting.
 
-- `npm`
+- `npm run coverage` creates a coverage report. It is automatically run via Github actions on each push, and the resulting report is pushed to [CodeCov](https://codecov.io/gh/davidpomerenke/aima-coffee).
+
+- `npm run dev` is a convenience shortcut for development. You can put CoffeeScript code into a new file `dev.coffee`, `import * from './index.mjs'` and then run it with `npm run dev`. The temporary file `dev.mjs` [is needed](https://github.com/evanw/node-source-map-support/issues/178) for _source map_ support, a technique which enables the JavaScript debugger to refer to the correct CoffeeScript lines, rather than to the lines in the transpiled JavaScript code. Using a separate file instead of developing inside `README.litcoffee` spares you to re-run all the tests there when you just want to run your new tests.
 
 # Code
 
