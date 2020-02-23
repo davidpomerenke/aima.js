@@ -2476,6 +2476,10 @@ assert.deepEqual([0, 1, 2, 3, 4, 5].map(function(x) {
 }), [3, 10, 21, 36, 55, 78]);
 
 // ### Evaluation
+
+// #### Empirical Loss
+
+// Confer section 18.4.2, p. 712f.
 export var lossFunctions = {
   absolute: function(correct, predicted) {
     return Math.abs(correct - predicted);
@@ -2498,6 +2502,9 @@ export var empiricalLoss = function(hypothesis, lossFunction, examples) {
   })) / examples.length;
 };
 
+// #### Cost & Best Hypothesis
+
+// Confer section 18.4.3, p. 713.
 export var cost = function(hypothesis, lossFunction, examples, conversionRate = 0) {
   return (empiricalLoss(hypothesis, lossFunction, examples)) + conversionRate * hypothesis.complexity;
 };
@@ -2510,7 +2517,9 @@ export var bestHypothesis = function(hypothesisSpace, lossFunction, examples, co
 
 // ### Regression
 
-// #### Linear Regression
+// #### Univariate Linear Regression
+
+// Confer section 18.6.1, p. 719
 export var linearRegression = function(trainingSet) {
   var divisor, w0, w1;
   divisor = trainingSet.length * (trainingSet.sum(function(pair) {
@@ -2553,6 +2562,10 @@ assert.deepEqual(sampleSizes.map(function(n) {
 }), [[1, [2.9863217363830663, 0], 0], [5, [2.933798302215137, 0.4203891319253779], 0.026432483146730707], [10, [3.1695157940114393, 0.4639499877188505], 0.07533178680729899], [100, [3.0419489353360176, 0.4986560392449387], 0.08407918383200677]]);
 
 // ### Artificial Neural Networks
+
+// #### Activation Function
+
+// Confer section 18.7.1, p. 729.
 export var activationFunctions = {
   step: function(x) {
     return (x > 0) * 1;
@@ -2563,6 +2576,8 @@ export var activationFunctions = {
 };
 
 // #### Neuron
+
+  // Confer section 18.7.1, p. 728.
 export var Neuron = class Neuron {
   constructor({inputs: inputs1 = [], threshold: threshold = 0, activationFunction: activationFunction = activationFunctions.sigmoid, weights}) {
     this.inputs = inputs1;
@@ -2579,7 +2594,7 @@ export var Neuron = class Neuron {
 
 };
 
-// Neurons as logic gates:
+// Neurons as logic gates. Confer section 18.7.2, p. 729f.
 inputs = [{}, {}];
 
 AND = new Neuron({
@@ -2660,7 +2675,7 @@ assert.equal(OR.output(), 1);
 
 assert.equal(NOT.output(), 0);
 
-// Neurons representing the majority / minority function:
+// Neurons representing the majority / minority function. Confer section 18.7.2, p. 731.
 export var majority = function(inputs) {
   return new Neuron({
     inputs: inputs,

@@ -16,19 +16,24 @@
     "Problem-Solving",
     "Search",
     "Optimization",
-    "Games"
+    "Games",
+    "AIMA",
+    "Constraints",
+    "Logics",
+    "CoffeeScript"
   ],
   "type": "module",
   "module": "index.mjs",
   "main": "index.mjs",
   "files": [
     "index.mjs",
-    "readme.md"
+    "README.md"
   ],
   "scripts": {
-    "test": "coffee --compile --inline-map --output test.mjs readme.litcoffee && node --require source-map-support/register test.mjs",
-    "prepare": "cat readme.litcoffee | sed -e 's/^.*# testing only$//g' | coffee --stdio --literate --compile --transpile > index.mjs",
-    "coverage": "coffee --compile --output .github/workflows/coverage.mjs readme.litcoffee && c8 --reporter=text-lcov node .github/workflows/coverage.mjs > coverage.lcov",
+    "test": "coffee --compile --inline-map --output test.mjs README.litcoffee && node --require source-map-support/register test.mjs",
+    "prepare": "npm run coverage && npm run build",
+    "build": "cat README.litcoffee | sed -e 's/^.*# testing only$//g' | coffee --stdio --literate --compile --transpile > index.mjs",
+    "coverage": "coffee --compile --output .github/workflows/coverage.mjs README.litcoffee && c8 --reporter=text-lcov node .github/workflows/coverage.mjs > coverage.lcov",
     "dev": "coffee --compile --inline-map --output dev.mjs dev.coffee && node --require source-map-support/register dev.mjs"
   },
   "engines": {

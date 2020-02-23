@@ -1942,6 +1942,10 @@ For example, f(x) = 2x² + 5x + 3:
 
 ### Evaluation
 
+#### Empirical Loss
+
+Confer section 18.4.2, p. 712f.
+
     export lossFunctions =
       absolute: (correct, predicted) -> Math.abs (correct - predicted),
       squared:  (correct, predicted) -> (correct - predicted) ** 2,
@@ -1954,6 +1958,10 @@ For example, f(x) = 2x² + 5x + 3:
       ) /
       examples.length
 
+#### Cost & Best Hypothesis
+
+Confer section 18.4.3, p. 713.
+
     export cost = (hypothesis, lossFunction, examples, conversionRate = 0) ->
       (empiricalLoss hypothesis, lossFunction, examples) +
       conversionRate *
@@ -1965,7 +1973,9 @@ For example, f(x) = 2x² + 5x + 3:
 
 ### Regression
 
-#### Linear Regression
+#### Univariate Linear Regression
+
+Confer section 18.6.1, p. 719
 
     export linearRegression = (trainingSet) ->
       divisor = \
@@ -2010,11 +2020,17 @@ For example, f(x) = 2x² + 5x + 3:
 
 ### Artificial Neural Networks
 
+#### Activation Function
+
+Confer section 18.7.1, p. 729.
+
     export activationFunctions =
       step:    (x) -> (x > 0) * 1
       sigmoid: (x) -> 1 / (1 + Math.E ** (-x))
 
 #### Neuron
+
+Confer section 18.7.1, p. 728.
 
     export class Neuron
       constructor: ({
@@ -2036,7 +2052,7 @@ For example, f(x) = 2x² + 5x + 3:
           ) -
           @threshold
 
-Neurons as logic gates:
+Neurons as logic gates. Confer section 18.7.2, p. 729f.
 
     inputs = [{}, {}]
     AND = new Neuron
@@ -2080,7 +2096,7 @@ Neurons as logic gates:
     assert.equal OR.output(),  1
     assert.equal NOT.output(), 0
 
-Neurons representing the majority / minority function:
+Neurons representing the majority / minority function. Confer section 18.7.2, p. 731.
 
     export majority = (inputs) -> new Neuron
       inputs: inputs
