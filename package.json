@@ -43,6 +43,7 @@
     "babel-plugin-unassert": "^3.0.1",
     "c8": "^7.1.0",
     "coffeescript": "^2.5.1",
+    "janus-shuffle": "^1.0.2",
     "random-seed": "^0.3.0",
     "source-map-support": "^0.5.16"
   },
