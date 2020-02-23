@@ -1,5 +1,8 @@
 node_modules/
-test.mjs
+coverage/
 readme.md
+index.mjs
+test.mjs
 dev.coffee
 dev.mjs
+coverage.lcov

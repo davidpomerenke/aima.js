@@ -76,10 +76,8 @@ Thank you very much in advance for your contribution :)
 For testing subroutines which depend on random numbers, we use a seeded random number generator which can be called by `rand.random()`:
 
     import gen                  from 'random-seed'   # testing only
-    import Shuffler             from 'janus-shuffle' # testing only
     seed = 'seedshrdlu4523'                          # testing only
     rand = gen.create seed                           # testing only
-    shuffle = (a) -> Shuffler.shuffle a, seed        # testing only
 
 
 ## Utilities
