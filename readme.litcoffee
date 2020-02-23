@@ -2108,3 +2108,221 @@ Neurons representing the majority / minority function:
     inputs[3].output = -> 1
     assert.equal sevenMajority.output(), 1
     assert.equal sevenMinority.output(), 0
+
+#### Neural Network
+
+    export class NeuralNetwork
+      constructor: ({
+        @inputUnits   = []
+        @outputUnits  = []
+        @hiddenLayers = []
+      }) ->
+        @trainingHistory = []
+
+      predict: (input) ->
+        for i of @inputUnits
+          console.log input[i]
+          @inputUnits[i].output = (-> input[i])
+        @outputUnits
+          .map (neuron) -> neuron.output()
+
+      train: (trainExamples, epochs, learningRate, testExamples) ->
+        # Assign random weights.
+        for neuron of @neurons
+          neuron.weights =
+            neuron.weights
+              .map (w) -> Math.random() - 0.5
+          neuron.threshold = Math.random() - 0.5
+        # Update weights according to error.
+        epoch = 0
+        while epoch < epochs
+          for [example, correctOutput] from trainExamples
+            predictedOutput = @predict example
+            @update predictedOutput, correctOutput, learningRate epoch
+          @accuracy         =                  @calcAccuracy trainExamples
+          @externalAccuracy = testExamples? && @calcAccuracy  testExamples
+          @trainingHistory.push
+            weights:          @weights(),
+            accuracy:         @accuracy
+            externalAccuracy: @externalAccuracy
+          epoch++
+
+      update: ->
+
+      size: ->
+        (@hiddenLayers.sum (layer) -> layer.length) + @outputUnits.length
+
+      layers: ->
+        @hiddenLayers.length + 1 * (@outputUnits.length > 0)
+
+      neurons: ->
+        [...(@hiddenLayers.flat 1), ...@outputUnits]
+
+      calcAccuracy: (examples) ->
+        examples
+          .map ([x, y]) =>
+            deepEqual (@predict x), y
+          .filter Boolean
+          .length /
+          examples.length
+
+#### Feed-Forward Neural Network
+
+    export class FeedForwardNetwork extends NeuralNetwork
+      constructor: ({ layers, activationFunction = activationFunctions.sigmoid }) ->
+        inputUnits = Array.from (Array layers[0]), -> ({})
+        hiddenLayers =
+          layers.slice 2, -1
+            .reduce (accumulator, layer, i) ->
+              [
+                accumulator...
+                (Array layer).fill (new Neuron
+                  inputs: accumulator[accumulator.length - 1]
+                  activationFunction: activationFunction)
+              ]
+            , if layers.length >= 3
+                [
+                  (Array layers[1]).fill (new Neuron
+                    inputs: inputUnits
+                    activationFunction: activationFunction)
+                ]
+              else
+                []
+        outputUnits = Array layers[layers.length - 1]
+          .fill (new Neuron
+            inputs:
+              if layers.length > 2
+                hiddenLayers[hiddenLayers.length - 1]
+              else
+                inputUnits
+            activationFunction: activationFunction)
+        super
+          inputUnits:   inputUnits
+          hiddenLayers: hiddenLayers
+          outputUnits:  outputUnits
+
+      update: ->
+
+      weights: ->
+        [
+          @hiddenLayers...
+          @outputUnits
+        ].map (layer) ->
+          layer.map (neuron) -> [
+            neuron.threshold
+            neuron.weights...
+          ]
+
+#### Perceptron
+
+    export class PerceptronNetwork extends FeedForwardNetwork
+      constructor: ({ 
+        inputLayer
+        outputLayer 
+        activationFunction
+      }) ->
+        super
+          layers: [inputLayer, outputLayer]
+          activationFunction: activationFunction
+
+      update: (predictedOutput, correctOutput, learningRate) ->
+        for j of @outputUnits
+          if @outputUnits[j].activationFunction == activationFunctions.step
+            # Perceptron learning rule, cf. p. 724, eq. 18.7.
+            # TODO: does not work well -- is there a mistake?
+            console.log @inputUnits.map((x) -> x.output())
+            @outputUnits[j].weights = @outputUnits[j].weights
+              .map (weight, i) =>
+                weight +
+                learningRate *
+                (
+                  correctOutput[j] -
+                  predictedOutput[j]
+                ) *
+                @inputUnits[i].output()
+            @threshold = @threshold +
+              learningRate * (
+                correctOutput[j] -
+                predictedOutput[j])
+          else if @outputUnits[j].activationFunction == activationFunctions.sigmoid
+            # Rule for logistic regression, cf. p. 727, eq. 18.8.
+            # ...
+          else
+            # No learning rule at hand for activation function.
+
+    export class Perceptron extends PerceptronNetwork
+      constructor: ({ size, activationFunction = 'sigmoid' }) ->
+        super
+          inputLayer:         size
+          outputLayer:        1
+          activationFunction: activationFunction
+###
+
+Two-bit adder function:
+
+    # list examples
+    carryExamples = [
+      [[0, 0], [0]]
+      [[0, 1], [1]]
+      [[1, 0], [0]]
+      [[1, 1], [1]]
+    ]
+    sumExamples = [
+      [[0, 0], [0]]
+      [[0, 1], [1]]
+      [[1, 0], [1]]
+      [[1, 1], [0]]
+    ]
+
+    ###
+    # train
+    perceptron = new Perceptron
+      size: 2,
+      activationFunction: activationFunctions.step
+    perceptron.train carryExamples, 10, (x) -> 0.01
+    console.log perceptron.trainingHistory.map (l) -> l.accuracy
+    console.log perceptron.trainingHistory.map (l) -> l.weights
+    perceptron.train sumExamples, 10, (x) -> 0.01
+    console.log perceptron.trainingHistory.map (l) -> l.accuracy
+    console.log perceptron.trainingHistory.map (l) -> l.weights
+    ###
+
+Majority function:
+
+    ###
+    # generate examples
+    members = (seed, size) ->
+      seed
+        .toString 2
+        .padStart size, '0'
+        .split ''
+        .map (x) -> parseInt x
+    panel = (size) -> Array.from(
+      (Array 2 ** size),
+      (v, i) ->
+        [
+          members i, size
+          [((members i, size).sum() >= size / 2) * 1]
+        ])
+    examples = shuffle panel 11
+    [trainExamples, testExamples] =
+    [
+      examples.slice 0, examples.length / 2,
+      examples.slice    examples.length / 2
+    ]
+    
+    # train
+    perceptron = new Perceptron
+      size: 11
+      activationFunction: activationFunctions.step
+    perceptron.train trainExamples, 1000, (x) -> 1 / x
+    # predict
+    console.log (accuracy trainExamples), accuracy testExamples
+    ###
+
+#### Recurrent Neural Network
+
+    export class RecurrentNeuralNetwork extends NeuralNetwork
+###
+
+    export class Brain extends RecurrentNeuralNetwork
