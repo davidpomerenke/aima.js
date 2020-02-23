@@ -1,6 +1,6 @@
 # aima-coffee
 
-[![NPM Package](https://img.shields.io/npm/v/aima.svg)]("https://www.npmjs.com/package/aima")
+[![NPM Package](https://img.shields.io/npm/v/aima.svg)](https://www.npmjs.com/package/aima)
 [![Tests](https://github.com/davidpomerenke/aima-coffee/workflows/Node%20CI/badge.svg)](https://github.com/davidpomerenke/aima-coffee/actions?query=workflow%3A%22Node+CI%22)
 [![Coverage](https://codecov.io/gh/davidpomerenke/aima-coffee/branch/master/graph/badge.svg)](https://codecov.io/gh/davidpomerenke/aima-coffee)
 
