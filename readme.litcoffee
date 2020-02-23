@@ -1911,8 +1911,6 @@ Confer section 7.4.1, p. 244.
     export class Hypothesis
       constructor: (@weights) ->
 
-_TODO:_ Should linear models and polynomials really be sister classes?
-
 #### Linear Model
 
     export class LinearModel extends Hypothesis
@@ -1937,7 +1935,7 @@ _TODO:_ Should linear models and polynomials really be sister classes?
           .sum (w, i) ->
             w * (x ** i)
 
-E. g. f(x) = x² + 5x + 3:
+For example, f(x) = 2x² + 5x + 3:
 
     f = new Polynomial([3, 5, 2])
     assert.deepEqual \
