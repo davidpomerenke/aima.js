@@ -38,4 +38,4 @@ Put the above example code in `example.mjs` and run it:
 - [aima-checkers-gui](https://github.com/davidpomerenke/aima-checkers-gui): Graphical checkers browsergame for desktop and mobile.
 
 ## Code & More
-This is just the beginning of the literate code file. For information on development & contributing, as well as the source code (including many usage examples), please visit the [https;//github.com/davidpomerenke/aima-coffee](Github repository).
+This is just the beginning of the literate code file. For information on development & contributing, as well as the source code (including many usage examples), please visit the [https://github.com/davidpomerenke/aima-coffee](Github repository).
