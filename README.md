@@ -35,7 +35,7 @@ Put the above example code in `example.mjs` and run it:
 - [aima-checkers](https://github.com/davidpomerenke/aima-checkers): Checkers rulebase.
 
 ## Applications
-- [aima-checkers-gui](https://github.com/davidpomerenke/aima-checkers-gui): Graphical checkers browsergame for desktop and mobile.
+- [aima-checkers-gui](https://github.com/davidpomerenke/checkers): Graphical checkers browsergame for desktop and mobile.
 
 ## Code & More
 This is just the beginning of the literate code file. For information on development & contributing, as well as the source code (including many usage examples), please visit the [Github repository](https://github.com/davidpomerenke/aima-coffee).
