@@ -36,6 +36,7 @@ Put the above example code in `example.mjs` and run it:
 
 ## Applications
 - [aima-checkers-gui](https://github.com/davidpomerenke/checkers): Graphical checkers browsergame for desktop and mobile.
+- [while-quine](https://github.com/davidpomerenke/while-quine): Finding a Quine program for the WHILE language.
 
 ## Related Work
 
