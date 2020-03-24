@@ -7,7 +7,7 @@
 [*Artificial Intelligence - A Modern Approach*](http://aima.cs.berkeley.edu/) (*AIMA*) by Stuart Russell and Peter Norvig is the reference textbook on artificial intelligence. 
 
 This package implements some of the algorithms and data structures from the *AIMA* book in function-oriented [CoffeeScript](https://coffeescript.org/), which is compatible with JavaScript.
-The focus is on code understandability. 
+The focus is on code understandability.
 
 ## Installation and Usage
 
