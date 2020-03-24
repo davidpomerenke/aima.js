@@ -4,9 +4,9 @@
   "author": "David Pomerenke",
   "description": "Implementation of Russell & Norvig, \"Artificial Intelligence - A Modern Approach\". ",
   "repository": {
-    "url": "https://github.com/davidpomerenke/aima-coffee"
+    "url": "https://github.com/davidpomerenke/aima.js"
   },
-  "homepage": "https://davidpomerenke.github.io/aima-coffee",
+  "homepage": "https://davidpomerenke.github.io/aima.js",
   "license": "ISC",
   "keywords": [
     "Artificial Intelligence",

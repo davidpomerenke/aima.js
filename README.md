@@ -1,8 +1,8 @@
-# aima-coffee
+# aima.js
 
 [![NPM Package](https://img.shields.io/npm/v/aima.svg)](https://www.npmjs.com/package/aima)
-[![Tests](https://github.com/davidpomerenke/aima-coffee/workflows/Node%20CI/badge.svg)](https://github.com/davidpomerenke/aima-coffee/actions?query=workflow%3A%22Node+CI%22)
-[![Coverage](https://codecov.io/gh/davidpomerenke/aima-coffee/branch/master/graph/badge.svg)](https://codecov.io/gh/davidpomerenke/aima-coffee)
+[![Tests](https://github.com/davidpomerenke/aima.js/workflows/Node%20CI/badge.svg)](https://github.com/davidpomerenke/aima.js/actions?query=workflow%3A%22Node+CI%22)
+[![Coverage](https://codecov.io/gh/davidpomerenke/aima.js/branch/master/graph/badge.svg)](https://codecov.io/gh/davidpomerenke/aima.js)
 
 [*Artificial Intelligence - A Modern Approach*](http://aima.cs.berkeley.edu/) (*AIMA*) by Stuart Russell and Peter Norvig is the reference textbook on artificial intelligence. 
 
@@ -38,4 +38,4 @@ Put the above example code in `example.mjs` and run it:
 - [aima-checkers-gui](https://github.com/davidpomerenke/checkers): Graphical checkers browsergame for desktop and mobile.
 
 ## Code & More
-This is just the beginning of the literate code file. For information on development & contributing, as well as the source code (including many usage examples), please visit the [Github repository](https://github.com/davidpomerenke/aima-coffee).
+This is just the beginning of the literate code file. For information on development & contributing, as well as the source code (including many usage examples), please visit the [Github repository](https://github.com/davidpomerenke/aima.js).
