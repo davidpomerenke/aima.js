@@ -1,8 +1,8 @@
-# aima-coffee
+# aima.js
 
 [![NPM Package](https://img.shields.io/npm/v/aima.svg)](https://www.npmjs.com/package/aima)
-[![Tests](https://github.com/davidpomerenke/aima-coffee/workflows/Node%20CI/badge.svg)](https://github.com/davidpomerenke/aima-coffee/actions?query=workflow%3A%22Node+CI%22)
-[![Coverage](https://codecov.io/gh/davidpomerenke/aima-coffee/branch/master/graph/badge.svg)](https://codecov.io/gh/davidpomerenke/aima-coffee)
+[![Tests](https://github.com/davidpomerenke/aima.js/workflows/Node%20CI/badge.svg)](https://github.com/davidpomerenke/aima.js/actions?query=workflow%3A%22Node+CI%22)
+[![Coverage](https://codecov.io/gh/davidpomerenke/aima.js/branch/master/graph/badge.svg)](https://codecov.io/gh/davidpomerenke/aima.js)
 
 [*Artificial Intelligence - A Modern Approach*](http://aima.cs.berkeley.edu/) (*AIMA*) by Stuart Russell and Peter Norvig is the reference textbook on artificial intelligence. 
 
@@ -35,7 +35,8 @@ Put the above example code in `example.mjs` and run it:
 - [aima-checkers](https://github.com/davidpomerenke/aima-checkers): Checkers rulebase.
 
 ## Applications
-- [aima-checkers-gui](https://github.com/davidpomerenke/aima-checkers-gui): Graphical checkers browsergame for desktop and mobile.
+- [aima-checkers-gui](https://github.com/davidpomerenke/checkers): Graphical checkers browsergame for desktop and mobile.
+- [while-quine](https://github.com/davidpomerenke/while-quine): Finding a Quine program for the WHILE language.
 
 ## Related Work
 
@@ -62,9 +63,11 @@ Thank you very much in advance for your contribution :)
 
 - `npm test` verifies all the assertions in the code.
 
-- `npm run prepare` removes all assertion statements from the code, as well as all lines which are ended by `# testing only`. This way, the testing can be kept right next to the code it refers to, but it is excluded from the distributed package. The code is then transpiled to JavaScript into the `index.mjs` file. The `index.mjs` file is the content for the NPM package, and also the basis for coverage reporting.
+- `npm run build` removes all assertion statements from the code, as well as all lines which are ended by `# testing only`. This way, the testing can be kept right next to the code it refers to, but it is excluded from the distributed package. The code is then transpiled to JavaScript into the `index.mjs` file. The `index.mjs` file is the content for the NPM package, and also the basis for coverage reporting.
 
-- `npm`
+- `npm run coverage` creates a coverage report. It is automatically run via Github actions on each push, and the resulting report is pushed to [CodeCov](https://codecov.io/gh/davidpomerenke/aima.js).
+
+- `npm run dev` is a convenience shortcut for development. You can put CoffeeScript code into a new file `dev.coffee`, `import * from './index.mjs'` and then run it with `npm run dev`. The temporary file `dev.mjs` [is needed](https://github.com/evanw/node-source-map-support/issues/178) for _source map_ support, a technique which enables the JavaScript debugger to refer to the correct CoffeeScript lines, rather than to the lines in the transpiled JavaScript code. Using a separate file instead of developing inside `README.litcoffee` spares you to re-run all the tests there when you just want to run your new tests.
 
 # Code
 
@@ -1942,6 +1945,10 @@ For example, f(x) = 2x² + 5x + 3:
 
 ### Evaluation
 
+#### Empirical Loss
+
+Confer section 18.4.2, p. 712f.
+
     export lossFunctions =
       absolute: (correct, predicted) -> Math.abs (correct - predicted),
       squared:  (correct, predicted) -> (correct - predicted) ** 2,
@@ -1954,6 +1961,10 @@ For example, f(x) = 2x² + 5x + 3:
       ) /
       examples.length
 
+#### Cost & Best Hypothesis
+
+Confer section 18.4.3, p. 713.
+
     export cost = (hypothesis, lossFunction, examples, conversionRate = 0) ->
       (empiricalLoss hypothesis, lossFunction, examples) +
       conversionRate *
@@ -1965,7 +1976,9 @@ For example, f(x) = 2x² + 5x + 3:
 
 ### Regression
 
-#### Linear Regression
+#### Univariate Linear Regression
+
+Confer section 18.6.1, p. 719
 
     export linearRegression = (trainingSet) ->
       divisor = \
@@ -2010,11 +2023,17 @@ For example, f(x) = 2x² + 5x + 3:
 
 ### Artificial Neural Networks
 
+#### Activation Function
+
+Confer section 18.7.1, p. 729.
+
     export activationFunctions =
       step:    (x) -> (x > 0) * 1
       sigmoid: (x) -> 1 / (1 + Math.E ** (-x))
 
 #### Neuron
+
+Confer section 18.7.1, p. 728.
 
     export class Neuron
       constructor: ({
@@ -2036,7 +2055,7 @@ For example, f(x) = 2x² + 5x + 3:
           ) -
           @threshold
 
-Neurons as logic gates:
+Neurons as logic gates. Confer section 18.7.2, p. 729f.
 
     inputs = [{}, {}]
     AND = new Neuron
@@ -2080,7 +2099,7 @@ Neurons as logic gates:
     assert.equal OR.output(),  1
     assert.equal NOT.output(), 0
 
-Neurons representing the majority / minority function:
+Neurons representing the majority / minority function. Confer section 18.7.2, p. 731.
 
     export majority = (inputs) -> new Neuron
       inputs: inputs

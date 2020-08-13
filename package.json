@@ -1,12 +1,12 @@
 {
   "name": "aima",
-  "version": "0.6.10",
+  "version": "0.7.0",
   "author": "David Pomerenke",
   "description": "Implementation of Russell & Norvig, \"Artificial Intelligence - A Modern Approach\". ",
   "repository": {
-    "url": "https://github.com/davidpomerenke/aima-coffee"
+    "url": "https://github.com/davidpomerenke/aima.js"
   },
-  "homepage": "https://davidpomerenke.github.io/aima-coffee",
+  "homepage": "https://davidpomerenke.github.io/aima.js",
   "license": "ISC",
   "keywords": [
     "Artificial Intelligence",
@@ -16,19 +16,24 @@
     "Problem-Solving",
     "Search",
     "Optimization",
-    "Games"
+    "Games",
+    "AIMA",
+    "Constraints",
+    "Logics",
+    "CoffeeScript"
   ],
   "type": "module",
   "module": "index.mjs",
   "main": "index.mjs",
   "files": [
     "index.mjs",
-    "readme.md"
+    "README.md"
   ],
   "scripts": {
-    "test": "coffee --compile --inline-map --output test.mjs readme.litcoffee && node --require source-map-support/register test.mjs",
-    "prepare": "cat readme.litcoffee | sed -e 's/^.*# testing only$//g' | coffee --stdio --literate --compile --transpile > index.mjs",
-    "coverage": "coffee --compile --output .github/workflows/coverage.mjs readme.litcoffee && c8 --reporter=text-lcov node .github/workflows/coverage.mjs > coverage.lcov",
+    "test": "coffee --compile --inline-map --output test.mjs README.litcoffee && node --require source-map-support/register test.mjs",
+    "prepare": "npm run coverage && npm run build",
+    "build": "cat README.litcoffee | sed -e 's/^.*# testing only$//g' | coffee --stdio --literate --compile --transpile > index.mjs",
+    "coverage": "coffee --compile --output .github/workflows/coverage.mjs README.litcoffee && c8 --reporter=text-lcov node .github/workflows/coverage.mjs > coverage.lcov",
     "dev": "coffee --compile --inline-map --output dev.mjs dev.coffee && node --require source-map-support/register dev.mjs"
   },
   "engines": {
@@ -39,7 +44,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.8.4",
+    "@babel/core": "^7.9.0",
     "babel-plugin-unassert": "^3.0.1",
     "c8": "^7.1.0",
     "coffeescript": "^2.5.1",
