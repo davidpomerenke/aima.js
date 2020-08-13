@@ -40,17 +40,17 @@
     "node": ">= 13.0"
   },
   "dependencies": {
-    "deep-equal": "^2.0.1"
+    "deep-equal": "^2.0.3"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1",
     "babel-plugin-unassert": "^3.0.1",
-    "c8": "^7.1.0",
+    "c8": "^7.3.0",
     "coffeescript": "^2.5.1",
     "janus-shuffle": "^1.0.2",
     "random-seed": "^0.3.0",
-    "source-map-support": "^0.5.16"
+    "source-map-support": "^0.5.19"
   },
   "babel": {
     "plugins": [
